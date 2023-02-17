@@ -1,7 +1,7 @@
-.nav {
+.nav{
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.35);
 }
-.navContainer {
+.nonDropDownNav {
     display: flex;
     margin: 0px 200px 0px 200px;
     padding : 8px;
@@ -15,16 +15,20 @@
     padding: 10px;
     align-items: center;
     margin : 0px;
+
 }
 
 .navItem {
     margin : 0 20px 0 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color : black;
 }
 
-.navLink {
-    text-decoration: none;
-}
+.navLink {  text-decoration: none;}
+.navLink:visited {  text-decoration: none;}
+.navLink:hover { text-decoration: none; }
+.navLink:focus { text-decoration: none; }
+.navLink:hover, .navLink:active { text-decoration: none; }
 
 .navLogo {
     height: 32px;
@@ -38,10 +42,26 @@
 
 .fixedNav {
     position: fixed;
-    color:white;
     background-color: black;
     top : 0;
     left: 0;
     right: 0;
     z-index: 2;
+}
+
+.fixedNavItem {
+    color : white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin : 0 20px 0 20px;
+}
+
+.dropDownNav {
+    display:none;
+    height: 200px;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+.displayDropDownNav{
+    height: 200px;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
 }

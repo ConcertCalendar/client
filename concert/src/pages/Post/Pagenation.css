@@ -1,0 +1,10 @@
+.paging {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagingItem {
+   padding : 1.5%;
+   cursor: pointer;
+}

@@ -1,28 +1,67 @@
-import { useEffect } from 'react'
+import { useEffect , useState} from 'react'
 import './PostList.css'
-function PostList({data}) {
-    //{post.map((item) => <PostListItem postId ={item.id} postTitle = {item.post_title} postContent = {item.post_content}/>)}
-    const makeChild = () => {
-        data.map(item=> (
-            <tr>
-                <td>{item.id}</td>
-                <td>{item.post_title}</td>
-            </tr>
-        ))
+import { Link } from 'react-router-dom'
+function PostList({data , loading}) {
+    const [loadingMsg , setLoadingMsg] = useState("Loading");
+    let count = 0;
+    const renderLoding = (count) => {
+        if (count % 4 === 0){
+            setLoadingMsg("Loading")
+        }
+        else if(count %  4 === 1){
+            setLoadingMsg("Loading·")
+        }
+        else if(count % 4 === 2){
+            setLoadingMsg("Loading··")
+        }
+        else{
+            setLoadingMsg("Loading···")
+        }
     }
-    useEffect( () => {
 
-    })
+    const makeChild = () => {
+       return data.length === 0 ? 
+       <div>
+            게시글이 없습니다.
+        </div> :
+        data.map((item,idx)=>         
+        <div key = {item.id} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1'} onClick = {readPost}>
+            <p className = "postTitle">{item.postTitle}</p>
+            <p className = "postContent">{cutContent(item.postContent)}</p>
+        </div>
+        
+    )}  
+
+
+    const cutContent = (content) => {
+        if(content !== null && content.length > 250){
+            const cuttedContent = content.substring(0,250) + "...";
+            return cuttedContent;
+        }
+        return content;
+    }
+
+    const readPost = () => {
+        <Link to >
+            
+        </Link>
+    }
+
+
+    useEffect( () => {
+        console.log("inpostList ",data);
+        setInterval(() => renderLoding(count++), 1000);
+    }, [data])
 
     
     return (
-        <>
-            <table className = "postTable">
-                <th className= "postNumber"> No. </th>
-                <th className= "postTitle"> 제목 </th>
-                {makeChild()}
-            </table>
-        </>
+        <div className = "postContainer">
+           {loading ?  makeChild() : 
+            <div className  = "loading">
+                 {loadingMsg}
+            </div>
+           }
+        </div>
     )
 }
 

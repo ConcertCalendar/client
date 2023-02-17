@@ -8,11 +8,12 @@ import { useSelector } from 'react-redux';
 
 
 function Nav() {
+  const [hover, setHover] = useState(false);
   const scrollRef = useRef(null);
   const headerHeight = useSelector((state)=>state.header.headerHeight)
-  
+  const [fixed , setFixed] = useState(false);
   const navigate = useNavigate();
-
+  
   const onClickNav = (event) => {
     console.log(event);  
     navigate("/"+event.target.innerText);
@@ -27,9 +28,11 @@ function Nav() {
   const handleScroll = () => {
     if(window.scrollY > headerHeight){
         scrollRef.current.classList.add("fixedNav");
+        setFixed(true);
       }
     else{
         scrollRef.current.classList.remove("fixedNav")
+        setFixed(false);
       }
   }
 
@@ -41,21 +44,35 @@ function Nav() {
   },[])
   
   return (
-      <div className="nav" ref = {scrollRef} id = "nav">
-        <div className='navContainer'>
-          <Link className = 'navLink' to ="/">
-            <img className='navLogo' src = "Images/logo.png" alt = ""/>
-          </Link>
-          <ul className = "navMenu">
+      <div className="navContainer"   onMouseLeave={()=>{setHover(false)}}>
+        <div className='nav' ref = {scrollRef}>
+          <div className = 'nonDropDownNav'>
             <Link className = 'navLink' to ="/">
-              <li className = "navItem">HOME</li>
+              <img className='navLogo' src = "Images/logo.png" alt = ""/>
             </Link>
-            <Link className = 'navLink' to ="/Calendar">
-              <li className = "navItem">CALENDAR</li>
-            </Link>
-            <Link className = 'navLink' to ="/Community">
-              <li className ="navItem community">COMMUNITIY</li>
-            </Link>
+            <ul className = "navMenu">
+              <Link className = 'navLink' to ="/">
+                <li className = { fixed ? "fixedNavItem" : "navItem"}>HOME</li>
+              </Link>
+              <Link className = 'navLink' to ="/Calendar">
+                <li className = { fixed ? "fixedNavItem" : "navItem"}>CALENDAR</li>
+              </Link>
+              <Link className = 'navLink' to ="/board/12">
+                <li className ="navItem community" onMouseEnter={() => {
+                  console.log("horvering")
+                  setHover(true)}}>COMMUNITY</li>
+              </Link>
+            </ul>
+          </div>
+        </div>
+        <div  className = {hover ? "displayDropDownNav" : "dropDownNav"}>
+          <ul className='navMenu'>
+          <Link className = 'navLink' to ="/board/1">
+            <li className='navItem'> 자유 게시판</li>
+          </Link>  
+          <Link className = 'navLink' to ="/board/2">
+            <li className='navItem'> 공연 후기 게시판</li>
+          </Link>    
           </ul>
         </div>
       </div>

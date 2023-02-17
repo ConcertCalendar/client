@@ -2,6 +2,7 @@ import { type } from '@testing-library/user-event/dist/type';
 import { useCallback, useState } from 'react';
 import './Join.css'
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Join() {
     const [email, setEmail] = useState(""); //이메일 input value 값을 저장할 state
@@ -17,7 +18,7 @@ function Join() {
     const [matchPassword, setMatchPassword]  = useState(true); //비밀번호가 비밀번호 형식에 맞는지
     const [samePassword, setSamePassword] = useState(true); //비밀번호와 비밀번호 확인 값이 같은지
     const [numberKeyPress , setNumberKeyPress] = useState(false); //키보드  숫자 자판 눌렀을 
-    
+    const navigate = useNavigate();
 
     const data = JSON.stringify(
         {
@@ -161,9 +162,10 @@ function Join() {
                     'Content-Type': 'application/json'
                 }
             })
-            .then((res)=>
+            .then((res)=>{
                 console.log(res)
-            )
+                navigate('/');
+                })
             .catch((err)=>
                 console.log(err)
             )
@@ -180,7 +182,9 @@ function Join() {
 
     return (
         <div className="joinWrap">
-          <h1> 회원가입</h1>
+          <Link to = "/">
+            <img className="loginLogo" src = "Images/logo.png" alt = ""/>
+          </Link>
           <form id  = "joinForm">
             <div className = "joinInput">
                 <em>* </em>

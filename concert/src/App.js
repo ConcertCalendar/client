@@ -14,7 +14,7 @@ function App() {
     <Routes>
       <Route element = {<Layout/>}>
         <Route path="/" element = {<Home />}/>
-        <Route path = "Community" element = {<Community/>} />
+        <Route path = "board/:boardId"  element = {<Community />} />
         <Route path = "Calendar" element ={ <MyCalendar/>}/>
       </Route>
       <Route path="login" element = {<Login />} />

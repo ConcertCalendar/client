@@ -1,24 +1,57 @@
-import Nav from '../../components/Nav';
 import postDummyData from '../../assets/postdummy.json';
+import Pagenation from './Pagenation';
 import './Community.css'
 import { useEffect, useState } from 'react';
-import PostListItem from './PostListItem';
 import PostList from './PostList';
+import { useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function Community(){
+    const communityArr = ["자유 게시판" , "공연 후기 게시판"]
+    const [communityName, setCommunityName] = useState("");
+    const {boardId} = useParams();
+    const [loading ,setLoading] = useState(false);
     const [post,setPost] = useState([]);
+    const location = useLocation();
     
-    useEffect( () => {
-        const data = postDummyData;
-        setPost(data);
-    }, []);
-    //"id":1,"member_id":1,"board_id":1,"post_title":"Bourne Ultimatum, The","post_content":"0.00","created_at":"2023-02
-    //{post.map((item) => <PostListItem postId ={item.id} postTitle = {item.post_title} postContent = {item.post_content}/>)}
+    useEffect( ()=> {
+        setCommunityName(communityArr[boardId - 11]);
+        async function getData(){
+            const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
+            if(response.status === 200){
+                setLoading(true);
+                console.log(response.data.data)
+                setPost(response.data.data);
+                return; 
+            }
+            setLoading(false);
+        }
+        getData();
+    }, [location]);
+   
+
+    const getPost = async () => {
+        try{
+            axios.get(`http://3.37.69.149:8080${location.pathname}`)
+            .then((res) => {
+                console.log(res);
+                setLoading(true);
+                return res.data.data;
+            }).catch((err)=>{
+                console.log("inAxiosErr" , err);
+            })
+        }catch{
+            console.log("catchError")
+        }        
+    }
+
     return (
         <div className = "communityContainer">
-            <div className = "communityContainers">
-            {post.map((item) => <PostListItem postId ={item.id} postTitle = {item.post_title} postContent = {item.post_content}/>)}
+            <div className = "communityName">
+                {communityName}
             </div>
+            <PostList data = {post} loading = {loading}/>
+            <Pagenation page = {Math.ceil(post.length)}/>
         </div>
     )
 }

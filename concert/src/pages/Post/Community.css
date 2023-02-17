@@ -1,6 +1,11 @@
 .communityContainer {
-    margin : 100px  auto;
-    width : 1000px;
-    height: 1500px;
-    background-color: red;
+    margin : 20px  auto;
+    width : 1000px; 
+}
+
+.communityName {
+    font-weight: bold;
+    font-size: 20px;
+    padding : 10px 10px 10px 10px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.3);
 }
