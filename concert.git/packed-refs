@@ -1,0 +1,10 @@
+# pack-refs with: peeled fully-peeled sorted 
+460c7cf2841c0589dc6aa6b8fa288e757811bde2 refs/heads/cookie
+140b164e43a2ca0675b326d9afb48a09adfa2064 refs/heads/main
+c8abc0f26b6ec5d5982b824964771e088ea54c79 refs/heads/post
+c0dfdb26176f60db600b39fc0d4098a42447fdb0 refs/heads/redux
+e0ced86eb05b4498df583023551cf2f5e0c5aba4 refs/pull/1/head
+6e5c780a0a744c09adceb2f9771e6269015d5832 refs/pull/2/head
+4432f6b5eaa7d49915dca49b66533487ed2a4764 refs/pull/3/head
+c0dfdb26176f60db600b39fc0d4098a42447fdb0 refs/pull/4/head
+c8abc0f26b6ec5d5982b824964771e088ea54c79 refs/pull/5/head
