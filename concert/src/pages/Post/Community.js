@@ -19,7 +19,7 @@ function Community(){
     useEffect( ()=> {
         setCommunityName(communityArr[boardId - 1]);
         async function getData(){
-            const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
+            const response = await axios.get(`http://3.37.69.149:8080${location.pathname}${location.search}`)
             if(response.status === 200){
                 console.log(response);
                 setLoading(true);
@@ -38,7 +38,7 @@ function Community(){
                 {communityName}
             </div>
             <PostList data = {post} loading = {loading}/>
-            <Pagenation totalPost={Math.ceil(post.length / 10)} offset = {offset} />
+            <Pagenation totalPost={20} offset = {offset} />
         </div>
     )
 }

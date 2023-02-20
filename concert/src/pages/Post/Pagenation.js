@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import './Pagenation.css'
 
 /*
@@ -8,32 +9,31 @@ import './Pagenation.css'
     
 
  */
-function Pagenation ({currentPage, offset , totalPost }) { 
-    let pageArr = [];
+function Pagenation ({currentPage, offset , totalPost }) {
+
+    let [pageArr,setPageArr] = useState([]);
     const [limit , setLimit] = useState(10); //페이지 10개씩
     
     const makePaging = () => {
-        const start = Math.floor(offset / 10);
-        const end = start + limit;
-        pageArr.slice(start,end).map((item,idx) => {
-            console.log("item" , item);
-            return <span className = "pagingItem">{item}</span>
-        })
-    }
+        const start  = parseInt((offset) / 10) * 10;
+        return pageArr.slice(start ,start+limit).map((item) =>
+        <Link key = {item} to = {`?page=${item-1}`} className={Number(offset) === item-1 ?"currentPagingItem":"pagingItem"}>
+            <p className={Number(offset) === item-1 ?"currentPage":""}>{item}</p>
+        </Link>
+        )}
     
-     const makePageArr = () => {
+     const makePageArr = () => { // totalpost는 post 총 개수를 10으로 나눈 값 
         let arr = [];
         for( let i = 1 ; i <= totalPost ; i++){
             arr.push(i);
         }
-        pageArr = arr;
+         setPageArr([...arr]);
      }
 
     useEffect(() => {
+        console.log(pageArr);
         makePageArr();
-        console.log(totalPost)
-        console.log("offset = " , offset )
-    } , [ totalPost])
+    } , [])
 
     return (
         <div className = "pagenationContainer">
