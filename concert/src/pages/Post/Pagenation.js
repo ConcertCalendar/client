@@ -18,7 +18,7 @@ function Pagenation ({currentPage, offset , totalPost }) {
         const start  = parseInt((offset) / 10) * 10;
         return pageArr.slice(start ,start+limit).map((item) =>
         <Link key = {item} to = {`?page=${item-1}`} className={Number(offset) === item-1 ?"currentPagingItem":"pagingItem"}>
-            <p className={Number(offset) === item-1 ?"currentPage":""}>{item}</p>
+            <p>{item}</p>
         </Link>
         )}
     
@@ -31,7 +31,6 @@ function Pagenation ({currentPage, offset , totalPost }) {
      }
 
     useEffect(() => {
-        console.log(pageArr);
         makePageArr();
     } , [])
 

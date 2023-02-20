@@ -1,7 +1,7 @@
 function BulletinBoard() {
     return (
-        <>
-        </>
+        <div className = "bulletin">
+        </div>
     )
 }
 

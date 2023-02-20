@@ -1,10 +1,12 @@
 import { useEffect , useState} from 'react'
 import './PostList.css'
-import { Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 function PostList({data , loading}) {
     const [loadingMsg , setLoadingMsg] = useState("Loading");
+    const location = useLocation();
+    const navigate = useNavigate();
     let count = 0;
-    const renderLoding = (count) => {
+    const renderLoding = (count) => { /* Loading 애니메이션 */
         if (count % 4 === 0){
             setLoadingMsg("Loading")
         }
@@ -19,13 +21,13 @@ function PostList({data , loading}) {
         }
     }
 
-    const makeChild = () => {
-       return data.length === 0 ? 
+    const makeChild = () => { /* props로 만든 data로 postList를 랜더링 하는 코드*/
+       return data.length === 0 ?  //Connect는 성공했으나 아직 게시글이 없을 때 
        <div>
             게시글이 없습니다.
         </div> :
-        data.map((item,idx)=>         
-        <div key = {item.id} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1'} onClick = {readPost}>
+        data.map((item,idx)=> //Connect도 성공하고 게시글이 있을 때 
+        <div key = {item.id} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1'} onClick = {readPost.bind(this, item)}> 
             <p className = "postTitle">{cutTitle(item.postTitle)}</p>
             <p className = "postContent">{cutContent(item.postContent)}</p>
         </div>
@@ -33,14 +35,14 @@ function PostList({data , loading}) {
     )}  
 
 
-    const cutContent = (content) => {
-        if(content === null || content.length < 50)
-            return content;
-        else{
-            const count = parseInt(Math.min(content.length,250) / 50);
-            let fixedContent = ""; 
-            for(let i = 0 ; i < count ; i++){
-                fixedContent = fixedContent + content.slice(i * 50 , (i+1) * 50) + " ";
+    const cutContent = (content) => { //Content 미리보기를 위한 코드
+        if(content.length < 50) //content의 길이가 50이하이면
+            return content; //content를 리턴
+        else{ //content의 길이가 50이 넘어가면
+            const count = parseInt(Math.min(content.length,250) / 50); //줄바꿈을 추가 해야 하는 횟수
+            let fixedContent = ""; //줄바꿈을 포함하여 리턴할 콘텐트스트링
+            for(let i = 0 ; i < count ; i++){ 
+                fixedContent = fixedContent + content.slice(i * 50 , (i+1) * 50) + "\n"; //50글자 마다 줄바꿈
             }
             return fixedContent += "..."
         }
@@ -48,17 +50,15 @@ function PostList({data , loading}) {
     }
 
 
-    const cutTitle = (Title) => {
-        if(Title !== null && Title.length > 50){
+    const cutTitle = (Title) => { //Title이 길어서 영역을 넘어갈 경우를 위한 코드
+        if(Title.length > 50){ //타이틀의 길이가 50이상이면
             const cuttedTitle = Title.substring(0,50) + "...";
             return cuttedTitle;
         }
         return Title;
     }
-    const readPost = () => {
-        <Link to >
-            
-        </Link>
+    const readPost = (e) => {
+        navigate(`/post?postId=${e.id}`)
     }
 
 
