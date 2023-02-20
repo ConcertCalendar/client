@@ -57,7 +57,7 @@ function Nav() {
               <Link className = 'navLink' to ="/Calendar">
                 <li className = { fixed ? "fixedNavItem" : "navItem"}>CALENDAR</li>
               </Link>
-              <Link className = 'navLink' to ="/board/1">
+              <Link className = 'navLink' to = "/board/1?page=1">
                 <li className ="navItem community" onMouseEnter={() => {
                   console.log("horvering")
                   setHover(true)}}>COMMUNITY</li>
@@ -67,10 +67,10 @@ function Nav() {
         </div>
         <div  className = {hover ? "displayDropDownNav" : "dropDownNav"}>
           <ul className='navMenu'>
-          <Link className = 'navLink' to ="/board/1">
+          <Link className = 'navLink' to ="/board/1?page=1">
             <li className='navItem'> 자유 게시판</li>
           </Link>  
-          <Link className = 'navLink' to ="/board/2">
+          <Link className = 'navLink' to = "/board/2?page=1">
             <li className='navItem'> 공연 후기 게시판</li>
           </Link>    
           </ul>

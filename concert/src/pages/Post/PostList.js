@@ -26,7 +26,7 @@ function PostList({data , loading}) {
         </div> :
         data.map((item,idx)=>         
         <div key = {item.id} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1'} onClick = {readPost}>
-            <p className = "postTitle">{item.postTitle}</p>
+            <p className = "postTitle">{cutTitle(item.postTitle)}</p>
             <p className = "postContent">{cutContent(item.postContent)}</p>
         </div>
         
@@ -34,13 +34,27 @@ function PostList({data , loading}) {
 
 
     const cutContent = (content) => {
-        if(content !== null && content.length > 250){
-            const cuttedContent = content.substring(0,250) + "...";
-            return cuttedContent;
+        if(content === null || content.length < 50)
+            return content;
+        else{
+            const count = parseInt(Math.min(content.length,250) / 50);
+            let fixedContent = ""; 
+            for(let i = 0 ; i < count ; i++){
+                fixedContent = fixedContent + content.slice(i * 50 , (i+1) * 50) + " ";
+            }
+            return fixedContent += "..."
         }
-        return content;
+        
     }
 
+
+    const cutTitle = (Title) => {
+        if(Title !== null && Title.length > 50){
+            const cuttedTitle = Title.substring(0,50) + "...";
+            return cuttedTitle;
+        }
+        return Title;
+    }
     const readPost = () => {
         <Link to >
             
@@ -49,7 +63,6 @@ function PostList({data , loading}) {
 
 
     useEffect( () => {
-        console.log("inpostList ",data);
         setInterval(() => renderLoding(count++), 1000);
     }, [data])
 

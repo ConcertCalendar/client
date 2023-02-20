@@ -8,34 +8,37 @@ import './Pagenation.css'
     
 
  */
-function Pagenation ({page}) { 
+function Pagenation ({currentPage, offset , totalPost }) { 
+    let pageArr = [];
+    const [limit , setLimit] = useState(10); //페이지 10개씩
     
-    const makePaging = (pageNumber) => {
-        return () => {
-            for(let i = 0 ; i < pageNumber ; i++){
-                <span className = "pagingItem">{i + 1}</span>
-            }
-        } 
+    const makePaging = () => {
+        const start = Math.floor(offset / 10);
+        const end = start + limit;
+        pageArr.slice(start,end).map((item,idx) => {
+            console.log("item" , item);
+            return <span className = "pagingItem">{item}</span>
+        })
     }
-            
+    
+     const makePageArr = () => {
+        let arr = [];
+        for( let i = 1 ; i <= totalPost ; i++){
+            arr.push(i);
+        }
+        pageArr = arr;
+     }
 
-    useEffect(() => {        
-        console.log("pageNumber = ", page);
-    } , [])
+    useEffect(() => {
+        makePageArr();
+        console.log(totalPost)
+        console.log("offset = " , offset )
+    } , [ totalPost])
 
     return (
         <div className = "pagenationContainer">
             <div className = "paging">
-               <span className = "pagingItem">1</span>
-               <span className = "pagingItem">2</span>
-               <span className = "pagingItem">3</span>
-               <span className = "pagingItem">4</span>
-               <span className = "pagingItem">5</span>
-               <span className = "pagingItem">6</span>
-               <span className = "pagingItem">7</span>
-               <span className = "pagingItem">8</span>
-               <span className = "pagingItem">9</span>
-               <span className = "pagingItem">10</span>
+                {makePaging()}
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import Pagenation from './Pagenation';
 import './Community.css'
 import { useEffect, useState } from 'react';
 import PostList from './PostList';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 function Community(){
@@ -13,14 +13,16 @@ function Community(){
     const [loading ,setLoading] = useState(false);
     const [post,setPost] = useState([]);
     const location = useLocation();
-    
+    const [searchParams , setSearchParams] = useSearchParams();
+    const offset = searchParams.get('page');
+
     useEffect( ()=> {
         setCommunityName(communityArr[boardId - 1]);
         async function getData(){
             const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
             if(response.status === 200){
+                console.log(response);
                 setLoading(true);
-                console.log(response.data.data)
                 setPost(response.data.data);
                 return; 
             }
@@ -30,28 +32,13 @@ function Community(){
     }, [location]);
    
 
-    const getPost = async () => {
-        try{
-            axios.get(`http://3.37.69.149:8080${location.pathname}`)
-            .then((res) => {
-                console.log(res);
-                setLoading(true);
-                return res.data.data;
-            }).catch((err)=>{
-                console.log("inAxiosErr" , err);
-            })
-        }catch{
-            console.log("catchError")
-        }        
-    }
-
     return (
         <div className = "communityContainer">
             <div className = "communityName">
                 {communityName}
             </div>
             <PostList data = {post} loading = {loading}/>
-            <Pagenation page = {Math.ceil(post.length)}/>
+            <Pagenation totalPost={Math.ceil(post.length / 10)} offset = {offset} />
         </div>
     )
 }
