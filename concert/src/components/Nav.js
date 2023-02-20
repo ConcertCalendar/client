@@ -57,7 +57,7 @@ function Nav() {
               <Link className = 'navLink' to ="/Calendar">
                 <li className = { fixed ? "fixedNavItem" : "navItem"}>CALENDAR</li>
               </Link>
-              <Link className = 'navLink' to ="/board/12">
+              <Link className = 'navLink' to ="/board/1">
                 <li className ="navItem community" onMouseEnter={() => {
                   console.log("horvering")
                   setHover(true)}}>COMMUNITY</li>

@@ -15,7 +15,7 @@ function Community(){
     const location = useLocation();
     
     useEffect( ()=> {
-        setCommunityName(communityArr[boardId - 11]);
+        setCommunityName(communityArr[boardId - 1]);
         async function getData(){
             const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
             if(response.status === 200){

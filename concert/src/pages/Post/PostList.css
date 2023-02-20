@@ -5,7 +5,12 @@
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: repeat(5, 1fr);
 }
-
+.loadingContainer {
+    display: flex;
+    box-sizing: border-box;
+    height : 1000px;
+    justify-content: center;
+}
 .postBox{
     border-bottom: 1px solid rgba(128, 128, 128, 0.3);
     border-right : 1px solid rgba(128, 128, 128, 0.3);

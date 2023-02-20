@@ -55,7 +55,7 @@ function PostList({data , loading}) {
 
     
     return (
-        <div className = "postContainer">
+        <div className = {loading === true ? "postContainer" : "loadingContainer" }>
            {loading ?  makeChild() : 
             <div className  = "loading">
                  {loadingMsg}

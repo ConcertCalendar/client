@@ -4,7 +4,7 @@ import './Pagenation.css'
 /*
     post의 총 개수가 들어온다.
     post의 총 개수만큼 page를 만든다.
-    현재 page 와  
+    현재 page와 한계페이지가 존재  
     
 
  */
