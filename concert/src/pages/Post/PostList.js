@@ -1,6 +1,7 @@
 import { useEffect , useState} from 'react'
 import './PostList.css'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+
 function PostList({data , loading}) {
     const [loadingMsg , setLoadingMsg] = useState("Loading");
     const location = useLocation();
@@ -23,15 +24,16 @@ function PostList({data , loading}) {
 
     const makeChild = () => { /* props로 만든 data로 postList를 랜더링 하는 코드*/
        return data.length === 0 ?  //Connect는 성공했으나 아직 게시글이 없을 때 
-       <div>
+        <div>
             게시글이 없습니다.
         </div> :
         data.map((item,idx)=> //Connect도 성공하고 게시글이 있을 때 
-        <div key = {item.id} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1'} onClick = {readPost.bind(this, item)}> 
-            <p className = "postTitle">{cutTitle(item.postTitle)}</p>
-            <p className = "postContent">{cutContent(item.postContent)}</p>
-        </div>
-        
+        <Link key = {item.id} to = {`posts/${item.id}`} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1' } >
+            <div key = {item.id} > 
+                <p className = "postTitle">{cutTitle(item.postTitle)}</p>
+                <p className = "postContent">{cutContent(item.postContent)}</p>
+            </div>
+        </Link>
     )}  
 
 
@@ -58,7 +60,7 @@ function PostList({data , loading}) {
         return Title;
     }
     const readPost = (e) => {
-        navigate(`/post?postId=${e.id}`)
+
     }
 
 

@@ -7,7 +7,7 @@ import './Pagenation.css'
     post의 총 개수만큼 page를 만든다.
     현재 page와 한계페이지가 존재  
     
-
+    currentpage 고치기 
  */
 function Pagenation ({currentPage, offset , totalPost }) {
 
@@ -24,7 +24,7 @@ function Pagenation ({currentPage, offset , totalPost }) {
     
      const makePageArr = () => { // totalpost는 post 총 개수를 10으로 나눈 값 
         let arr = [];
-        for( let i = 1 ; i <= totalPost ; i++){
+        for( let i = 1 ; i <= totalPost  ; i++){
             arr.push(i);
         }
          setPageArr([...arr]);
@@ -32,7 +32,7 @@ function Pagenation ({currentPage, offset , totalPost }) {
 
     useEffect(() => {
         makePageArr();
-    } , [])
+    } , [totalPost])
 
     return (
         <div className = "pagenationContainer">
