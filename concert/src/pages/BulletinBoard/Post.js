@@ -1,18 +1,20 @@
+import './Post.css'
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function Post() {
     const [boardId, setBoardId] = useState();  // board 고유 번호
     const [createdDate,setCreatedDate] = useState(); // 포스트 생성 날짜
     const [modifiedDate,setModifiedDate] = useState(null); //포스트 수정 날짜
-    const [id,setId] = useState();
-    const [postContent,setPostContent] = useState();
-    const [postTitle, setPostTitle] = useState();
-    const [writerId,setWriterId] = useState();
-    const [writerName , setWriterName] = useState();
-    const [heart , setHeart] = useState(0);
+    const [id,setId] = useState(); //게시글 고유 번호
+    const [postContent,setPostContent] = useState(); //포스트 내용
+    const [postTitle, setPostTitle] = useState(); //포스트 제목
+    const [writerId,setWriterId] = useState(); //글쓴이 고유 아이디
+    const [writerName , setWriterName] = useState(); //글쓴이 이름
+    const [heart , setHeart] = useState(0); //좋아요
     const location = useLocation();
+    const postScroll = useRef();
 
     useEffect(()=> {
         async function getPost(){
@@ -30,12 +32,24 @@ function Post() {
             }
         }
         getPost();
+       
     } , [location])
 
     return (
-        <div className = "postContainer">
-            <div className = "postTitle">
-                {postTitle}
+        <div className = "postContainer" ref={postScroll}>
+            <div className = "postHead"> 
+                <div className = "postTitle">
+                    {postTitle}
+                </div>
+                <div className = "writerName">
+                    {writerName}
+                </div>
+                <div className = "createdDate">
+                    {createdDate}
+                </div>
+                <div className = "heart">
+                    {heart}
+                </div>
             </div>
             <div className = "postContent">
                 {postContent}

@@ -28,10 +28,10 @@ function PostList({data , loading}) {
             게시글이 없습니다.
         </div> :
         data.map((item,idx)=> //Connect도 성공하고 게시글이 있을 때 
-        <Link key = {item.id} to = {`posts/${item.id}`} className={ (idx % 2 === 0) ? 'postBox' : 'postBox1' } >
+        <Link key = {item.id} to = {`posts/${item.id}`} className={ (idx % 2 === 0) ? 'postlistBox' : 'postlistBox1' } >
             <div key = {item.id} > 
-                <p className = "postTitle">{cutTitle(item.postTitle)}</p>
-                <p className = "postContent">{cutContent(item.postContent)}</p>
+                <p className = "postlistTitle">{cutTitle(item.postTitle)}</p>
+                <p className = "postlistContent">{cutContent(item.postContent)}</p>
             </div>
         </Link>
     )}  
@@ -70,7 +70,7 @@ function PostList({data , loading}) {
 
     
     return (
-        <div className = {loading === true ? "postContainer" : "loadingContainer" }>
+        <div className = {loading === true ? "postlistContainer" : "loadingContainer" }>
            {loading ?  makeChild() : 
             <div className  = "loading">
                  {loadingMsg}

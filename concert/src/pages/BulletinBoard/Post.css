@@ -1,0 +1,30 @@
+.postContainer {
+    width: 1000px;
+    margin : 50px auto;
+}
+
+.postTitle {
+    font-size: 24px;
+    font-weight : bold;
+    width: 100%;
+}
+
+.writerName {
+    color : rgb(21, 175, 236);
+    padding: 5px 0px 5px 0px;
+}
+
+.createdDate {
+    font-size: 14px;
+    padding: 10px 0px 20px 0px;
+}
+
+.postContent {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.35);
+    width : 100%;
+    padding : 30px 10px 30px 10px;
+}
+
+.postHead{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.35);
+}

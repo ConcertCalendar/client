@@ -1,4 +1,4 @@
-.postContainer {
+.postlistContainer {
     box-sizing: border-box;
     display : grid;
     grid-template-columns: repeat(2,1fr);
@@ -10,34 +10,34 @@
     height : 1000px;
     justify-content: center;
 }
-.postBox{
+.postlistBox{
     color : black;
     text-decoration: none;
     border-bottom: 1px solid rgba(128, 128, 128, 0.3);
     border-right : 1px solid rgba(128, 128, 128, 0.3);
 }
 
-.postBox1 {
+.postlistBox1 {
     color : black;
     text-decoration: none;
     border-bottom: 1px solid rgba(128, 128, 128, 0.3);
 }
 
-.postBox:hover {
+.postlistBox:hover {
     cursor: pointer;
 }
 
-.postBox1:hover {
+.postlistBox1:hover {
     cursor: pointer;
 }
 
 
-.postTitle {
+.postlistTitle {
     padding: 20px 20px 0px 20px;
     font-weight : bold;
 }
 
-.postContent {
+.postlistContent {
     overflow: hidden;
     box-sizing: border-box;
     height: 100px;
