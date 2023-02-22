@@ -20,11 +20,13 @@
 }
 
 .postContent {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.35);
     width : 100%;
     padding : 30px 10px 30px 10px;
+  
 }
 
 .postHead{
     border-bottom: 1px solid rgba(128, 128, 128, 0.35);
+    width: 100%;
+
 }

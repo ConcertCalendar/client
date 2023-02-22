@@ -2,6 +2,8 @@ import './Post.css'
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import Comment from './Comment';
 
 function Post() {
     const [boardId, setBoardId] = useState();  // board 고유 번호
@@ -15,6 +17,7 @@ function Post() {
     const [heart , setHeart] = useState(0); //좋아요
     const location = useLocation();
     const postScroll = useRef();
+    const boardArr = useSelector((state)=>state.board.boardArr);
 
     useEffect(()=> {
         async function getPost(){
@@ -38,6 +41,9 @@ function Post() {
     return (
         <div className = "postContainer" ref={postScroll}>
             <div className = "postHead"> 
+                <div className = "category">
+                    {boardArr[boardId - 1]}
+                </div>
                 <div className = "postTitle">
                     {postTitle}
                 </div>
@@ -54,6 +60,7 @@ function Post() {
             <div className = "postContent">
                 {postContent}
             </div>
+            <Comment/>
         </div>
     )
 }

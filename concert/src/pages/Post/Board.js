@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import PostList from './PostList';
 import { useLocation, useParams, useSearchParams, Outlet, useMatch } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 function Board(){
-    const boardArr = ["자유 게시판" , "공연 후기 게시판"]
+    const boardArr = useSelector((state)=>state.board.boardArr);
     const [boardName, setBoardName] = useState("");
     const {boardId} = useParams();
     const [loading ,setLoading] = useState(false);
