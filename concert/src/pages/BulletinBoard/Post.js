@@ -16,9 +16,11 @@ function Post() {
     const [writerName , setWriterName] = useState(); //글쓴이 이름
     const [heart , setHeart] = useState(0); //좋아요
     const location = useLocation();
-    const postScroll = useRef();
+    const postScrollRef = useRef();
     const boardArr = useSelector((state)=>state.board.boardArr);
 
+    const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
+    
     useEffect(()=> {
         async function getPost(){
             const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
@@ -35,24 +37,27 @@ function Post() {
             }
         }
         getPost();
-       
+        scrollToElement();
     } , [location])
 
     return (
-        <div className = "postContainer" ref={postScroll}>
-            <div className = "postHead"> 
+        <div className = "postContainer" ref={postScrollRef}>
+            <div className = "postHead" >
                 <div className = "category">
                     {boardArr[boardId - 1]}
                 </div>
+                <div className = "writer">
+                    <img className = "profile" src = "/images/poster6.jpeg" alt = ""/>
+                    <div className = "writeInfo">
+                        <span className ="writerName">{writerName}</span>
+                        <span className = "createdDate">{createdDate}</span>
+                    </div>
+
+                </div> 
                 <div className = "postTitle">
                     {postTitle}
                 </div>
-                <div className = "writerName">
-                    {writerName}
-                </div>
-                <div className = "createdDate">
-                    {createdDate}
-                </div>
+
                 <div className = "heart">
                     {heart}
                 </div>

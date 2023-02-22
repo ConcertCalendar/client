@@ -2,7 +2,7 @@ import Pagenation from './Pagenation';
 import './Board.css'
 import { useEffect, useState } from 'react';
 import PostList from './PostList';
-import { useLocation, useParams, useSearchParams, Outlet, useMatch } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams, Outlet, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -44,12 +44,16 @@ function Board(){
         <>
         <Outlet/>
         <div className = "boardContainer">
-          
             <div className = "boardName">
                 {boardName}
             </div>
             <PostList data = {post} loading = {loading}/>
             <Pagenation totalPost={totalPost } offset = {offset} />
+        </div>
+        <div>
+            <Link to ="/write" className='writingBtn'>
+               <img src = "../../../images/pencil.png" alt = ""/>
+            </Link>
         </div>
         </>
     )

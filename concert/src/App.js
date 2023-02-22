@@ -8,6 +8,7 @@ import Board from "./pages/Post/Board"
 import MyCalendar from './pages/Calendar/MyCalendar'
 import Layout from "./layout";
 import Post from "./pages/BulletinBoard/Post";
+import Write from "./pages/BulletinBoard/Write";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path = "/boards/:boardId"  element = {<Board />}>
           <Route path = "posts/:postId" element = {<Post/>}/>
         </Route> 
+        <Route path = "write" element = {<Write/>}/>
         <Route path = "Calendar" element ={ <MyCalendar/>}/>
       </Route>
       <Route path="login" element = {<Login />} />
