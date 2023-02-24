@@ -68,7 +68,7 @@ function Post( {loading}) {
             <div className = "postContent">
                 {postContent}
             </div>
-            <Comment commentList={commentList}/>
+            <Comment commentList={commentList} changeCommentList = {setCommentList}/>
         </div>
     )
 }
