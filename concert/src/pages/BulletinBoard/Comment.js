@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react';
 import './Comment.css'
 function Comment ({commentList}) {
     const [nickname,setNickname] = useState("user");
-   
+    const [currentLength , setCurrentLength] = useState(0);
     const handleInputBtn = (event) => {
         event.preventDefault();
     }
-
+    
+    const handleLength = (event) => {
+        setCurrentLength(event.target.value.length);
+    }
 
 
     const renderCommentList = () => {
@@ -36,7 +39,7 @@ function Comment ({commentList}) {
                 className = "commentInput"
                 placeholder='댓글을 입력하세요'
                 maxLength = {299}
-            
+                onChange = {handleLength}
                 />
                 <div className = "inputFooter">
                     <button 
@@ -44,7 +47,7 @@ function Comment ({commentList}) {
                     onClick = {handleInputBtn}>
                         등록
                     </button>
-                    
+                    <p className = "currentLength">{currentLength}/300</p>
                 </div>
                 
             </form>
