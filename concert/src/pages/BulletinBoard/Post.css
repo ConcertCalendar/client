@@ -15,7 +15,7 @@
     
 }
 
-.writer {
+.profile {
     margin-top : 10px;
     display: flex;
     box-sizing: border-box;
@@ -27,7 +27,7 @@
 }
 
 
-.profile {
+.profileImg {
     border-radius: 50%;
     height : 55px;
     width : 55px;

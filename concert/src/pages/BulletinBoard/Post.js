@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Comment from './Comment';
 
-function Post() {
+function Post( {loading}) {
     const [boardId, setBoardId] = useState();  // board 고유 번호
     const [createdDate,setCreatedDate] = useState(); // 포스트 생성 날짜
     const [modifiedDate,setModifiedDate] = useState(null); //포스트 수정 날짜
@@ -22,8 +22,10 @@ function Post() {
     const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
     
     useEffect(()=> {
+        console.log("loading" , loading)
         async function getPost(){
             const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
+            console.log("상세보기" , response)
             if(response.status === 200){
                 setBoardId(response.data.data.boardId);
                 setCreatedDate(response.data.data.createdDate);
@@ -46,8 +48,8 @@ function Post() {
                 <div className = "category">
                     {boardArr[boardId - 1]}
                 </div>
-                <div className = "writer">
-                    <img className = "profile" src = "/images/poster6.jpeg" alt = ""/>
+                <div className = "profile">
+                    <img className = "profileImg" src = "/images/poster6.jpeg" alt = ""/>
                     <div className = "writeInfo">
                         <span className ="writerName">{writerName}</span>
                         <span className = "createdDate">{createdDate}</span>

@@ -26,7 +26,6 @@ function Board(){
             if(offset !== null){
                 const response = await axios.get(`http://3.37.69.149:8080/boards/${params.boardId}${location.search}`)
                 if(response.status === 200){
-                    console.log(response);
                     setLoading(true);
                     setPost(response.data.data.boardDtoList);
                     setTotalPost(Math.ceil(Number(response.data.data.postEntireSize) / 20));
@@ -35,6 +34,7 @@ function Board(){
                 setLoading(false);
             }
         }
+        
         getData();
 
     }, [offset , params.boardId ]);
@@ -42,7 +42,7 @@ function Board(){
 
     return (
         <>
-        <Outlet/>
+        <Outlet loading = {loading} />
         <div className = "boardContainer">
             <div className = "boardName">
                 {boardName}
