@@ -15,6 +15,7 @@ function Post( {loading}) {
     const [writerId,setWriterId] = useState(); //글쓴이 고유 아이디
     const [writerName , setWriterName] = useState(); //글쓴이 이름
     const [heart , setHeart] = useState(0); //좋아요
+    const [commentList , setCommentList] = useState([]); //댓글 모음
     const location = useLocation();
     const postScrollRef = useRef();
     const boardArr = useSelector((state)=>state.board.boardArr);
@@ -36,6 +37,7 @@ function Post( {loading}) {
                 setHeart(response.data.data.heart);     
                 setWriterId(response.data.data.writerId);
                 setWriterName(response.data.data.writerName);
+                setCommentList(response.data.data.commentDtoList);
             }
         }
         getPost();
@@ -54,7 +56,6 @@ function Post( {loading}) {
                         <span className ="writerName">{writerName}</span>
                         <span className = "createdDate">{createdDate}</span>
                     </div>
-
                 </div> 
                 <div className = "postTitle">
                     {postTitle}
@@ -67,7 +68,7 @@ function Post( {loading}) {
             <div className = "postContent">
                 {postContent}
             </div>
-            <Comment/>
+            <Comment commentList={commentList}/>
         </div>
     )
 }
