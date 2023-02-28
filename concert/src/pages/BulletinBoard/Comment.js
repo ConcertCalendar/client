@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import './Comment.css'
+import './Comment.css';
+import Reply from './Reply.js';
 
 function Comment ({commentList , changeCommentList}) {
     const location = useLocation();
@@ -63,6 +64,15 @@ function Comment ({commentList , changeCommentList}) {
                     </div>
                     <p className = "commentContent">{comment.commentContent}</p> 
                     <p className = "commentCreatedDate">{comment.createdDate}</p>
+                    {comment.replyDtoList.length !== 0 && comment.replyDtoList.map((reply)=> (
+                        <li key = {reply.id}>
+                            <Reply 
+                             commentId = {reply.commentId} createdDate = {reply.createdDate} id = {reply.id}
+                             modifiedDate = {reply.modifiedDate} replyContent= {reply.replyContent}  replyWriterId = {reply.replyWriterId}
+                             replyWriterName = {reply.replyWriterName} />
+                        </li>
+                    ))}
+
                 </ul>
             </div>
         ))
