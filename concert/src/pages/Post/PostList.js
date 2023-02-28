@@ -28,7 +28,7 @@ function PostList({data , loading}) {
             게시글이 없습니다.
         </div> :
         data.map((item,idx)=> //Connect도 성공하고 게시글이 있을 때 
-        <Link key = {item.id} to = {`posts/${item.id}`} className={ (idx % 2 === 0) ? 'postlistBox' : 'postlistBox1' } >
+        <Link key = {item.id} to = {`posts/${item.id}${location.search}`} className={ (idx % 2 === 0) ? 'postlistBox' : 'postlistBox1' } >
             <div key = {item.id} > 
                 <p className = "postlistTitle">{cutTitle(item.postTitle)}</p>
                 <p className = "postlistContent">{cutContent(item.postContent)}</p>

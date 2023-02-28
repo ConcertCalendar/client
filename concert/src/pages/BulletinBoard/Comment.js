@@ -56,12 +56,14 @@ function Comment ({commentList , changeCommentList}) {
     const renderCommentList = () => {
         return commentList.map((comment,idx) => (
             <div className = "commentBox" key = {idx}>
-                <div className='commentProfile'>
-                    <img className = "commentImg" src = "/images/poster6.jpeg" alt = ""/>
-                    <p className = "commentName">{comment.commentWriterName}</p>
-                </div>
-                <p className = "commentContent">{comment.commentContent}</p> 
-                <p className = "commentCreatedDate">{comment.createdDate}</p>
+                <ul className = "comment">
+                    <div className='commentProfile'>
+                        <img className = "commentImg" src = "/images/poster6.jpeg" alt = ""/>
+                        <p className = "commentName">{comment.commentWriterName}</p>
+                    </div>
+                    <p className = "commentContent">{comment.commentContent}</p> 
+                    <p className = "commentCreatedDate">{comment.createdDate}</p>
+                </ul>
             </div>
         ))
     }
