@@ -1,0 +1,19 @@
+.paging {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagingItem {
+   text-decoration: none;
+   padding : 1.5%;
+   cursor: pointer;
+   color : black;
+}
+
+.currentPagingItem {
+    text-decoration: none;
+    padding : 1.5%;
+    cursor: pointer;
+    color : rgba(128,128,128,0.5);
+}

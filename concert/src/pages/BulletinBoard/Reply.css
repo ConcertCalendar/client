@@ -1,0 +1,44 @@
+.replyContainer{
+    padding-left: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.35);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.replyImg{
+    height : 20px;
+    width : 20px;
+}
+
+.replyBox {
+    padding-left: 10px;
+}
+.replyProfile {
+    display: flex;
+    align-items: center;
+    margin-left : 5px;
+}
+
+.replyProfileImg{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.replyName {
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.replyContent{
+    margin: 0px 0px 0px 5px;
+    font-size: 14px;
+}
+
+.replyCreatedDate { 
+    font-size: 12px;
+    margin: 5px 0px 5px 5px;
+    color: gray;
+}
