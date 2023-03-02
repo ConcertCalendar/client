@@ -14,6 +14,7 @@
 
 .replyBox {
     padding-left: 10px;
+    width : 100%;
 }
 .replyProfile {
     display: flex;
@@ -39,6 +40,14 @@
 
 .replyCreatedDate { 
     font-size: 12px;
-    margin: 5px 0px 5px 5px;
+    padding-left: 15px;
     color: gray;
+}
+
+.replyBottom {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 12px;
+    align-items: center;
+    margin: 0px;
 }

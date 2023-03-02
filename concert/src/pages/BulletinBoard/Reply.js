@@ -1,17 +1,33 @@
+import { useState } from 'react';
+import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
-function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , replyWriterId , replyWriterName}) {
+function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
+    const [display , setDisplay] = useState(false);
+    const [displayId , setDisplayId] = useState(null);
+    const handleToReply = (id) => {
+        setDisplayId(id);
+        setDisplay(!display);
+    }
+
     return (
-        <div className = "replyContainer">
-            <img className = "replyImg" scr = "/images/reply.png" alt = ""/>
-            <div className = "replyBox">
-                <div className='replyProfile'>
-                    <img className = "replyProfileImg" src = "/images/poster6.jpeg" alt = ""/>
-                    <p className = "replyName">{replyWriterName}</p>
+        <>
+            <div className = "replyContainer">
+                <img className = "replyImg" scr = "/images/reply.png" alt = ""/>
+                <div className = "replyBox">
+                    <div className='replyProfile'>
+                        <img className = "replyProfileImg" src = "/images/poster6.jpeg" alt = ""/>
+                        <p className = "replyName">{replyWriterName}</p>
+                    </div>
+                    <p className = "replyContent">{replyContent}</p> 
+                    <div className = "replyBottom">
+                        <p className = "replyCreatedDate">{createdDate}</p>
+                        <p className = "replyBtn"  onClick={handleToReply.bind(this,commentId)}>댓글</p> 
+                    </div>
                 </div>
-                <p className = "replyContent">{replyContent}</p> 
-                <p className = "replyCreatedDate">{createdDate}</p>
             </div>
-        </div>
+            {display && (displayId === commentId) && 
+            <ReplyInput toReply = {replyWriterName} commentId = {commentId} commentList = {commentList} changeCommentList = {changeCommentList}/>}
+        </>
     )
 
 } 

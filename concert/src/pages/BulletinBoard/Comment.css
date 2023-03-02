@@ -1,72 +1,4 @@
-.CommentInputContainer {
-    width : 1000px;
-    margin : 0 auto;
-    border-top: 1px solid rgba(128, 128, 128, 0.35);
-    box-sizing: border-box;
-    padding-bottom: 10px;
-}
 
-.commentUser{
-    padding : 5px 0px 5px 10px;  
-    font-size: 16px;
-}
-
-.commentInput {
-    box-sizing: border-box;
-    padding : 10px;
-    width : 100%;
-    border : none;
-    height : 40px;
-    resize: none;
-    overflow: hidden;
-}
-
-.commentInput:focus{
-    height : 100px;
-    outline : none;
-    overflow: auto;
-}
-
-
-.commentForm{
-    display: flex;
-    margin-top : 10px;
-    width : 100%;
-    height: 100%;
-    border : solid 1px rgba(128, 128, 128, 0.35);
-    justify-content: center;
-    flex-direction: column;
-}
-
-.inputFooter{
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: right;
-}
-.currentLength {
-    margin: 0;
-    color : rgba(128, 128, 128, 0.9);
-    width: 5%;
-    font-size: 12px;
-    text-align: center;
-}
-
-.commentBtn {
-    width: 8%;
-    padding : 10px 0px 10px 0px;
-    border : none;
-    background-color: transparent;
-    color : rgba(128, 128, 128, 0.9);
-}
-.commentTitle{
-    margin : 10px 0px 0px 5px;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.commentListContainer {
-}
 
 .commentBox {
     display: flex;
@@ -96,10 +28,20 @@
     font-size: 14px;
 
 }
-.commentCreatedDate { 
-    font-size: 12px;
-    margin: 5px 0px 5px 5px;
+.commentCreatedDate {   
+    padding-left: 15px;
     color: gray;
+}
+
+.commentBottom {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 12px;
+    margin: 0px;
+}
+
+.replyBtn{
+    cursor: pointer;
 }
 
 .comment {

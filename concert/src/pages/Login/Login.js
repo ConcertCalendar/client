@@ -3,7 +3,7 @@ import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { inputEmail, inputPassword, setCurrentUser } from "./loginSlice"
-import { storeAccessToken , storeRefreshToken } from "../../store/authSlice";
+import { storeAccessToken } from "../../store/authSlice";
 import { getCookie, setCookie } from "../../utils/cookie";
 import { Link } from "react-router-dom";
 import './Login.css'
@@ -12,7 +12,7 @@ function Login() {
     const email = useSelector((state) => state.login.email);
     const password = useSelector((state) => state.login.password);
     const loginErrMsg = useSelector((state) => state.login.loginErrMsg);
- //   const currentUser = useSelector((state) => state.login.currentUser);
+    const currentUser = useSelector((state) => state.login.currentUser);
     const accessToken = useSelector((state)=> state.auth.accessToken);
 
     const dispatch = useDispatch();
@@ -28,11 +28,10 @@ function Login() {
             dispatch(storeAccessToken(res.data.data.accessToken));
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.data.refreshToken}`;
             setCookie('refreshToken', res.data.data.refreshToken , {
-                //httpOnly: true,
                 path: "/",
-                //sameSite: "None"
-            }
-                ); 
+                sameSite: "strict",
+                secure : true
+            }); 
             dispatch(setCurrentUser(email));
             navigate("/")
         }   
