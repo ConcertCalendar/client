@@ -51,7 +51,7 @@ function Board(){
             <Pagenation totalPost={totalPost } offset = {offset} />
         </div>
         <div>
-            <Link to ="/write" className='writingBtn'>
+            <Link to ="/write" className='writingBtn' state = {{boardName}}>
                <img src = "../../../images/pencil.png" alt = ""/>
             </Link>
         </div>
