@@ -42,8 +42,12 @@
 
 .replyBtn{
     cursor: pointer;
+    margin-left : 15px;
 }
 
+.modifyBtn {
+    cursor : pointer;
+}
 .comment {
     margin: 0px;
     padding : 0px;

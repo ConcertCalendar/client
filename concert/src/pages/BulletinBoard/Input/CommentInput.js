@@ -23,7 +23,6 @@ function CommentInput({commentList , changeCommentList})  {
             if(res.status === 200){
                 axios.get(`http://3.37.69.149:8080${location.pathname}`)
                 .then((res)=> {
-                    console.log(res);
                     if(res.status === 200) 
                         changeCommentList(res.data.data.commentDtoList)
                 })

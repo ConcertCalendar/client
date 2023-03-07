@@ -25,6 +25,7 @@ function Login() {
     const navigate = useNavigate();
     const onLoginSuccess = (res) => {
         if (res.data.status === 'OK'){
+            console.log("login",res.headers);
             dispatch(storeAccessToken(res.data.data.accessToken));
             axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.data.refreshToken}`;
             setCookie('refreshToken', res.data.data.refreshToken , {
@@ -41,8 +42,10 @@ function Login() {
         axios.post("http://3.37.69.149:8080/users/login", data
              ,   { 
                 headers: {
+                    'AccessControlExposeHeaders' :  'Content-Encoding',
                 'Content-Type': 'application/json'
-            }, withCredentials: true
+            }, withCredentials: true,
+
         })
             .then(onLoginSuccess)
             .then(err => {

@@ -16,3 +16,8 @@ export const getUserId = (accessToken) => {
     const decoded = jwtDecode(accessToken)
     return decoded.sub;
 }
+
+export const getDecoded = (accessToken) => {
+    const decoded = jwtDecode(accessToken);
+    return decoded;
+}

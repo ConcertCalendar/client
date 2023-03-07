@@ -9,6 +9,9 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
         setDisplay(!display);
     }
 
+    const handleToModify = () => {
+        console.log('clicked')
+    }
     return (
         <>
             <div className = "replyContainer">
@@ -22,6 +25,7 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
                     <div className = "replyBottom">
                         <p className = "replyCreatedDate">{createdDate}</p>
                         <p className = "replyBtn"  onClick={handleToReply.bind(this,commentId)}>댓글</p> 
+                        <p className = "modifyBtn" onClick={handleToModify.bind(this, replyContent)}>수정</p>
                     </div>
                 </div>
             </div>
