@@ -24,7 +24,7 @@ function Board(){
         setBoardName(boardArr[boardId - 1]);
         async function getData(){
             if(offset !== null){
-                const response = await axios.get(`http://3.37.69.149:8080/boards/${params.boardId}${location.search}`)
+                const response = await axios.get(`https://3.34.81.44:8080/boards/${params.boardId}${location.search}`)
                 if(response.status === 200){
                     setLoading(true);
                     setPost(response.data.data.boardDtoList);
@@ -51,7 +51,7 @@ function Board(){
             <Pagenation totalPost={totalPost } offset = {offset} />
         </div>
         <div>
-            <Link to ="/write" className='writingBtn' state = {{boardName}}>
+            <Link to ="/write" className='writingBtn' state = {{boardName : boardName , from : location.pathname + location.search }}>
                <img src = "../../../images/pencil.png" alt = ""/>
             </Link>
         </div>

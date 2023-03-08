@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Write.css'
 function Write () {
     const {state} = useLocation();
@@ -24,8 +24,12 @@ function Write () {
             )
     }
 
+    const postWrite = () => {
+
+
+    }
+
     useEffect(()=> {
-        console.log(resize);
         contentRef.current.style.height = resize + 'px';
     },[resize]);
 
@@ -41,7 +45,12 @@ function Write () {
                     <textarea ref = {contentRef} className = "writeContent" onChange={handleChagne}/>
                 </div>
             </section>
-        </article>    
+        </article>
+        <div>
+            <Link to = {state.from} className='writingBtn' onClick={postWrite}>
+               <img src = "../../../images/pencil.png" alt = ""/>
+            </Link>
+        </div>    
     </div>) 
 }
 export default Write;
