@@ -1,14 +1,24 @@
 import { useRef } from 'react';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { authInstance } from '../../utils/customAxios';
+import { isAuth } from '../../utils/JwtUtils';
 import './Write.css'
 function Write () {
     const {state} = useLocation();
     const contentRef = useRef(null);
+    const [postTitle , setPostTitle] = useState("");
+    const [postContent , setPostContent] = useState("");
     const [resize, setResize] = useState(580);
-    
-    const handleChagne = () => {
+    const accessToken = useSelector((state) => state.auth.accessToken);
+    const handleChange = (e) => {
+        setPostContent(e.target.value);
         setResize(contentRef.current.scrollHeight )
+    }
+    
+    const handleChangeTitle = (e) => {
+        setPostTitle(e.target.value);
     }
 
     const makeCategory = () => {
@@ -25,8 +35,16 @@ function Write () {
     }
 
     const postWrite = () => {
-
-
+        isAuth(accessToken)&&authInstance(accessToken).post('/posts', { 
+            'boardId': state.boardId,
+            'postTitle': postTitle,
+            'postContent': postContent,
+        }).then((res)=> {
+            console.log(res)
+        }).catch((err)=>{
+            console.log(err);
+        }
+        )
     }
 
     useEffect(()=> {
@@ -41,8 +59,8 @@ function Write () {
                     <span  className = "WriteCommnuityName">{state.boardName}</span>
                     {makeCategory()}</div>
                 <div className = "contentContainer">
-                    <textarea className = "writeTitle"/>
-                    <textarea ref = {contentRef} className = "writeContent" onChange={handleChagne}/>
+                    <textarea className = "writeTitle" onChange={handleChangeTitle} value = {postTitle}/>
+                    <textarea ref = {contentRef} className = "writeContent" onChange={handleChange} value = {postContent}/>
                 </div>
             </section>
         </article>

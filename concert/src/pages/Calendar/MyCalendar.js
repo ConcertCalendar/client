@@ -36,7 +36,8 @@ function MyCalendar() {
                 singer : item.singer,
                 place : item.place,
                 img : "images/poster2.jpeg",
-                color : `rgb(121,123,322,0.${item.id})`
+                color : `rgb(121,123,322,0.${item.id})`,
+                ticket : item.ticket,
             }  
             return obj;
         })
@@ -67,7 +68,7 @@ function MyCalendar() {
                      <p> 공연 기간 : {content.start}  ~ {content.end}</p>
                      <p> 공연 시간 : {content.runtime}</p>
                      <p> 장소 : {content.place}</p>  
-                     <p> 예매 사이트 : </p>
+                     <p> 예매 사이트 : <a href = {content.ticket}>{content.ticket}</a></p>
                 </div> 
             </CalendarModal>}
         </div>

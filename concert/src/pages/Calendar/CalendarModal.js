@@ -33,8 +33,11 @@ function CalendarModal ({closeModal, title , children}) {
 
     return (
             <div className="modalContainer" ref = {modalRef}>
-                <button onClick={onClickXBtn} className = "close">X</button>
-                <div className="modalTitle"><h1>{title}</h1></div>
+                <div className = "modalMenu">
+                    <span className="modalTitle" multiline >{title}</span>
+                    <img src = "/images/star.png" className = "markingImg" alt = ""/>
+                    <button onClick={onClickXBtn} className = "close">X</button>
+                </div>
                 <div className="modalBody">
                     {children}
                 </div>

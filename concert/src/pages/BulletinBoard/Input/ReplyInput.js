@@ -10,7 +10,7 @@ function ReplyInput({toReply , commentId , commentList , changeCommentList}) {
     const [currentLength , setCurrentLength] = useState(0);
     const token = useSelector((state)=> state.auth.accessToken);
     const postReply = async () => {
-        await axios.post(`https://3.34.81.44:8080/comments/${commentId}/replies`, {
+        await axios.post(`https://concal.p-e.kr/comments/${commentId}/replies`, {
             "replyContent" : content,
         } ,
         {
@@ -20,7 +20,7 @@ function ReplyInput({toReply , commentId , commentList , changeCommentList}) {
             }
         }).then((res) =>{
             if(res.status === 200){
-                axios.get(`https://3.34.81.44:8080${location.pathname}`)
+                axios.get(`https://concal.p-e.kr${location.pathname}`)
                 .then((res)=> {
                     if(res.status === 200) 
                         changeCommentList(res.data.data.commentDtoList)

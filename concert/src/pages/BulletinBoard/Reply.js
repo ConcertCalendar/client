@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
+
 function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
     const [display , setDisplay] = useState(false);
     const [displayId , setDisplayId] = useState(null);

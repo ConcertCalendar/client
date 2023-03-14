@@ -25,7 +25,7 @@ function Post( {loading}) {
     useEffect(()=> {
         console.log("loading" , loading)
         async function getPost(){
-            const response = await axios.get(`https://3.34.81.44:8080${location.pathname}`)
+            const response = await axios.get(`https://concal.p-e.kr${location.pathname}`)
             console.log("상세보기" , response)
             if(response.status === 200){
                 setBoardId(response.data.data.boardId);

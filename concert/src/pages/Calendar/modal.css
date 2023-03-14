@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 .modalContainer {
     overflow-y: auto;
     width : 50vw;
@@ -14,32 +21,50 @@
     background-color: #fff;
 }
 
-.close {
-    margin :10px 10px 0 0 ;
-    float : right;
-    border : none;
-    font-size: 18px;
-    background-color: transparent;
-    cursor: pointer;
-}
+
 
 .overflowHidden {
     overflow: hidden;
     background-color: rgb(0,0,0,0.1);
 }
 
-.modalTitle {
-    text-align: center;
+.modalMenu {
+    margin: 10px 0px 10px 0px;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
 }
 
+.modalTitle {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 20px;
+    font-size: 30px;
+    width: 90%;
+    font-family: 'BookkMyungjo-Bd';
+}
+
+.markingImg {
+    cursor: pointer;
+    height: 18px;
+}
+
+.close {
+    width: 7%;
+    border : none;
+    font-size: 18px;
+    background-color: transparent;
+    cursor: pointer;
+}
 .modalBody {
     display : flex;
 }
 
 .modalBody > img {
     margin: 0 20px 0 20px;
-    width : 300px;
-    height: 400px;
+    width : 240px;
+    height: 280px;
 }
 
 .concertContent {

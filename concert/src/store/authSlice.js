@@ -14,7 +14,8 @@ export const authSlice = createSlice({
 
     resetAccessToken: (state) =>{
       state.accessToken = "";
-    }
+    },
+  
   },
 })
 

@@ -1,14 +1,16 @@
 import axios from "axios";
 import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { inputEmail, inputPassword, setCurrentUser } from "./loginSlice"
 import { storeAccessToken } from "../../store/authSlice";
 import { getCookie, setCookie } from "../../utils/cookie";
 import { Link } from "react-router-dom";
 import './Login.css'
+import { baseInstance } from "../../utils/customAxios";
 
 function Login() {
+    const {state} = useLocation();
     const email = useSelector((state) => state.login.email);
     const password = useSelector((state) => state.login.password);
     const loginErrMsg = useSelector((state) => state.login.loginErrMsg);
@@ -23,41 +25,29 @@ function Login() {
     });
 
     const navigate = useNavigate();
-    const onLoginSuccess = (res) => {
-        if (res.data.status === 'OK'){
-            console.log("login",res.headers);
-            dispatch(storeAccessToken(res.data.data.accessToken));
-            axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.data.refreshToken}`;
-            setCookie('refreshToken', res.data.data.refreshToken , {
-                path: "/",
-                sameSite: "strict",
-                secure : true
-            }); 
-            dispatch(setCurrentUser(email));
-            navigate("/")
-        }   
-    }
-   
-    const postLogin = async () => {
-        axios.post("https://3.34.81.44:8080/users/login", data
-             ,   { 
-                headers: {
-                    'AccessControlExposeHeaders' :  'Content-Encoding',
-                'Content-Type': 'application/json'
-            }, withCredentials: true,
 
-        })
-            .then(onLoginSuccess)
-            .then(err => {
-               
-            })
-    }
+    async function postLogin(url = 'https://concal.p-e.kr/users/login' , data = { "userEmail" : email, "password" : password }){
+        await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE 등
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+          }).then(resonse=> resonse.json())
+          .then(json=> console.log(JSON.stringify(json))) // JSON 응답을 네이티브 JavaScript 객체로 파싱
+        }
 
-   
+
+
 
     const loginSubmit = async (event) => {
         event.preventDefault();
-        postLogin();
+        postLogin();        
     }
 
 

@@ -1,0 +1,8 @@
+.hotPostContainer {
+    width: 70%;
+}
+.hotPostContent {
+    margin-top: 10px;
+    background-color: beige;
+    height: 200px;
+}

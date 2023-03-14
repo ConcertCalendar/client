@@ -11,7 +11,7 @@ function CommentInput({commentList , changeCommentList})  {
     const token = useSelector((state)=>state.auth.accessToken);
 
     const postComment = async () => {
-        await axios.post(`https://3.34.81.44:8080${location.pathname}/comments` ,{
+        await axios.post(`https://concal.p-e.kr${location.pathname}/comments` ,{
         "commentContent" : content,
         } ,
         {
@@ -21,7 +21,7 @@ function CommentInput({commentList , changeCommentList})  {
             }
         }).then((res)=>{
             if(res.status === 200){
-                axios.get(`https://3.34.81.44:8080${location.pathname}`)
+                axios.get(`https://concal.p-e.kr${location.pathname}`)
                 .then((res)=> {
                     if(res.status === 200) 
                         changeCommentList(res.data.data.commentDtoList)
