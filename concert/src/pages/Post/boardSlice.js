@@ -8,6 +8,10 @@ export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
+    getBoardName : (state, action) => {
+        return state.boardArr[Number(action.payload)];
+    },
+
     getBoardArr: (state, action) => {
         return state[action.payload];
     },
@@ -15,6 +19,6 @@ export const boardSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getBoardArr } = boardSlice.actions //reducer의 actions을 export
+export const {getBoardName,  getBoardArr } = boardSlice.actions //reducer의 actions을 export
 
 export default boardSlice.reducer;

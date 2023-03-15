@@ -1,8 +1,6 @@
 .TicketOpenContainer {
     width: 70%;
 }
-.ticketOpenContent{
-    margin-top: 10px;
-    background-color: beige;
-    height: 200px;
+.ticketOpenContentContainer{
+    margin-top: 5px;
 }

@@ -3,7 +3,6 @@
     width : 1000px;
 }
 .aside {
-    background-color: yellow;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -10,7 +10,7 @@ function Write () {
     const contentRef = useRef(null);
     const [postTitle , setPostTitle] = useState("");
     const [postContent , setPostContent] = useState("");
-    const [resize, setResize] = useState(580);
+    const [resize, setResize] = useState(640);
     const accessToken = useSelector((state) => state.auth.accessToken);
     const handleChange = (e) => {
         setPostContent(e.target.value);

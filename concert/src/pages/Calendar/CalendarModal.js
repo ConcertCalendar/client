@@ -1,4 +1,5 @@
 import { useEffect , useRef } from 'react';
+import PostModalHeader from '../Home/PostModalHeader';
 import './modal.css'
 function CalendarModal ({closeModal, title , children}) {
     const modalRef = useRef();
@@ -41,7 +42,9 @@ function CalendarModal ({closeModal, title , children}) {
                 <div className="modalBody">
                     {children}
                 </div>
-                <div className="modalFooter"> 공연 후기 게시판</div>
+                <section className="modalFooter">
+                    <PostModalHeader imgsrc={'images/review.png'} title = {"공연 후기"} seeMore = {"/boards/1?page=0"}/>
+                </section>
             </div> 
     )
 }

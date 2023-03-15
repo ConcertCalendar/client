@@ -16,7 +16,7 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
     return (
         <>
             <div className = "replyContainer">
-                <img className = "replyImg" scr = "/images/reply.png" alt = ""/>
+                <img className = "replyImg" scr = "images/replyTag.png" alt = ""/>
                 <div className = "replyBox">
                     <div className='replyProfile'>
                         <img className = "replyProfileImg" src = "/images/poster6.jpeg" alt = ""/>
