@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Comment from './Comment';
+import Heart from './Heart';
 
 function Post( {loading}) {
     const [boardId, setBoardId] = useState();  // board 고유 번호
@@ -19,7 +20,6 @@ function Post( {loading}) {
     const location = useLocation();
     const postScrollRef = useRef();
     const boardArr = useSelector((state)=>state.board.boardArr);
-
     const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
     
     useEffect(()=> {
@@ -34,7 +34,7 @@ function Post( {loading}) {
                 setId(response.data.data.id);
                 setPostContent(response.data.data.postContent);
                 setPostTitle(response.data.data.postTitle);     
-                setHeart(response.data.data.heart);     
+                setHeart(response.data.data.postHeart);     
                 setWriterId(response.data.data.writerId);
                 setWriterName(response.data.data.writerName);
                 setCommentList(response.data.data.commentDtoList);
@@ -42,7 +42,7 @@ function Post( {loading}) {
         }
         getPost();
         scrollToElement();
-    } , [location])
+    } , [location ])
 
     return (
         <div className = "postContainer" ref={postScrollRef}>
@@ -60,14 +60,11 @@ function Post( {loading}) {
                 <div className = "postTitle">
                     {postTitle}
                 </div>
-
-                <div className = "heart">
-                    {heart}
-                </div>
             </div>
             <div className = "postContent">
                 {postContent}
             </div>
+            <Heart heartNum={heart} changeHeart = {setHeart}/>
             <Comment commentList={commentList} changeCommentList = {setCommentList}/>
         </div>
     )

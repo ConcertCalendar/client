@@ -32,15 +32,12 @@ function Login() {
             body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
           }).then((res)=> res.json())
           .then((data) => 
-            
-                console.log(data)
-               
-            )
-        }
+                loginSuccess(data.data.accessToken)
+            )}
     
     const loginSuccess = (accessToken) => {
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
-        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
+        axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
     }
 
 

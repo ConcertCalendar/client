@@ -6,7 +6,7 @@ export const isAuth = (accessToken)=>{
         return false;
     }
     const decoded = jwtDecode(accessToken);
-    if (decoded.exp > new Date().getTime() / 1000){
+    if (decoded.exp  > new Date().getTime() / 1000){
         return true
     }
     else { return false;}
