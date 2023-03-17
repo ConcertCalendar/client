@@ -1,13 +1,12 @@
-import axios from "axios";
-import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inputEmail, inputPassword, setCurrentUser } from "./loginSlice"
-import { storeAccessToken } from "../../store/authSlice";
-import { getCookie, setCookie } from "../../utils/cookie";
+import { inputEmail, inputPassword } from "./loginSlice"
 import { Link } from "react-router-dom";
 import './Login.css'
-import { baseInstance } from "../../utils/customAxios";
+import { storeAccessToken } from "../../store/authSlice";
+import { axiosInstance } from "../../utils/customAxios";
+
+
 
 function Login() {
     const {state} = useLocation();
@@ -16,14 +15,7 @@ function Login() {
     const loginErrMsg = useSelector((state) => state.login.loginErrMsg);
     const currentUser = useSelector((state) => state.login.currentUser);
     const accessToken = useSelector((state)=> state.auth.accessToken);
-
     const dispatch = useDispatch();
-    
-    const  data = JSON.stringify({   
-        "userEmail" : email,
-        "password" : password 
-    });
-
     const navigate = useNavigate();
 
     async function postLogin(url = 'https://concal.p-e.kr/users/login' , data = { "userEmail" : email, "password" : password }){
@@ -38,16 +30,24 @@ function Login() {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
-          }).then(resonse=> resonse.json())
-          .then(json=> console.log(JSON.stringify(json))) // JSON 응답을 네이티브 JavaScript 객체로 파싱
+          }).then((res)=> res.json())
+          .then((data) => 
+            
+                console.log(data)
+               
+            )
         }
-
-
+    
+    const loginSuccess = (accessToken) => {
+        dispatch(storeAccessToken(accessToken)); //accessToken을 저장
+        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
+    }
 
 
     const loginSubmit = async (event) => {
         event.preventDefault();
-        postLogin();        
+        postLogin();      
+        navigate(state.from); 
     }
 
 

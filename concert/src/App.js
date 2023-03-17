@@ -9,9 +9,16 @@ import MyCalendar from './pages/Calendar/MyCalendar'
 import Layout from "./layout";
 import Post from "./pages/BulletinBoard/Post";
 import Write from "./pages/BulletinBoard/Write";
-
+import { useEffect } from "react";
+import { getCookie } from "./utils/cookie"
+import { useSelector } from "react-redux";
 
 function App() {
+  
+  useEffect(()=> {
+ 
+  }, [])
+
   return (
     <Routes>
       <Route element = {<Layout/>}>

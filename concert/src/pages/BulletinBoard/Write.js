@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { authInstance } from '../../utils/customAxios';
+import { axiosInstance  } from '../../utils/customAxios';
 import { isAuth } from '../../utils/JwtUtils';
 import './Write.css'
 function Write () {
@@ -35,7 +35,7 @@ function Write () {
     }
 
     const postWrite = () => {
-        isAuth(accessToken)&&authInstance(accessToken).post('/posts', { 
+        isAuth(accessToken)&&axiosInstance(accessToken).post('/posts', { 
             'boardId': state.boardId,
             'postTitle': postTitle,
             'postContent': postContent,

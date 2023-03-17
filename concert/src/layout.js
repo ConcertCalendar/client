@@ -14,9 +14,7 @@ const Layout = () => {
   const location = useLocation();
 
   const handleLogout = (event) => {
-    dispatch(setCurrentUser(""));
     dispatch(storeAccessToken(""));
-    removeCookie("refreshToken");
   }
 
   useEffect (()=> {

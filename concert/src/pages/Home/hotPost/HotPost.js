@@ -45,7 +45,7 @@ function HotPost() {
     ]);
     const makeHotPostContent = () => {
         return dummy.map((item) => 
-            <HotPostContent boardId = {item.boardId} postTitle = {item.postTitle} like = {item.like} reply = {item.reply} id = {item.id}/>
+            <HotPostContent key = {item.id} boardId = {item.boardId} postTitle = {item.postTitle} like = {item.like} reply = {item.reply} id = {item.id}/>
         )
     }
 

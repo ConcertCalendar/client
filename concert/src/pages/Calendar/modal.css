@@ -7,7 +7,9 @@
 
 .modalContainer {
     overflow-y: auto;
-    width : 50vw;
+    border : 0.2px solid rgba(106, 102, 102, 0.489);
+    border-radius: 2rem;
+    width : 30vw;
     height : 90vh;
     top : 50%;
     left: 50%;

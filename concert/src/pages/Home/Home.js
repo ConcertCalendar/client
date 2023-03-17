@@ -20,6 +20,9 @@ function Home() {
         <Ticket/>
       </section>
       <Poster />
+      <footer className = 'footer'>
+        footer
+      </footer>
       </>
     );
   }

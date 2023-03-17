@@ -1,6 +1,8 @@
 .posterContainer {
-    width: 1000px;
-    margin: 10px auto;
+    background-color: aquamarine;
+    width: 100vw;
+    height : 600px;
+    margin: 0px auto;
     box-sizing: border-box;
 }
 .poster{
@@ -40,3 +42,8 @@
 
 
 
+
+
+.test{
+    background-color: beige;
+}

@@ -1,8 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { getDecoded } from '../../utils/JwtUtils';
 import './Comment.css';
 import CommentInput from './Input/CommentInput';
 import ReplyInput from './Input/ReplyInput';

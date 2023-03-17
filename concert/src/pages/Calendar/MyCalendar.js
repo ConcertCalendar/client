@@ -61,6 +61,7 @@ function MyCalendar() {
                 eventClick = {handleEventClick}
                 eventMouseEnter = {handleEventEnter}
             />
+            
             {openModal && <CalendarModal closeModal={setOpenModal} title = {content.title}>
                 <img src={content.img} alt = ""/>
                     <div className = "concertContent">

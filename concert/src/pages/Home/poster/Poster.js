@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PosterItem from './PosterItem';
 
 function Poster() {
-  const [posterData , setPoserData] = useState([1, 2, 3, 4, 5, 6]);
+  const [posterData , setPoserData] = useState([1, 2, 3, 4, 5, 6]); 
   const [startOffset, setStartOffset ] = useState(0);
   const [endOffset , setEndOffset ] = useState(3);
   const [leftInMouse, setLeftInMouse] = useState(false);
@@ -36,6 +36,7 @@ function Poster() {
   //
 
   return (
+    <div className ='test'>
     <section className="posterContainer">
       <div className = "poster">
         <div onMouseEnter={leftMouse} onMouseLeave = {leftMouse}>
@@ -49,6 +50,7 @@ function Poster() {
         </div>
       </div>
     </section>
+    </div>
     );
   }
   

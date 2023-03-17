@@ -23,7 +23,7 @@ function Board(){
     useEffect( ()=> {
         setBoardName(boardArr[boardId - 1]);
         async function getData(){
-            if(offset !== null){
+            if(offset !== null){ 
                 const response = await axios.get(`https://concal.p-e.kr/boards/${params.boardId}${location.search}`)
                 if(response.status === 200){
                     setLoading(true);

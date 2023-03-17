@@ -19,6 +19,7 @@
 .replyProfile {
     display: flex;
     align-items: center;
+    margin-top: 5px;
     margin-left : 5px;
 }
 
