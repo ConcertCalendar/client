@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Nav.css'
-import { throttle } from 'lodash'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -51,17 +50,17 @@ function Nav() {
               <img className='navLogo' src = "Images/logo.png" alt = ""/>
             </Link>
             <ul className = "navMenu">
-              <Link className = 'navLink' to ="/">
-                <li className = { fixed ? "fixedNavItem" : "navItem"}>HOME</li>
-              </Link>
-              <Link className = 'navLink' to ="/Calendar">
-                <li className = { fixed ? "fixedNavItem" : "navItem"}>CALENDAR</li>
-              </Link>
-              <Link className = 'navLink' to = "/boards/1?page=0">
-                <li className ="navItem community" onMouseEnter={() => {
+              <li className = { fixed ? "fixedNavItem" : "navItem"}>
+                <Link className = 'navLink' to ="/">HOME</Link>
+              </li>
+              <li className = { fixed ? "fixedNavItem" : "navItem"}>
+                <Link className = 'navLink' to ="/Calendar">CALENDAR    </Link>
+              </li>
+              <li className ="navItem" onMouseEnter={() => {
                   console.log("horvering")
-                  setHover(true)}}>COMMUNITY</li>
-              </Link>
+                  setHover(true)}}>
+                    <Link className = 'navLink community' to = "/boards/1?page=0"> COMMUNITY</Link>
+              </li>
             </ul>
           </div>
         </div>

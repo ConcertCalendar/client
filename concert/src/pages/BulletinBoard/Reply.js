@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
 
 function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
     const [display , setDisplay] = useState(false);
     const [displayId , setDisplayId] = useState(null);
+    const currentUid = useSelector((state)=> state.login.currentUid);
     const handleToReply = (id) => {
         setDisplayId(id);
         setDisplay(!display);
@@ -13,6 +15,11 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
     const handleToModify = () => {
         console.log('clicked')
     }
+
+    const handleToDel = () => {
+        console.log('del')
+    }
+
     return (
         <>
             <div className = "replyContainer">
@@ -20,6 +27,7 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
                     <div className='replyProfile'>
                         <img className = "replyProfileImg" src = "/images/poster6.jpeg" alt = ""/>
                         <p className = "replyName">{replyWriterName}</p>
+                        {replyWriterId === currentUid  && <div className='replyDel' onClick={handleToDel}>삭제</div>}
                     </div>
                     <p className = "replyContent">{replyContent}</p> 
                     <div className = "replyBottom">

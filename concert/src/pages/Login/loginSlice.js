@@ -4,7 +4,7 @@ const initialState = {
   email : "",
   password : "",
   loginErrMsg : false,
-  currentUser : "",
+  currentUid : "",
 }
 
 export const loginSlice = createSlice({
@@ -17,13 +17,13 @@ export const loginSlice = createSlice({
     inputPassword: (state ,action) => {
         state.password = action.payload;
     },
-    setCurrentUser: (state, action) => {
-      state.currentUser = action.payload;
+    setCurrentUid: (state, action) => {
+      state.currentUid = action.payload;
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { inputEmail, inputPassword  , setCurrentUser} = loginSlice.actions //reducer의 actions을 export
+export const { inputEmail, inputPassword  , setCurrentUid} = loginSlice.actions //reducer의 actions을 export
 
 export default loginSlice.reducer

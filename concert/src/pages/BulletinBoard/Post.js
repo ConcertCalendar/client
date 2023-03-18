@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import Comment from './Comment';
+import CommentList from './CommentList';
 import Heart from './Heart';
 
 function Post( {loading}) {
@@ -20,6 +20,7 @@ function Post( {loading}) {
     const location = useLocation();
     const postScrollRef = useRef();
     const boardArr = useSelector((state)=>state.board.boardArr);
+
     const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
     
     useEffect(()=> {
@@ -65,7 +66,7 @@ function Post( {loading}) {
                 {postContent}
             </div>
             <Heart heartNum={heart} changeHeart = {setHeart}/>
-            <Comment commentList={commentList} changeCommentList = {setCommentList}/>
+            <CommentList commentList={commentList} changeCommentList = {setCommentList}/>
         </div>
     )
 }

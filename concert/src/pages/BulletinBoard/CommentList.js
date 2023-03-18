@@ -1,33 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import './Comment.css';
+import CommentItem from './CommentItem';
+import './CommentList.css';
 import CommentInput from './Input/CommentInput';
-import ReplyInput from './Input/ReplyInput';
-import Reply from './Reply.js';
 
-function Comment ({commentList , changeCommentList}) {
-    const token = useSelector((state)=> state.auth.accessToken);
-    const [display , setDisplay] = useState(false);
-    const [displayId , setDisplayId] = useState(null);
-    const handleToReply = (id) => {
-        setDisplayId(id);
-        setDisplay(!display);
-    }
 
-    const handleToModify = () => {
-        console.log("clicked")
-    }
+function CommentList ({commentList , changeCommentList}) {
+   
+    const currentUid = useSelector((state) => state.login.currentUid);
 
 
     const renderCommentList = () => {
-        return commentList.map((comment,idx) => (
-            <div className = "commentBox" key = {comment.id}>
+        return commentList.map((comment,idx) => (    
+            <CommentItem key = {comment.id} comment = {comment} currentUid = {currentUid} commentList = {commentList} changeCommentList = {changeCommentList}/>
+         ))
+    }
+            /*<div className = "commentBox" key = {comment.id}>
                 <ul className = "comment">
                     <div className='commentProfile'>
                         <img className = "commentImg" src = "/images/poster6.jpeg" alt = ""/>
                         <p className = "commentName">{comment.commentWriterName}</p>
                     </div>
-                    <p className = "commentContent">{comment.commentContent}</p>
+                    {comment.commentWriterId == currentUid  && <div className='commentDel'>삭제</div>}
+                    <div className = "commentContent">{comment.commentContent}</div>
                     <div className = "commentBottom">
                         <p className = "commentCreatedDate">{comment.createdDate}</p>
                         <p className = "replyBtn"  onClick={handleToReply.bind(this,comment.id)}>댓글</p> 
@@ -41,13 +36,12 @@ function Comment ({commentList , changeCommentList}) {
                              commentId = {reply.commentId} createdDate = {reply.createdDate} id = {reply.id}
                              modifiedDate = {reply.modifiedDate} replyContent= {reply.replyContent}  replyWriterId = {reply.replyWriterId}
                              replyWriterName = {reply.replyWriterName} 
-                             commentList = {commentList}changeCommentList = {changeCommentList}/>
+                             commentList = {commentList} changeCommentList = {changeCommentList}/>
                         </li>
                     ))}
                 </ul>
-            </div>
-        ))
-    }
+            </div>*/
+   
 
     useEffect( ()=> {
         
@@ -55,11 +49,11 @@ function Comment ({commentList , changeCommentList}) {
 
     return (
     <div className='commentContainer'>
-        <CommentInput commentList = {commentList}changeCommentList = {changeCommentList}/>
+        <CommentInput commentList = {commentList} changeCommentList = {changeCommentList}/>
         <div className='commentListContainer'>
             {renderCommentList()}
         </div>
     </div>
     ) 
 }
-export default Comment;
+export default CommentList;

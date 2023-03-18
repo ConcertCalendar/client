@@ -3,8 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import { Link } from 'react-router-dom';
-import { getCookie, removeCookie } from './utils/cookie';
-import { setCurrentUser } from './pages/Login/loginSlice';
+import { setCurrentUid } from './pages/Login/loginSlice';
 import { storeAccessToken } from './store/authSlice';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -15,6 +14,7 @@ const Layout = () => {
 
   const handleLogout = (event) => {
     dispatch(storeAccessToken(""));
+    dispatch(setCurrentUid(""));
   }
 
   useEffect (()=> {

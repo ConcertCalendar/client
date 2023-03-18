@@ -12,6 +12,7 @@ function Write () {
     const [postContent , setPostContent] = useState("");
     const [resize, setResize] = useState(640);
     const accessToken = useSelector((state) => state.auth.accessToken);
+    
     const handleChange = (e) => {
         setPostContent(e.target.value);
         setResize(contentRef.current.scrollHeight )
@@ -35,16 +36,18 @@ function Write () {
     }
 
     const postWrite = () => {
-        isAuth(accessToken)&&axiosInstance(accessToken).post('/posts', { 
-            'boardId': state.boardId,
-            'postTitle': postTitle,
-            'postContent': postContent,
-        }).then((res)=> {
-            console.log(res)
-        }).catch((err)=>{
+        if (isAuth(accessToken)){
+            axiosInstance.post('/posts', { 
+                'boardId': state.boardId,
+                'postTitle': postTitle,
+                'postContent': postContent,    
+        }).then((res)=> { console.log(res)}).catch((err)=>{
             console.log(err);
+        })
         }
-        )
+        else {
+            alert ("다시 로그인 해주세요.")
+        } 
     }
 
     useEffect(()=> {

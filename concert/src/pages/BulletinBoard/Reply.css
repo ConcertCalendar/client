@@ -34,6 +34,12 @@
     margin-left: 5px;
 }
 
+.replyDel {
+    font-size: 12px;
+    cursor: pointer;
+    color : rgba(128, 128, 128, 0.5);
+    margin-left : auto;
+}
 .replyContent{
     margin: 0px 0px 0px 5px;
     font-size: 14px;
