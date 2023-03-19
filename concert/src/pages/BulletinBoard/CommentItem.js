@@ -4,18 +4,29 @@ import { useLocation } from "react-router";
 import './CommentItem.css'
 import ReplyInput from "./Input/ReplyInput";
 import Reply from "./Reply";
+import CommentModify from "./CommentModify";
 
 function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
-    const [display , setDisplay] = useState(false); //리플라이 창 보이기
+    const [replyInputDisplay , setReplyInputDisplay] = useState(false); //리플라이 창 보이기
+    const [commentModifyDisplay , setCommentModifyDisplay] = useState(false);
     const [displayId , setDisplayId] = useState(null);
+
     const location = useLocation();
     const handleToReply = (id) => {
         setDisplayId(id);
-        setDisplay(!display);
+        if(commentModifyDisplay === true){
+            setCommentModifyDisplay(!commentModifyDisplay);
+        }
+        setReplyInputDisplay(!replyInputDisplay);
     }
 
-    const handleToModify = () => {
-        console.log("clicked")
+    const handleToModify = (content, id) => {
+        setDisplayId(id);
+        ;
+        if(replyInputDisplay === true){
+            setReplyInputDisplay(!replyInputDisplay);
+        }
+        setCommentModifyDisplay(!commentModifyDisplay);
     }
 
     const handleToDel = () => {
@@ -33,6 +44,8 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
         }
     }
 
+
+
     return (
         <div className = "commentBox" key = {comment.id}>
             <ul className = "comment">
@@ -45,10 +58,12 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
             <div className = "commentBottom">
                 <p className = "commentCreatedDate">{comment.createdDate}</p>
                 <p className = "replyBtn"  onClick={handleToReply.bind(this,comment.id)}>댓글</p> 
-                <p className = "modifyBtn" onClick={handleToModify.bind(this, comment.commentContent)}>수정</p>
+                <p className = "modifyBtn" onClick={handleToModify.bind(this, comment.commentContent , comment.id)}>수정</p>
             </div>
-            {display && (displayId === comment.id) && 
-            <ReplyInput toReply = {comment.commentWriterName} commentId = {comment.id} commentList = {commentList}changeCommentList = {changeCommentList}/>}
+            {replyInputDisplay && (displayId === comment.id) && 
+            <ReplyInput  toReply = {comment.commentWriterName} commentId = {comment.id} commentList = {commentList} changeCommentList = {changeCommentList} />}
+             {commentModifyDisplay && (displayId === comment.id) && 
+            <CommentModify  prevContent = {comment.commentContent} commentId = {comment.id} commentList = {commentList} changeCommentList = {changeCommentList}  />}
             {comment.replyDtoList.length !== 0 && comment.replyDtoList.map((reply)=> (
                 <li key = {reply.id}>
                     <Reply 

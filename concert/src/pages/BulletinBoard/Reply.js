@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import { axiosInstance } from '../../utils/customAxios';
 import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
 
@@ -7,6 +9,7 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
     const [display , setDisplay] = useState(false);
     const [displayId , setDisplayId] = useState(null);
     const currentUid = useSelector((state)=> state.login.currentUid);
+    const location = useLocation();
     const handleToReply = (id) => {
         setDisplayId(id);
         setDisplay(!display);
@@ -16,8 +19,20 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
         console.log('clicked')
     }
 
+
     const handleToDel = () => {
-        console.log('del')
+        if(window.confirm("댓글을 삭제하시겠습니까?")){
+            axiosInstance.delete(`comments/${commentId}/replies/${id}`).then((res)=> {
+                if(res.status === 200){
+                    axiosInstance.get(`${location.pathname}`)
+                    .then((res)=> {
+                        if(res.status === 200) 
+                            changeCommentList(res.data.data.commentDtoList)
+                    })
+                    .catch((err)=>console.log(err))
+                }   
+            })
+        }
     }
 
     return (

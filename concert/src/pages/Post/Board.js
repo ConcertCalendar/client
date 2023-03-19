@@ -28,16 +28,15 @@ function Board(){
                 if(response.status === 200){
                     setLoading(true);
                     setPost(response.data.data.boardDtoList);
-                    setTotalPost(Math.ceil(Number(response.data.data.postEntireSize) / 20));
+                    setTotalPost(Number(response.data.data.postEntireSize) );
                     return; 
                 }
                 setLoading(false);
             }
         }
-        
         getData();
 
-    }, [offset , params.boardId ]);
+    }, [offset , params.boardId , totalPost]);
    
 
     return (
@@ -48,10 +47,10 @@ function Board(){
                 {boardName}
             </div>
             <PostList data = {post} loading = {loading}/>
-            <Pagenation totalPost={totalPost } offset = {offset} />
+            <Pagenation totalPost={Math.ceil(totalPost / 20) } offset = {offset} />
         </div>
         <div>
-            <Link to ="/write" className='writingBtn' state = {{boardName : boardName , from : location.pathname + location.search , boardId : boardId }}>
+            <Link to ="/write" className='writingBtn' state = {{boardName : boardName , from : location.pathname + location.search , boardId : boardId  , totalPost : totalPost }}>
                <img src = "../../../images/pencil.png" alt = ""/>
             </Link>
         </div>

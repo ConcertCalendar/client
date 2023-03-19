@@ -1,13 +1,14 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './ReplyInput.css';
-function ReplyInput({toReply , commentId , commentList , changeCommentList}) {
+function ReplyInput({ toReply , commentId , commentList , changeCommentList }) {
     const location = useLocation();
-    const [content, setContent] = useState("");
-    const [nickname,setNickname] = useState("user");
+    const [nickname, setNickname] = useState("user");
     const [currentLength , setCurrentLength] = useState(0);
+    const [content, setContent] = useState("");
     const token = useSelector((state)=> state.auth.accessToken);
     const postReply = async () => {
         await axios.post(`https://concal.p-e.kr/comments/${commentId}/replies`, {
@@ -44,6 +45,7 @@ function ReplyInput({toReply , commentId , commentList , changeCommentList}) {
         setContent(event.target.value);
         setCurrentLength(event.target.value.length);
     }
+   
 
     return(
         <div className="replyInputContainer">

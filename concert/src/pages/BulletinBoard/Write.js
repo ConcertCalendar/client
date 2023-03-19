@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { axiosInstance  } from '../../utils/customAxios';
 import { isAuth } from '../../utils/JwtUtils';
 import './Write.css'
-function Write () {
+function Write ({setTotalPost}) {
     const {state} = useLocation();
     const contentRef = useRef(null);
     const [postTitle , setPostTitle] = useState("");
@@ -41,7 +41,10 @@ function Write () {
                 'boardId': state.boardId,
                 'postTitle': postTitle,
                 'postContent': postContent,    
-        }).then((res)=> { console.log(res)}).catch((err)=>{
+        }).then((res)=> { 
+            console.log(res); //state값 변경 어떻게 할지 고민
+            
+        }).catch((err)=>{
             console.log(err);
         })
         }
