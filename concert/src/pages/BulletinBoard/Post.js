@@ -35,7 +35,7 @@ function Post( {loading}) {
                 setId(response.data.data.id);
                 setPostContent(response.data.data.postContent);
                 setPostTitle(response.data.data.postTitle);     
-                setHeart(response.data.data.postHeart);     
+                setHeart(response.data.data.postHeartSet);     
                 setWriterId(response.data.data.writerId);
                 setWriterName(response.data.data.writerName);
                 setCommentList(response.data.data.commentDtoList);
