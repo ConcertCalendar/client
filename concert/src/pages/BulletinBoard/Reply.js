@@ -2,21 +2,31 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { axiosInstance } from '../../utils/customAxios';
+import CommentModify from './CommentModify';
 import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
 
-function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
+function Reply({commentId , createdDate , id ,modifiedDate , replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
     const [display , setDisplay] = useState(false);
     const [displayId , setDisplayId] = useState(null);
+    const [replyModifyDisplay , setReplyModifyDisplay]  = useState(false);
     const currentUid = useSelector((state)=> state.login.currentUid);
     const location = useLocation();
+    
     const handleToReply = (id) => {
         setDisplayId(id);
+        if(replyModifyDisplay === true){
+            setReplyModifyDisplay(!replyModifyDisplay);
+        }
         setDisplay(!display);
     }
 
-    const handleToModify = () => {
-        console.log('clicked')
+    const handleToModify = (content, id) => {
+        setDisplayId(id);
+        if(display === true){
+            setDisplay(!display);
+        }
+        setReplyModifyDisplay(!replyModifyDisplay);
     }
 
 
@@ -48,12 +58,16 @@ function Reply({commentId , createdDate , id ,modifiedDate ,replyContent , reply
                     <div className = "replyBottom">
                         <p className = "replyCreatedDate">{createdDate}</p>
                         <p className = "replyBtn"  onClick={handleToReply.bind(this,commentId)}>댓글</p> 
-                        <p className = "modifyBtn" onClick={handleToModify.bind(this, replyContent)}>수정</p>
+                        <p className = "modifyBtn" onClick={handleToModify.bind(this,replyContent, commentId)}>수정</p>
                     </div>
                 </div>
             </div>
             {display && (displayId === commentId) && 
             <ReplyInput toReply = {replyWriterName} commentId = {commentId} commentList = {commentList} changeCommentList = {changeCommentList}/>}
+            {replyModifyDisplay && (displayId === commentId) && 
+            <CommentModify modifyDisplay  = {replyModifyDisplay}  setModifyDisplay = {setReplyModifyDisplay} prevContent = {replyContent} 
+             commentId = {commentId} commentList = {commentList} changeCommentList = {changeCommentList} url = {`/comments/${commentId}/replies/${id}`}
+             body = {'replyContent'}/>}
         </>
     )
 

@@ -3,20 +3,26 @@ import { useLocation } from 'react-router-dom';
 import { axiosInstance } from '../../utils/customAxios';
 import './CommentModify.css'
 
-function CommentModify ({prevContent,  commentId,commentList , changeCommentList}) {
+function CommentModify ({modifyDisplay ,setModifyDisplay ,prevContent,  commentId, commentList , changeCommentList , url , body}) {
+    const length = prevContent.length && 0;
     const location = useLocation();
     const [nickname, setNickname] = useState("user");
-    const [currentLength , setCurrentLength] = useState(0);
+    const [currentLength , setCurrentLength] = useState(length);
     const [content, setContent] = useState(prevContent);
+    const data = {};
 
     const modifyComment = async () => {
-       axiosInstance.put(`${location.pathname}/comments/${commentId}`, {'commentContent' : content})
+        data[body] = content
+       axiosInstance.put(url, data)
        .then((res)=> {
+            console.log(res);
             if(res.status === 200){
                 axiosInstance.get(`${location.pathname}`)
                 .then((response)=> {
                     if(response.status === 200){
-                        changeCommentList(response.data.data.commentDtoList); 
+                        console.log(response);
+                        changeCommentList(response.data.data.commentDtoList);
+                        setModifyDisplay(!modifyDisplay);
                     }
                 })
                 .catch((err)=>console.log(err))

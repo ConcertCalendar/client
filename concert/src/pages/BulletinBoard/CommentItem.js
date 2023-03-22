@@ -22,7 +22,6 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
 
     const handleToModify = (content, id) => {
         setDisplayId(id);
-        ;
         if(replyInputDisplay === true){
             setReplyInputDisplay(!replyInputDisplay);
         }
@@ -61,9 +60,12 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
                 <p className = "modifyBtn" onClick={handleToModify.bind(this, comment.commentContent , comment.id)}>수정</p>
             </div>
             {replyInputDisplay && (displayId === comment.id) && 
-            <ReplyInput  toReply = {comment.commentWriterName} commentId = {comment.id} commentList = {commentList} changeCommentList = {changeCommentList} />}
+            <ReplyInput  toReply = {comment.commentWriterName} commentId = {comment.id} commentList = {commentList} 
+             changeCommentList = {changeCommentList} />}
              {commentModifyDisplay && (displayId === comment.id) && 
-            <CommentModify  prevContent = {comment.commentContent} commentId = {comment.id} commentList = {commentList} changeCommentList = {changeCommentList}  />}
+            <CommentModify modifyDisplay = {commentModifyDisplay}  setModifyDisplay = {setCommentModifyDisplay}  prevContent = {comment.commentContent}
+             commentId = {comment.id} commentList = {commentList} changeCommentList = {changeCommentList} url = {`${location.pathname}/comments/${comment.id}`}
+             body = {'commentContent'}/>}
             {comment.replyDtoList.length !== 0 && comment.replyDtoList.map((reply)=> (
                 <li key = {reply.id}>
                     <Reply 
