@@ -155,7 +155,7 @@ function Join() {
         }
         else{
             console.log("api연결")
-            axios.post("http://3.37.69.149:8080/users/join",
+            axios.post("https://concal.p-e.kr/users/join",
                 data
              , {
                 headers: {

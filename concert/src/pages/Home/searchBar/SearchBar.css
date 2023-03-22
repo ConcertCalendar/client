@@ -1,0 +1,26 @@
+.SearchContainer {
+    display: flex;
+    width: 70%;
+    box-sizing: border-box;
+    border: solid 2px black;
+    border-radius: 2rem;
+    height: 40px;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.searchBar {
+    border: none;
+    width: 90%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.searchBar:focus {
+    outline: none;
+}
+.searchImg{
+    padding: 0px 10px 0px 10px;
+    height: 20px;
+    width: 20px;
+}

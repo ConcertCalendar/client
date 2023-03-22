@@ -1,0 +1,41 @@
+.commentModifyContainer{
+    width : 1000px;
+    margin : 0 auto;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.commentModifyForm{
+    display: flex;
+    margin-top : 10px;
+    width : 100%;
+    height: 100%;
+    border : solid 1px rgba(128, 128, 128, 0.35);
+    justify-content: center;
+    flex-direction: column;
+}
+.commentModifyUser{
+    padding : 5px 0px 5px 10px;  
+    font-size: 16px;
+}
+.commentModifyInput{
+    box-sizing: border-box;
+    padding : 10px;
+    width : 100%;
+    border : none;
+    height : 40px;
+    resize: none;
+    overflow: hidden;
+}
+.commentModifyInput:focus{
+    height : 95px;
+    outline : none;
+    overflow: hidden;
+}
+.commentModifyPostBtn{
+    width: 8%;
+    padding : 10px 0px 10px 0px;
+    border : none;
+    background-color: transparent;
+    color : rgba(128, 128, 128, 0.9);
+}

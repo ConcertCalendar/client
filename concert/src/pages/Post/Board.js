@@ -23,21 +23,20 @@ function Board(){
     useEffect( ()=> {
         setBoardName(boardArr[boardId - 1]);
         async function getData(){
-            if(offset !== null){
-                const response = await axios.get(`http://3.37.69.149:8080/boards/${params.boardId}${location.search}`)
+            if(offset !== null){ 
+                const response = await axios.get(`https://concal.p-e.kr/boards/${params.boardId}${location.search}`)
                 if(response.status === 200){
                     setLoading(true);
                     setPost(response.data.data.boardDtoList);
-                    setTotalPost(Math.ceil(Number(response.data.data.postEntireSize) / 20));
+                    setTotalPost(Number(response.data.data.postEntireSize) );
                     return; 
                 }
                 setLoading(false);
             }
         }
-        
         getData();
 
-    }, [offset , params.boardId ]);
+    }, [offset , params.boardId , totalPost]);
    
 
     return (
@@ -48,10 +47,10 @@ function Board(){
                 {boardName}
             </div>
             <PostList data = {post} loading = {loading}/>
-            <Pagenation totalPost={totalPost } offset = {offset} />
+            <Pagenation totalPost={Math.ceil(totalPost / 20) } offset = {offset} />
         </div>
         <div>
-            <Link to ="/write" className='writingBtn'>
+            <Link to ="/write" className='writingBtn' state = {{boardName : boardName , from : location.pathname + location.search , boardId : boardId  , totalPost : totalPost }}>
                <img src = "../../../images/pencil.png" alt = ""/>
             </Link>
         </div>

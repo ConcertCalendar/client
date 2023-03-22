@@ -3,7 +3,8 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import Comment from './Comment';
+import CommentList from './CommentList';
+import Heart from './Heart';
 
 function Post( {loading}) {
     const [boardId, setBoardId] = useState();  // board 고유 번호
@@ -25,7 +26,7 @@ function Post( {loading}) {
     useEffect(()=> {
         console.log("loading" , loading)
         async function getPost(){
-            const response = await axios.get(`http://3.37.69.149:8080${location.pathname}`)
+            const response = await axios.get(`https://concal.p-e.kr${location.pathname}`)
             console.log("상세보기" , response)
             if(response.status === 200){
                 setBoardId(response.data.data.boardId);
@@ -34,7 +35,7 @@ function Post( {loading}) {
                 setId(response.data.data.id);
                 setPostContent(response.data.data.postContent);
                 setPostTitle(response.data.data.postTitle);     
-                setHeart(response.data.data.heart);     
+                setHeart(response.data.data.postHeartSet);     
                 setWriterId(response.data.data.writerId);
                 setWriterName(response.data.data.writerName);
                 setCommentList(response.data.data.commentDtoList);
@@ -42,7 +43,7 @@ function Post( {loading}) {
         }
         getPost();
         scrollToElement();
-    } , [location])
+    } , [location ])
 
     return (
         <div className = "postContainer" ref={postScrollRef}>
@@ -60,15 +61,12 @@ function Post( {loading}) {
                 <div className = "postTitle">
                     {postTitle}
                 </div>
-
-                <div className = "heart">
-                    {heart}
-                </div>
             </div>
             <div className = "postContent">
                 {postContent}
             </div>
-            <Comment commentList={commentList} changeCommentList = {setCommentList}/>
+            <Heart heartNum={heart} changeHeart = {setHeart}/>
+            <CommentList commentList={commentList} changeCommentList = {setCommentList}/>
         </div>
     )
 }

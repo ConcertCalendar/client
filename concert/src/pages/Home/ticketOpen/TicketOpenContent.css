@@ -1,0 +1,53 @@
+.ticketOpenContentItem {
+    display: flex;
+    flex-direction: row;
+}
+.ticketOpenExPoster {
+    width: 550px;
+}
+.ticketOpenItemHeader {
+    display : flex;
+    align-items: center;
+}
+
+.ticketOpenRemainDay {
+    width: 70px;
+    border: 2px solid aquamarine;
+    border-radius: 2rem;
+    text-align: center;
+    color: aquamarine;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0px 5px 0px 5px;
+}
+
+.ticketOpenSinger { 
+    font-size: 13px;
+    font-weight: bold;
+    margin: 10px 0px 10px 20px;
+}
+.ticketOpenItemTitle{
+    padding-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.ticketOpenItemContent{
+    padding-top: 10px;
+    font-size: 14px;
+    min-height: 50px;
+}
+.ticketOpenItemFooter > a {
+    text-decoration: none;
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+    padding-right: 10px;
+}
+.ticketOpenItemPosterWrap {
+
+}
+.ticketOpenItemPoster {
+    padding: 10px 0px 10px 0px;
+    width : 150px;
+    height: 200px;
+}

@@ -1,0 +1,62 @@
+.commentBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    border-top: solid 1px rgba(128, 128, 128, 0.35);;
+}
+
+.commentImg{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.commentProfile {
+    display: flex;
+    align-items: center;
+    margin-left : 5px;
+    margin-top: 5px;
+}
+
+.commentName {
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.commentDel {
+    font-size: 12px;
+    cursor: pointer;
+    color : rgba(128, 128, 128, 0.5);
+    margin-left : auto;
+}
+.commentContent{
+    margin: 0px 0px 0px 5px;
+    font-size: 14px;
+
+}
+.commentCreatedDate {   
+    padding-left: 15px;
+    color: gray;
+}
+
+.commentBottom {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 12px;
+    margin: 0px;
+}
+
+.replyBtn{
+    cursor: pointer;
+    margin-left : 15px;
+}
+
+.modifyBtn {
+    cursor : pointer;
+}
+.comment {
+    margin: 0px;
+    padding : 0px;
+    list-style: none;
+}
+ 

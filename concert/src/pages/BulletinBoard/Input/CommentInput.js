@@ -1,21 +1,18 @@
-
-import { ContentContainer } from '@fullcalendar/core/internal';
+import { useState } from 'react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import './Comment.css';
-import Reply from './Reply.js';
-
-function Comment ({commentList , changeCommentList}) {
+import './CommentInput.css'
+function CommentInput({commentList , changeCommentList})  {
     const location = useLocation();
-    const token = useSelector((state)=>state.auth.accessToken);
     const [content, setContent] = useState("");
     const [nickname,setNickname] = useState("user");
     const [currentLength , setCurrentLength] = useState(0);
+    const token = useSelector((state)=>state.auth.accessToken);
+
     const postComment = async () => {
-            await axios.post(`http://3.37.69.149:8080${location.pathname}/comments` ,{
-            "commentContent" : content,
+        await axios.post(`https://concal.p-e.kr${location.pathname}/comments` ,{
+        "commentContent" : content,
         } ,
         {
             headers: {
@@ -24,7 +21,7 @@ function Comment ({commentList , changeCommentList}) {
             }
         }).then((res)=>{
             if(res.status === 200){
-                axios.get(`http://3.37.69.149:8080${location.pathname}`)
+                axios.get(`https://concal.p-e.kr${location.pathname}`)
                 .then((res)=> {
                     if(res.status === 200) 
                         changeCommentList(res.data.data.commentDtoList)
@@ -45,7 +42,6 @@ function Comment ({commentList , changeCommentList}) {
             return;
         }  
         postComment();
-        
     }
     
     const handleLength = (event) => {
@@ -53,36 +49,7 @@ function Comment ({commentList , changeCommentList}) {
         setCurrentLength(event.target.value.length);
     }
 
-
-    const renderCommentList = () => {
-        return commentList.map((comment,idx) => (
-            <div className = "commentBox" key = {idx}>
-                <ul className = "comment">
-                    <div className='commentProfile'>
-                        <img className = "commentImg" src = "/images/poster6.jpeg" alt = ""/>
-                        <p className = "commentName">{comment.commentWriterName}</p>
-                    </div>
-                    <p className = "commentContent">{comment.commentContent}</p> 
-                    <p className = "commentCreatedDate">{comment.createdDate}</p>
-                    {comment.replyDtoList.length !== 0 && comment.replyDtoList.map((reply)=> (
-                        <li key = {reply.id}>
-                            <Reply 
-                             commentId = {reply.commentId} createdDate = {reply.createdDate} id = {reply.id}
-                             modifiedDate = {reply.modifiedDate} replyContent= {reply.replyContent}  replyWriterId = {reply.replyWriterId}
-                             replyWriterName = {reply.replyWriterName} />
-                        </li>
-                    ))}
-
-                </ul>
-            </div>
-        ))
-    }
-    useEffect( ()=> {
-        
-    } , [commentList]);
-
-    return (
-    <div className='commentContainer'>
+    return(
         <div className="CommentInputContainer">
             <p className = "commentTitle"> 댓글 </p>
             <form className = "commentForm"> 
@@ -102,13 +69,9 @@ function Comment ({commentList , changeCommentList}) {
                     </button>
                     <p className = "currentLength">{currentLength}/300</p>
                 </div>
-                
             </form>
         </div>
-        <div className='commentListContainer'>
-            {renderCommentList()}
-        </div>
-    </div>
-    ) 
+    )
 }
-export default Comment;
+
+export default CommentInput;

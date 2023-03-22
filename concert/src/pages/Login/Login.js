@@ -1,61 +1,51 @@
-import axios from "axios";
-import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { inputEmail, inputPassword, setCurrentUser } from "./loginSlice"
-import { storeAccessToken , storeRefreshToken } from "../../store/authSlice";
-import { getCookie, setCookie } from "../../utils/cookie";
+import { useLocation, useNavigate } from "react-router-dom";
+import { inputEmail, inputPassword, setCurrentUid } from "./loginSlice"
 import { Link } from "react-router-dom";
 import './Login.css'
+import { storeAccessToken } from "../../store/authSlice";
+import { axiosInstance } from "../../utils/customAxios";
+
+
 
 function Login() {
+    const {state} = useLocation();
     const email = useSelector((state) => state.login.email);
     const password = useSelector((state) => state.login.password);
     const loginErrMsg = useSelector((state) => state.login.loginErrMsg);
- //   const currentUser = useSelector((state) => state.login.currentUser);
-    const accessToken = useSelector((state)=> state.auth.accessToken);
-
     const dispatch = useDispatch();
-    
-    const  data = JSON.stringify({   
-        "userEmail" : email,
-        "password" : password 
-    });
-
     const navigate = useNavigate();
-    const onLoginSuccess = (res) => {
-        if (res.data.status === 'OK'){
-            dispatch(storeAccessToken(res.data.data.accessToken));
-            axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.data.refreshToken}`;
-            setCookie('refreshToken', res.data.data.refreshToken , {
-                //httpOnly: true,
-                path: "/",
-                //sameSite: "None"
-            }
-                ); 
-            dispatch(setCurrentUser(email));
-            navigate("/")
-        }   
-    }
-   
-    const postLogin = async () => {
-        axios.post("http://3.37.69.149:8080/users/login", data
-             ,   { 
-                headers: {
-                'Content-Type': 'application/json'
-            }, withCredentials: true
-        })
-            .then(onLoginSuccess)
-            .then(err => {
-               
-            })
+
+    async function postLogin(url = 'https://concal.p-e.kr/users/login' , data = { "userEmail" : email, "password" : password }){
+        await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE 등
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'include', // include, *same-origin, omit
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+          }).then((res)=> res.json())
+          .then((data) => 
+                loginSuccess(data.data.accessToken)
+            
+            )}
+    
+    const loginSuccess = (accessToken) => {
+        console.log(accessToken);
+        dispatch(setCurrentUid(1)); //나중에 수정
+        dispatch(storeAccessToken(accessToken)); //accessToken을 저장
+        axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
     }
 
-   
 
     const loginSubmit = async (event) => {
         event.preventDefault();
-        postLogin();
+        postLogin();      
+        navigate(state.from); 
     }
 
 

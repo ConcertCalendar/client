@@ -24,3 +24,5 @@ yarn-error.log*
 README.md
 #api키
 .env
+.cert.pem
+key.pem
