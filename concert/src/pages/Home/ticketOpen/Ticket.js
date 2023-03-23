@@ -4,7 +4,7 @@ import './Ticket.css';
 import TicketOpenContainer from './TicketOpenContent.js';
 
 function Ticket() {
-    const [dummy,setDummy] = useState([
+    const [dummy, setDummy] = useState([
         {   
             "id" : 1,
             "day" : "35" ,
