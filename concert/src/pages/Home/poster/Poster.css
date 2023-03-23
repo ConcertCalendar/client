@@ -1,16 +1,31 @@
 .posterContainer {
-    background-color: aquamarine;
-    width: 100vw;
-    height : 600px;
+    width: 1000px;
     margin: 0px auto;
     box-sizing: border-box;
 }
-.poster{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+.posterHeader {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bolder;
 }
+.posterGridContainer{
+    display: grid;
+    grid-template-rows: repeat(2 , 250px);
+    grid-template-columns: repeat(5 , 180px);
+    grid-template-areas: 
+    "First First ex ex ex"
+    "First First ex ex ex";
+    box-sizing: border-box;
+    row-gap: 35px;
+    column-gap: 25px;
+    margin: 20px 0px 40px 0px;
+}
+
+.posterGridItemFirst {
+    grid-area: First;
+}
+
 .posterUl {
     display: flex;
     list-style: none;
@@ -22,28 +37,3 @@
     padding: 0px;
 }
 
-.hiddenItem {
-    display: none;
-}
-
-.arrowImg{
-    width : 50px;
-    height : 200px;
-    cursor : pointer;
-
-}
-
-.hiddenBtn {
-    visibility: hidden;
-    width : 50px;
-    height : 200px;
-    cursor : pointer;
-}
-
-
-
-
-
-.test{
-    background-color: beige;
-}

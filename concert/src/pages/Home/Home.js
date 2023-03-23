@@ -21,7 +21,38 @@ function Home() {
       </section>
       <Poster />
       <footer className = 'footer'>
-        footer
+        <div className = 'footerContent'>
+          <div className = "frontContact">
+            FrontEnd : HwiGyung Lee
+            <div className = "contactWrap">
+              <img src = {'images/AnyConv.com__phone.WEBP'} alt = "contact" className = "footerContactImg"/>
+              010-2378-5924
+            </div>
+            <div className = "contactWrap">
+              <img src = {'images/AnyConv.com__mail.WEBP'} alt = "contact" className = "footerContactImg"/>
+              ter0000@naver.com
+            </div>
+            <div className = "contactWrap">
+              <img src = {'images/AnyConv.com__github.WEBP'} alt = "contact" className = "footerContactImg"/>
+              https://github.com/LeeHwiGyoung
+            </div>
+          </div>
+          <div className= "backContact">
+            BackEnd : JoongHyun Park
+            <div className = "contactWrap">
+              <img src = {'images/AnyConv.com__phone.WEBP'} alt = "contact" className = "footerContactImg"/>
+              ??
+            </div>
+            <div className = "contactWrap">
+              <img src = {'images/AnyConv.com__mail.WEBP'} alt = "contact" className = "footerContactImg"/>
+              ??
+            </div>
+            <div className = "contactWrap">
+              <img src = {'images/AnyConv.com__github.WEBP'} alt = "contact" className = "footerContactImg"/>
+              https://github.com/joong2043
+            </div>
+          </div>
+        </div>
       </footer>
       </>
     );
