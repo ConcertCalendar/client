@@ -5,24 +5,23 @@ import HotPost from  './hotPost/HotPost.js'
 import Ticket from './ticketOpen/Ticket';
 import RealTime from './realTime/RealTime';
 import Advertisement from './advertisement/Advertisement';
+import HomeFooter from './Footer/HomeFooter';
 
 
 function Home() {
     return (
       <>
-      <section className = "homeContainer">
-        <aside className ="aside">
-          <Advertisement/>
-          <RealTime/>
-        </aside>
-        <SearchBar placeholder = "아티스트,공연장,공연 찾기"/>
-        <HotPost/>
-        <Ticket/>
-      </section>
-      <Poster />
-      <footer className = 'footer'>
-        footer
-      </footer>
+        <section className = "homeContainer">
+          <aside className ="aside">
+            <Advertisement/>
+            <RealTime/>
+          </aside>
+          <SearchBar placeholder = "아티스트,공연장,공연 찾기"/>
+          <HotPost/>
+          <Ticket/>
+        </section>
+        <Poster />
+        <HomeFooter/>
       </>
     );
   }

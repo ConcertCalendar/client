@@ -4,7 +4,7 @@ import './Ticket.css';
 import TicketOpenContainer from './TicketOpenContent.js';
 
 function Ticket() {
-    const [dummy,setDummy] = useState([
+    const [dummy, setDummy] = useState([
         {   
             "id" : 1,
             "day" : "35" ,
@@ -12,7 +12,7 @@ function Ticket() {
             'title' : "해리 스타일스 첫 내한 공연 (HARRY STYLES LOVE ON TOUR 2023 - Live In Seoul)",
             'content' :  "드디어 온다 해리 스타일스의 첫 내한 공연",
             'buy' : 'https://tickets.interpark.com/goods/22016203',
-            'poster' : 'images/poster3.jpeg',
+            'poster' : 'images/AnyConv.com__poster3.WEBP',
         }])
     const makeTicketOpenContent = () => {
         return dummy.map((item) => 
