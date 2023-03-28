@@ -1,10 +1,9 @@
-import './LikeImage.module.scss'
-
+import './LikeImage.module.scss';
 
 function LikeImage ({width, height}) {
     return (
-        <div className = "likeContainer">
-            <img className= 'likeImg' src = 'images/like.png' alt = "like"/>
+        <div className = "likeImageWrap">
+            <img className="likeImage" src = 'images/like.png' alt = "like"/>
         </div>
     )
 }
