@@ -12,7 +12,7 @@ function HotPostContent ({boardId , postTitle , like , reply , id}) {
                 <span className= "hotPostContentPostTitle">
                     {postTitle}
                 </span>
-                <LikeImage>{like}</LikeImage>
+                <LikeImage number = {like} />
             
                 <img className= 'hotPostContentReplyImg' src = 'images/reply.png' alt = ""/>
                 <span className = "hotPostContentreply">

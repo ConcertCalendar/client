@@ -1,7 +1,9 @@
-
-.likeImageWrap {
+.likeImageContainer {
+    font-size: 14px;
+    margin-right: auto;
     .likeImage{
         width: 13px;
         height: 13px;
+        margin: 0px 5px 0px 5px;
     }
 }
