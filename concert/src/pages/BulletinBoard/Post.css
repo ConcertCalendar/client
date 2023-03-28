@@ -21,9 +21,8 @@
     box-sizing: border-box;
     height: 60px;
     margin: 10px 5px 10px 0px;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
-
 }
 
 

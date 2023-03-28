@@ -19,16 +19,16 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "sass": "^1.60.0",
+    "sass-loader": "^13.2.2",
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.76.3"
   },
   "scripts": {
     "start": "set HTTPS=true&&set SSL_CRT_FILE=.cert.pem&&set SSL_KEY_FILE=key.pem&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": []
   },
   "browserslist": {
     "production": [
@@ -43,8 +43,7 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.60.0",
-    "sass-loader": "^13.2.2",
-    "webpack": "^5.76.3"
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21"
   }
 }
