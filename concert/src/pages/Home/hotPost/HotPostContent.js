@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import CommentImage from '../../../components/CommentImage/CommentImage';
 import LikeImage from '../../../components/Like/LikeImage';
 import './HotPostContent.css'
 
-function HotPostContent ({boardId , postTitle , like , reply , id}) {
+function HotPostContent ({boardId , postTitle , like , comment , id}) {
     return (
         <Link to = {`boards/${boardId}/posts/${id}?page=0`} className = "hotPostLink">
             <div className = "hotPostContentItemContainer">
@@ -13,11 +14,7 @@ function HotPostContent ({boardId , postTitle , like , reply , id}) {
                     {postTitle}
                 </span>
                 <LikeImage number = {like} />
-            
-                <img className= 'hotPostContentReplyImg' src = 'images/reply.png' alt = ""/>
-                <span className = "hotPostContentreply">
-                    {reply}
-                </span>
+                <CommentImage number = {comment}/>
             </div>
         </Link>
     )

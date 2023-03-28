@@ -28,21 +28,3 @@
     font-weight: bold;
     width : 500px;
 }
-
-.hotPostContentLikeImg {
-    margin: 0px 5px 0px 5px;
-    height :13px;
-    width: 13px;
-}
-.hotPostContentlike{
-    font-size: 14px;
-    margin-right: 45px;
-}
-.hotPostContentreply{
-    font-size: 14px;
-}
-.hotPostContentReplyImg {
-    margin: 0px 5px 0px 5px;
-    height :13px;
-    width: 13px;
-}
