@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import LikeImage from '../../../components/Like/LikeImage';
 import './HotPostContent.css'
 
 function HotPostContent ({boardId , postTitle , like , reply , id}) {
@@ -11,10 +12,8 @@ function HotPostContent ({boardId , postTitle , like , reply , id}) {
                 <span className= "hotPostContentPostTitle">
                     {postTitle}
                 </span>
-                <img className= 'hotPostContentLikeImg' src = 'images/like.png' alt = ""/>
-                <span className = "hotPostContentlike">
-                    {like}
-                </span>
+                <LikeImage>{like}</LikeImage>
+            
                 <img className= 'hotPostContentReplyImg' src = 'images/reply.png' alt = ""/>
                 <span className = "hotPostContentreply">
                     {reply}

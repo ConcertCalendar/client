@@ -49,7 +49,7 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
         <div className = "commentBox" key = {comment.id}>
             <ul className = "comment">
             <div className='commentProfile'>
-                <img className = "commentImg" src = "/images/poster6.jpeg" alt = ""/>
+                <img className = "commentImg" src = "/images/AnyConv.com__poster6.WEBP" alt = ""/>
                 <p className = "commentName">{comment.commentWriterName}</p>
                 {comment.commentWriterId === currentUid  && <div className='commentDel' onClick={handleToDel}>삭제</div>}
             </div>

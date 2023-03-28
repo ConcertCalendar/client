@@ -3,7 +3,9 @@ import PostModalHeader from '../PostModalHeader.js';
 import { useState } from 'react';
 import HotPostContent from './HotPostContent';
 
-function HotPost() {
+/** 메인에 핫게시판을 띄워준다**/
+
+function HotPost() { 
     const [dummy, setDummy] = useState([
         {
             'boardId' : "1", //자유 게시판
@@ -43,6 +45,7 @@ function HotPost() {
             'reply' : '13',  //댓글 수
         }
     ]);
+
     const makeHotPostContent = () => {
         return dummy.map((item) => 
             <HotPostContent key = {item.id} boardId = {item.boardId} postTitle = {item.postTitle} like = {item.like} reply = {item.reply} id = {item.id}/>

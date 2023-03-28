@@ -52,7 +52,7 @@ function Post( {loading}) {
                     {boardArr[boardId - 1]}
                 </div>
                 <div className = "profile">
-                    <img className = "profileImg" src = "/images/poster6.jpeg" alt = ""/>
+                    <img className = "profileImg" src = "/images/AnyConv.com__poster6.WEBP" alt = ""/>
                     <div className = "writeInfo">
                         <span className ="writerName">{writerName}</span>
                         <span className = "createdDate">{createdDate}</span>

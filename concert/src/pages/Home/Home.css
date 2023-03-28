@@ -12,37 +12,3 @@
     height: 560px;
     float: right;
 }
-
-.footer {
-    width : 100vw;
-    min-height: 150px;
-    background-color: black;
-
-}
-
-.footerContent {
-    display: flex;
-    margin : 0 auto;
-    width: 1000px;
-    color: white;
-    min-height: 150px;
-    font-size: 12px;
-    align-items: center;
-}
-
-.footerContactImg {
-    width : 15px;
-    height: 15px;
-    margin-right: 10px;
-    -webkit-filter: opacity(.5) drop-shadow(0,0,0, white);
-    filter: opacity(.5) drop-shadow(0 0 0 white);
-}
-.frontContact{
-    margin-right: auto;
-}
-.backContact{
-    margin-left: auto;
-}
-.contactWrap {
-    padding: 4px;
-}

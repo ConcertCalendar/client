@@ -50,7 +50,7 @@ function Reply({commentId , createdDate , id ,modifiedDate , replyContent , repl
             <div className = "replyContainer">
                 <div className = "replyBox">
                     <div className='replyProfile'>
-                        <img className = "replyProfileImg" src = "/images/poster6.jpeg" alt = ""/>
+                        <img className = "replyProfileImg" src = "/images/AnyConv.com__poster6.WEBP" alt = ""/>
                         <p className = "replyName">{replyWriterName}</p>
                         {replyWriterId === currentUid  && <div className='replyDel' onClick={handleToDel}>삭제</div>}
                     </div>
