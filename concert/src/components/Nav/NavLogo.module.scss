@@ -1,0 +1,15 @@
+.navLogoContainer{
+    .navLogoImage{
+        height: 32px;
+        width: 80px;
+        margin: 5px 20px 5px 0;
+    }
+    .navLogoLink {
+        text-decoration: none; color : black;
+        &:visited{text-decoration: none;}
+        &::hover { text-decoration: none; }
+        &::focus { text-decoration: none; }
+        &::hover {text-decoration: none;}
+        &::active { text-decoration: none; }
+    }
+}

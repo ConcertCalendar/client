@@ -1,81 +1,22 @@
-import { useRef } from 'react';
-import { useState , useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Nav.css'
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import styled from './Nav.module.scss'
+import NavLogo from './Nav/NavLogo';
+import NavItem from './Nav/NavItem';
 
 
 function Nav() {
-  const [hover, setHover] = useState(false);
-  const scrollRef = useRef(null);
-  const headerHeight = useSelector((state)=>state.header.headerHeight)
-  const [fixed , setFixed] = useState(false);
-  const navigate = useNavigate();
-  
-  const onClickNav = (event) => {
-    console.log(event);  
-    navigate("/"+event.target.innerText);
-  }
-  const onClickCalendarNav = (event) => {
-    navigate("/Calendar");
-  }
-  
-  const onClickHome = () => {
-    navigate("/");
-  }
-  const handleScroll = () => {
-    if(window.scrollY > headerHeight){
-        scrollRef.current.classList.add("fixedNav");
-        setFixed(true);
-      }
-    else{
-        scrollRef.current.classList.remove("fixedNav")
-        setFixed(false);
-      }
-  }
 
-  useEffect (() => {
-    window.addEventListener('scroll' , handleScroll);
-    return () => {
-      window.removeEventListener('scroll' , handleScroll);
-    }
-  },[])
   
   return (
-      <div className="navContainer"   onMouseLeave={()=>{setHover(false)}}>
-        <div className='nav' ref = {scrollRef}>
-          <div className = 'nonDropDownNav'>
-            <Link className = 'navLink' to ="/">
-              <img className='navLogo' src = "Images/logo.png" alt = ""/>
-            </Link>
-            <ul className = "navMenu">
-              <li className = { fixed ? "fixedNavItem" : "navItem"}>
-                <Link className = 'navLink' to ="/">HOME</Link>
-              </li>
-              <li className = { fixed ? "fixedNavItem" : "navItem"}>
-                <Link className = 'navLink' to ="/Calendar">CALENDAR    </Link>
-              </li>
-              <li className ="navItem" onMouseEnter={() => {
-                  console.log("horvering")
-                  setHover(true)}}>
-                    <Link className = 'navLink community' to = "/boards/1?page=0"> COMMUNITY</Link>
-              </li>
-            </ul>
-          </div>
+      <div className= {styled.navContainer}>
+        <div className = {styled.NavItemContainer} >    
+          <NavLogo navLogoImage={"Images/AnyConv.com__logo.WEBP"} navLink = {"/"}/>
+          <NavItem itemName = {"HOME"} navLink = {"/"}/>
+          <NavItem itemName = {"CALENDAR"} navLink = {"Calendar"}/>
+          <NavItem itemName = {"COMMUNITY"} navLink = {"/board/1"} color = 'red'/>
         </div>
-        <div  className = {hover ? "displayDropDownNav" : "dropDownNav"}>
-          <ul className='navMenu'>
-          <Link className = 'navLink' to ="/boards/1?page=0">
-            <li className='navItem'> 자유 게시판</li>
-          </Link>  
-          <Link className = 'navLink' to = "/boards/2?page=0">
-            <li className='navItem'> 공연 후기 게시판</li>
-          </Link>    
-          </ul>
-        </div>
-      </div>
+    </div>
   );
   }
   
-  export default Nav;
+export default Nav;
