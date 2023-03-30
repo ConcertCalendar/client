@@ -23,14 +23,9 @@ const Layout = () => {
 
   return (
     <div>
-        <Header>
-          <ul className = "headerMenu">
-            {!accessToken ? <li className = "headerItem"><Link className = "headerLink" to ='./join'>JOIN</Link></li> : <li className = "headerItem" onClick={handleLogout}>LOGOUT</li>}
-            {!accessToken ? <li className = "headerItem"><Link className = "headerLink" to ='./login' state = { {from : location.pathname + location.search} }>LOGIN</Link></li> :<Link className = "headerLink" to ='./mypage'>MYPAGE</Link>}
-          </ul>
-        </Header>
+        <Header />
         <Nav />
-        <Outlet />
+        <Outlet/>
     </div>
   );
 };
