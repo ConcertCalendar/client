@@ -1,29 +1,19 @@
 import { useEffect , useRef } from 'react';
 import PostModalHeader from '../Home/PostModalHeader';
-import './modal.css'
-function CalendarModal ({closeModal, title , children}) {
+import styled from './CalendarModal.module.scss'
+function CalendarModal ({closeModal, title , content ,pageXY}) {
     const modalRef = useRef();
     useEffect ( ()=> {
+        modalRef.current.style.top = `${pageXY[0]}`
         document.addEventListener('mousedown' , handleMouseDown);
         return ()=> { 
-            console.log("modal 사라짐")
             document.removeEventListener('mousedown' , handleMouseDown);
         }
     }, [])
-    
-    const bodychange = () => {
-        const body = document.getElementById('body');
-        body.classList.remove('overflowHidden')
-    }
-    const onClickXBtn = () =>{
-        closeModal(false);
-        bodychange()
-    }   
 
     const handleMouseDown = (e) => {
         if (modalRef && !modalRef.current.contains(e.target)) {
             closeModal(false);
-            bodychange()
           }
           else {
             closeModal(true);
@@ -33,19 +23,29 @@ function CalendarModal ({closeModal, title , children}) {
 
 
     return (
-            <div className="modalContainer" ref = {modalRef}>
-                <div className = "modalMenu">
-                    <span className="modalTitle" multiline >{title}</span>
-                    <img src = "/images/star.png" className = "markingImg" alt = ""/>
-                    <button onClick={onClickXBtn} className = "close">X</button>
+        <div className = {styled.modalForm}  ref = {modalRef}>
+            <div className= {styled.modalContainer}>
+                <div className = {styled.modalTitle}> {title} </div>
+                <img src = "/images/star.png" className = {styled.markingImg} alt = "mark"/>
+                <div className={styled.modalBody}>
+                    <img src={content.img} alt = "Content_poster" className = {styled.modalContentPoster}/>
+                    <div className = {styled.modalContent}>
+                        <p> 가수 : {content.singer}</p>
+                        <p> 공연 기간 : {content.start}  ~ {content.end}</p>
+                        <p> 공연 시간 : {content.runtime}</p>
+                        <p> 장소 : {content.place}</p>          
+                        <div className = {styled.ticketLink}>
+                            <a href = {content.ticket}>인터파크 바로가기</a>
+                            <a href = {content.ticket}>인터파크 바로가기</a>   
+                            <a href = {content.ticket}>인터파크 바로가기</a>
+                        </div>
+                    </div> 
                 </div>
-                <div className="modalBody">
-                    {children}
-                </div>
-                <section className="modalFooter">
+                <section className={styled.modalFooter}>
                     <PostModalHeader imgsrc={'images/review.png'} title = {"공연 후기"} seeMore = {"/boards/1?page=0"}/>
                 </section>
             </div> 
+        </div>
     )
 }
 
