@@ -1,9 +1,9 @@
-import styles from'./LikeImage.module.scss';
-
-function LikeImage ({number}) {
+import styled from'./LikeImage.module.scss';
+import likeImg from '../../assets/AnyConv.com__like.webp'
+function LikeImage ({number, className = '' , size }) {
     return (
-        <div className = {styles.likeImageContainer}>
-            <img className={styles.likeImage} src = 'images/AnyConv.com__like.WEBP' alt = "like"/>
+        <div className = {className}>
+            <img className = {size === 'small' ? styled.smallImg : styled.img} src = {likeImg} alt = "like"/>
             {number}
         </div>
     )
