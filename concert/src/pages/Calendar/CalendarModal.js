@@ -20,7 +20,6 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
           else {
             closeModal(true);
           }
-        //if(e.target.offsetParent === modalRef)
     }
 
 
@@ -33,10 +32,14 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
                     <img src={content.img} alt = "Content_poster" className = {styled.modalContentPoster}/>
                     <div className = {styled.modalContent}>
                         <p> 가수 : {content.singer}</p>
-                        <p> 공연 날짜 : {content.start}  ~ {content.end}</p>
+                        { content.start === content.end ?
+                            <p> {`공연 날짜 : ${content.start}`}</p>
+                            :
+                            <p>{`공연 날짜 : ${content.start} ~ ${content.end}`}</p>
+                        }
                         <p> 공연 시작 시간 : {content.conTime}</p>
                         <p> 장소 : {content.place}</p>          
-
+                        <p> </p>
                     </div> 
                 </div>
                 <section className={styled.modalFooter}>
