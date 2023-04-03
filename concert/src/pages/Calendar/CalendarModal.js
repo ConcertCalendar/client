@@ -1,16 +1,18 @@
 import { useEffect , useRef } from 'react';
 import PostModalHeader from '../Home/PostModalHeader';
 import styled from './CalendarModal.module.scss'
-function CalendarModal ({closeModal, title , content ,pageXY}) {
+function CalendarModal ({closeModal, title , content , pageXY}) {
     const modalRef = useRef();
+
     useEffect ( ()=> {
-        modalRef.current.style.top = `${pageXY[0]}`
+        modalRef.current.style = `top : ${pageXY[1] - 345 }px; left: ${pageXY[0] - 245}px;`;
         document.addEventListener('mousedown' , handleMouseDown);
         return ()=> { 
             document.removeEventListener('mousedown' , handleMouseDown);
         }
-    }, [])
+    }, [modalRef])
 
+    
     const handleMouseDown = (e) => {
         if (modalRef && !modalRef.current.contains(e.target)) {
             closeModal(false);
@@ -31,14 +33,10 @@ function CalendarModal ({closeModal, title , content ,pageXY}) {
                     <img src={content.img} alt = "Content_poster" className = {styled.modalContentPoster}/>
                     <div className = {styled.modalContent}>
                         <p> 가수 : {content.singer}</p>
-                        <p> 공연 기간 : {content.start}  ~ {content.end}</p>
-                        <p> 공연 시간 : {content.runtime}</p>
+                        <p> 공연 날짜 : {content.start}  ~ {content.end}</p>
+                        <p> 공연 시작 시간 : {content.conTime}</p>
                         <p> 장소 : {content.place}</p>          
-                        <div className = {styled.ticketLink}>
-                            <a href = {content.ticket}>인터파크 바로가기</a>
-                            <a href = {content.ticket}>인터파크 바로가기</a>   
-                            <a href = {content.ticket}>인터파크 바로가기</a>
-                        </div>
+
                     </div> 
                 </div>
                 <section className={styled.modalFooter}>
