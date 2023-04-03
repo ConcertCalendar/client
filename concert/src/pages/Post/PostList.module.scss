@@ -1,0 +1,82 @@
+@mixin ellipsis($line-cnt , $line-height) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line-cnt; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: $line-height;
+    text-align: left;
+    height: $line-height * $line-cnt; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}// 멀티라인 말줄임 표시
+
+
+
+.postlistContainer {
+    box-sizing: border-box;
+    display : grid;
+    grid-template-columns: repeat(2,500px);
+    grid-auto-rows: 180px;
+}
+.loadingContainer {
+    display: flex;
+    box-sizing: border-box;
+    height : 1000px;
+    justify-content: center;
+}
+.postlistBox{
+    color : black;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+    border-right : 1px solid rgba(128, 128, 128, 0.3);
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.postlistBox1 {
+    color : black;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+.postListItem{
+    .postlistTitle {
+        display: block;
+        overflow: hidden;
+        white-space:nowrap;
+        width : 460px;
+        padding: 20px 20px 0px 20px;
+        font-weight : bold;
+        text-overflow: ellipsis;
+    }
+
+    .postlistContent {
+        @include ellipsis(3 , 1.6rem);
+        box-sizing: border-box;
+        padding : 0px 20px 0px 20px;
+        margin-bottom: 5px;
+        font-size: 14px;
+
+    }
+    
+}
+
+.likeImg {
+    float : right;
+    margin-right: 20px;
+}
+.commentImg {
+    float : right;
+    margin-right: 20px;
+}
+.loading {
+    color : rgba(128, 128, 128, 0.3);
+    font-size: 50px;
+    justify-self: center;
+    align-self: center;
+}

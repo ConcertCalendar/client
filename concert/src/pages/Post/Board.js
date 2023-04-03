@@ -22,7 +22,7 @@ function Board(){
 
     useEffect( ()=> {
         setBoardName(boardArr[boardId - 1]);
-        async function getData(){
+        async function getData(){  //커뮤니티 페이지 정보를 받아오는 코드
             if(offset !== null){ 
                 const response = await axios.get(`https://concal.p-e.kr/boards/${params.boardId}${location.search}`)
                 if(response.status === 200){

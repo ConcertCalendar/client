@@ -1,9 +1,11 @@
-.CommentImageContainer {
-    font-size: 14px;
-    margin-left: auto;
-    .CommentImage{
-        width: 13px;
-        height: 13px;
-        margin: 0px 5px 0px 5px;
-    }
+.smallImg {
+    height : 14px;
+    width: 14px;
+    margin: 0px 5px 0px 5px;
+}
+
+.Img {
+    height : 20px;
+    width : 20px;
+    margin: 0px 5px 0px 5px;
 }
