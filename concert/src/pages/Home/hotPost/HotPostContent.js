@@ -13,7 +13,7 @@ function HotPostContent ({boardId , postTitle , like , comment , id}) {
                 <span className= {styled.hotPostContentPostTitle}>
                     {postTitle}
                 </span>
-                <LikeImage number = {like} size = {"small"} className= {styled.commentImage} />
+                <LikeImage number = {like} size = {"small"} className= {styled.likeImage} />
                 <CommentImage number = {comment} size = {"small"} className= {styled.commentImage}/>
             </div>
         </Link>

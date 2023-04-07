@@ -7,7 +7,6 @@ import { storeAccessToken } from "../../store/authSlice";
 import { axiosInstance } from "../../utils/customAxios";
 
 
-
 function Login() {
     const {state} = useLocation();
     const email = useSelector((state) => state.login.email);
@@ -31,7 +30,6 @@ function Login() {
           }).then((res)=> res.json())
           .then((data) => 
                 loginSuccess(data.data.accessToken)
-            
             )}
     
     const loginSuccess = (accessToken) => {
@@ -61,7 +59,7 @@ function Login() {
     return (
         <div id = "loginWrap">
             <Link to = "/">
-                <img className="loginLogo" src = "Images/logo.png" alt = ""/>
+                <img className="loginLogo" src = "Images/AnyConv.com__logo.WEBP" alt = ""/>
             </Link>
             <form id = "loginForm">
                 <input type = "text" id = "idInput" placeholder="Email"  onChange = {handleEmail}/>

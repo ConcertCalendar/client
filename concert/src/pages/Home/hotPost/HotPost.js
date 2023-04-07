@@ -1,54 +1,31 @@
 import './HotPost.css'
 import PostModalHeader from '../PostModalHeader.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HotPostContent from './HotPostContent';
+import { axiosInstance } from '../../../utils/customAxios';
+import { useMemo } from 'react';
 
 /** 메인에 핫게시판을 띄워준다**/
 
-function HotPost() { 
-    const [dummy, setDummy] = useState([
-        {
-            'boardId' : "1", //자유 게시판
-            'id' : "1", //postId
-            'postTitle' : "Hot 게시판 Title1", //제목
-            'like' : '3', //좋아요 수
-            'reply' : '13',  //댓글 수
-
-        },
-        {
-            'boardId' : '2', // 공연 후기 게시판 
-            'id' : "2", //postId
-            'postTitle' : "Hot 게시판 Title2", //제목
-            'like' : '3', //좋아요 수
-            'reply' : '13',  //댓글 수
-        },
-        {
-            'boardId' : "1", //자유 게시판
-            'id' : "3", //postId
-            'postTitle' : "Hot 게시판 Title3", //제목
-            'like' : '3', //좋아요 수
-            'reply' : '13',  //댓글 수
-
-        },
-        {
-            'boardId' : '2', // 공연 후기 게시판 
-            'postTitle' : "Hot 게시판 Title4", //제목
-            'id' : "4", //postId
-            'like' : '3', //좋아요 수
-            'reply' : '13',  //댓글 수
-        },
-        {
-            'boardId' : "1", //자유 게시판
-            'id' : "5", //postId
-            'postTitle' : "Hot 게시판 Title5", //제목
-            'like' : '3', //좋아요 수
-            'reply' : '13',  //댓글 수
-        }
-    ]);
+function HotPost() {
+    const [hotPostList, setHotPostList] = useState([]);
+    
+    const getHotPost= ()=> {
+        axiosInstance.get('/posts/ranking')
+        .then((res)=>{
+            if(res.status===200){
+                setHotPostList(res.data.data)
+            }
+        })
+        .catch((err)=>console.log(err))
+    }
+    useEffect( ()=>{
+        getHotPost();
+    }, [])
 
     const makeHotPostContent = () => {
-        return dummy.map((item) => 
-            <HotPostContent key = {item.id} boardId = {item.boardId} postTitle = {item.postTitle} like = {item.like} comment = {item.reply} id = {item.id}/>
+        return hotPostList.map((item) => 
+            <HotPostContent key = {item.id} boardId = {item.boardId} postTitle = {item.postTitle} like = {item.postHeartSet.length} comment = {item.commentDtoList.length} id = {item.id}/>
         )
     }
 

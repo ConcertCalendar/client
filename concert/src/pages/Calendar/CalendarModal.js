@@ -5,7 +5,7 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
     const modalRef = useRef();
 
     useEffect ( ()=> {
-        modalRef.current.style = `top : ${pageXY[1] - 345 }px; left: ${pageXY[0] - 245}px;`;
+        modalRef.current.style = `top : ${pageXY[1] - 560 }px; left: ${pageXY[0] - 245}px;`;
         document.addEventListener('mousedown' , handleMouseDown);
         return ()=> { 
             document.removeEventListener('mousedown' , handleMouseDown);
@@ -22,7 +22,11 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
           }
     }
 
-
+    /*
+    <section className={styled.modalFooter}>
+                    <PostModalHeader imgsrc={'images/review.png'} title = {"공연 후기"} seeMore = {"/boards/1?page=0"}/>
+    </section>
+    */
     return (
         <div className = {styled.modalForm}  ref = {modalRef}>
             <div className= {styled.modalContainer}>
@@ -39,12 +43,10 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
                         }
                         <p> 공연 시작 시간 : {content.conTime}</p>
                         <p> 장소 : {content.place}</p>          
-                        <p> </p>
+                        <p> 예매 사이트 : </p>
                     </div> 
                 </div>
-                <section className={styled.modalFooter}>
-                    <PostModalHeader imgsrc={'images/review.png'} title = {"공연 후기"} seeMore = {"/boards/1?page=0"}/>
-                </section>
+    
             </div> 
         </div>
     )

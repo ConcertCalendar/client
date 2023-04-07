@@ -57,10 +57,10 @@ function MyCalendar() {
         })
         .catch((err)=> console.log(err));
     }, [] );
-
     return (
         <div className = {styled.calendarContainer}>
             <FullCalendar
+                headerToolbar = { {start : 'title' , end : 'prev,next'} }
                 initialView="dayGridMonth" 
                 plugins={[ dayGridPlugin , interactionPlugin ]}
                 timeZone = 'Asia/Seoul'
@@ -68,6 +68,9 @@ function MyCalendar() {
                 dayMaxEvents = {3}
                 eventClick = {handleEventClick}
                 eventMouseEnter = {handleEventEnter}
+                locale={'ko'}
+                height= {800}
+            
             />
             
             {openModal && <CalendarModal closeModal={setOpenModal} title = {content.title} content = {content} pageXY = {pageXY}/>}
