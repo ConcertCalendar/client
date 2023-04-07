@@ -18,15 +18,11 @@ function PostList({data , loading}) {
             <div key = {item.id} className = {styled.postListItem}>
                 <div className = {styled.postlistTitle}>{item.postTitle}</div>
                 <p className = {styled.postlistContent}>{item.postContent}</p> 
-                <CommentImage number = {item.postHeart} size = {"small"} className={styled.commentImg}/>
+                <CommentImage number = {item.commentSize} size = {"small"} className={styled.commentImg}/>
                 <LikeImage number = {item.postHeart} size = {'small'} className={styled.likeImg}/>
             </div>
         </Link>
     )}  
-
-    useEffect( () => {
-        //setInterval(() => renderLoding(count++), 1000);
-    }, [data])
 
     
     return (

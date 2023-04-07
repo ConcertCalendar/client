@@ -4,6 +4,7 @@
     padding: 3px;
     margin-top: 10px;
     align-items: center;
+    justify-items: center;
 }
 
 .hotPostLink {
@@ -32,4 +33,10 @@
 
 .commentImage {
     margin-left: auto;
+}
+
+.likeImage {
+    box-sizing: border-box;
+    height: 22px;
+
 }

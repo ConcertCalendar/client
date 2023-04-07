@@ -183,7 +183,7 @@ function Join() {
     return (
         <div className="joinWrap">
           <Link to = "/">
-            <img className="loginLogo" src = "Images/logo.png" alt = ""/>
+            <img className="loginLogo" src = "Images/AnyConv.com__logo.WEBP" alt = ""/>
           </Link>
           <form id  = "joinForm">
             <div className = "joinInput">

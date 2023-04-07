@@ -1,11 +1,11 @@
-import jwtDecode from "jwt-decode";
+import jwt_decode  from "jwt-decode";
 
 
 export const isAuth = (accessToken)=>{
 	if (!accessToken) {
         return false;
     }
-    const decoded = jwtDecode(accessToken);
+    const decoded = jwt_decode(accessToken);
     if (decoded.exp  > new Date().getTime() / 1000){
         return true
     }
@@ -13,11 +13,11 @@ export const isAuth = (accessToken)=>{
 }
 
 export const getUserId = (accessToken) => {
-    const decoded = jwtDecode(accessToken)
+    const decoded = jwt_decode(accessToken)
     return decoded.sub;
 }
 
 export const getDecoded = (accessToken) => {
-    const decoded = jwtDecode(accessToken);
+    let decoded = jwt_decode (accessToken);
     return decoded;
 }
