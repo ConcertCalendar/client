@@ -3,6 +3,7 @@ import styled from './PostList.module.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import LikeImage from '../../components/Like/LikeImage';
 import CommentImage from "../../components/CommentImage/CommentImage"
+import { changePostDateFormat } from 'utils/dataUtils';
 
 function PostList({data , loading}) {
     const location = useLocation();
@@ -17,14 +18,20 @@ function PostList({data , loading}) {
         <Link key = {item.id} to = {`posts/${item.id}${location.search}`} className={ (idx % 2 === 0) ? styled.postlistBox : styled.postlistBox1} >
             <div key = {item.id} className = {styled.postListItem}>
                 <div className = {styled.postlistTitle}>{item.postTitle}</div>
-                <p className = {styled.postlistContent}>{item.postContent}</p> 
-                <CommentImage number = {item.commentSize} size = {"small"} className={styled.commentImg}/>
-                <LikeImage number = {item.postHeart} size = {'small'} className={styled.likeImg}/>
+                <p className = {styled.postlistContent}>{item.postContent}</p>
+                <div className = {styled.postFooter}>
+                    <CommentImage number = {item.commentSize} size = {"small"} className={styled.commentImg}/>
+                    <LikeImage number = {item.postHeart} size = {'small'} className={styled.likeImg}/>
+                    <div className = {styled.date}>{changePostDateFormat(item.createdDate)}</div>
+                </div>
             </div>
         </Link>
     )}  
 
-    
+    useEffect (()=> {
+        console.log(data);
+ 
+    } , [])
     return (
         <div className = {loading === true ? styled.postlistContainer : styled.loadingContainer }>
            {loading ?  makeChild() : "loading"}

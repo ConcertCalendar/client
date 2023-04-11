@@ -7,7 +7,7 @@ import Mypage  from "./pages/Mypage/Mypage";
 import Board from "./pages/Post/Board"
 import MyCalendar from './pages/Calendar/MyCalendar'
 import Layout from "./layout";
-import Post from "./pages/BulletinBoard/Post";
+import Post from "./pages/BulletinBoard/Post.js";
 import Write from "./pages/BulletinBoard/Write";
 import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
@@ -16,7 +16,6 @@ import { storeAccessToken } from "./store/authSlice";
 
 function App() {
   const dispatch = useDispatch();
-  
   async function reNew(url = 'https://concal.p-e.kr/users/reIssue'){
     await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE 등
@@ -36,13 +35,16 @@ function App() {
     )}
 
   const reNewSuccess = (accessToken) => {
-
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
         console.log(accessToken);
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
   }
   useEffect(()=> {
     reNew();
+    return ()=> {
+        axiosInstance.post('/users/logout');
+    }
+
   }, [])
 
   return (

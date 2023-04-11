@@ -70,7 +70,6 @@ function MyCalendar() {
                 eventMouseEnter = {handleEventEnter}
                 locale={'ko'}
                 height= {800}
-            
             />
             
             {openModal && <CalendarModal closeModal={setOpenModal} title = {content.title} content = {content} pageXY = {pageXY}/>}

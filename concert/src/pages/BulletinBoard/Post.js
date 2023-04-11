@@ -6,8 +6,12 @@ import { useSelector } from 'react-redux';
 import CommentList from './CommentList';
 import Heart from './Heart';
 import { axiosInstance } from '../../utils/customAxios';
+import { changePostDateFormat } from 'utils/dataUtils';
+/*type PostProps = {
+    loading?: Boolean; 
+};*/
 
-function Post( {loading}) {
+function Post( {loading} ) {
     const accessToken = useSelector((state)=> state.auth.accessToken);
     const [boardId, setBoardId] = useState();  // board 고유 번호
     const [createdDate,setCreatedDate] = useState(); // 포스트 생성 날짜
@@ -20,10 +24,11 @@ function Post( {loading}) {
     const [heart , setHeart] = useState([]); //좋아요
     const [heartState , setHeartState] = useState();
     const [commentList , setCommentList] = useState([]); //댓글 모음
-
     const location = useLocation();
     const postScrollRef = useRef();
     const boardArr = useSelector((state)=>state.board.boardArr);
+    
+    const [format,setFormat] = useState("");
 
     const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
     
@@ -34,7 +39,7 @@ function Post( {loading}) {
             .then(res=> {
                 if(res.status === 200){
                     setBoardId(res.data.data.boardId);
-                    setCreatedDate(res.data.data.createdDate);
+                    setCreatedDate(changePostDateFormat(res.data.data.createdDate));
                     setModifiedDate(res.data.data.modifiedDate);
                     setId(res.data.data.id);
                     setPostContent(res.data.data.postContent);
@@ -43,6 +48,7 @@ function Post( {loading}) {
                     setWriterId(res.data.data.writerId);
                     setWriterName(res.data.data.writerName);
                     setCommentList(res.data.data.commentDtoList);
+                    setFormat(res.data.data.createdDate);
                 }
         })}
         getPost();

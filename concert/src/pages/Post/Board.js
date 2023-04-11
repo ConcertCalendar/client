@@ -16,6 +16,7 @@ function Board(){
     const [post,setPost] = useState([]);
     const location = useLocation();
     const [totalPost , setTotalPost] = useState(0);
+    const page = useParams('page');
     const params = useParams();
 
 
@@ -35,7 +36,7 @@ function Board(){
 
         getData();
 
-    }, [params.boardId , totalPost  ]);
+    }, [params.boardId , totalPost , page]);
    
 
     return (
