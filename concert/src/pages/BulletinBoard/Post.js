@@ -1,5 +1,4 @@
 import './Post.css'
-import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -13,6 +12,7 @@ import { changePostDateFormat } from 'utils/dataUtils';
 
 function Post( {loading} ) {
     const accessToken = useSelector((state)=> state.auth.accessToken);
+
     const [boardId, setBoardId] = useState();  // board 고유 번호
     const [createdDate,setCreatedDate] = useState(); // 포스트 생성 날짜
     const [modifiedDate,setModifiedDate] = useState(null); //포스트 수정 날짜
@@ -22,13 +22,12 @@ function Post( {loading} ) {
     const [writerId,setWriterId] = useState(); //글쓴이 고유 아이디
     const [writerName , setWriterName] = useState(); //글쓴이 이름
     const [heart , setHeart] = useState([]); //좋아요
-    const [heartState , setHeartState] = useState();
     const [commentList , setCommentList] = useState([]); //댓글 모음
     const location = useLocation();
     const postScrollRef = useRef();
     const boardArr = useSelector((state)=>state.board.boardArr);
-    
-    const [format,setFormat] = useState("");
+
+
 
     const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
     
@@ -48,7 +47,6 @@ function Post( {loading} ) {
                     setWriterId(res.data.data.writerId);
                     setWriterName(res.data.data.writerName);
                     setCommentList(res.data.data.commentDtoList);
-                    setFormat(res.data.data.createdDate);
                 }
         })}
         getPost();

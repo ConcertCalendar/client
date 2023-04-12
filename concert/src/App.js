@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
 import { useDispatch } from "react-redux";
 import { storeAccessToken } from "./store/authSlice";
+import Loading from "components/loading";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
       <Route path="login" element = {<Login />} />
       <Route path = "join" element = {<Join />} />
       <Route path = "mypage" element = {<Mypage/>} />
+      <Route path = "test" element = {<Loading/>}/>
     </Routes>
   );
 }

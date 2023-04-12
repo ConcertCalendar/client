@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inputEmail, inputPassword, setCurrentUid } from "./loginSlice"
+import { inputEmail, inputPassword, setCurrentUid, setCurrentUserEmail } from "./loginSlice"
 import { Link } from "react-router-dom";
 import './Login.css'
 import { storeAccessToken } from "../../store/authSlice";
 import { axiosInstance } from "../../utils/customAxios";
+import { getUserEmail, getUserId } from "utils/JwtUtils";
 
 
 function Login() {
@@ -34,7 +35,8 @@ function Login() {
     
     const loginSuccess = (accessToken) => {
         console.log(accessToken);
-        dispatch(setCurrentUid(1)); //나중에 수정
+        dispatch(setCurrentUid(getUserId(accessToken))); //나중에 수정
+        dispatch(setCurrentUserEmail(getUserEmail(accessToken)));
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
     }

@@ -6,6 +6,8 @@ import Ticket from './ticketOpen/Ticket';
 import RealTime from './realTime/RealTime';
 import Advertisement from './advertisement/Advertisement';
 import HomeFooter from './Footer/HomeFooter';
+import { Calendar } from '@fullcalendar/core';
+import MyCalendar from 'pages/Calendar/MyCalendar';
 
 
 function Home() {
@@ -19,6 +21,7 @@ function Home() {
           <SearchBar placeholder = "아티스트,공연장,공연 찾기"/>
           <HotPost/>
           <Ticket/>
+          <MyCalendar/>
         </section>
         <Poster />
         <HomeFooter/>

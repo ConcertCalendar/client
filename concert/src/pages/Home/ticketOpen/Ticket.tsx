@@ -39,7 +39,7 @@ const Ticket:React.FC = () =>  {
     
     return (
         <article className = "TicketOpenContainer">
-            <PostModalHeader imgsrc = {"images/ticket.png"} title = {"임박한 공연"} seeMore = {"/boards/1?page=0"}/>
+            <PostModalHeader imgsrc = {"images/ticket.png"} title = {"임박한 공연"}/>
             <div className = "ticketOpenContentContainer">
                 <TicketOpenContainer id = {id} day = {day} singer ={singer} title = {title}
                  content = {content} yes24 = {yes24} interpark={interPark} poster = {poster}/> 

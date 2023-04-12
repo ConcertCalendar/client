@@ -12,9 +12,14 @@ export const isAuth = (accessToken)=>{
     else { return false;}
 }
 
-export const getUserId = (accessToken) => {
+export const getUserEmail = (accessToken) => {
     const decoded = jwt_decode(accessToken)
     return decoded.sub;
+}
+
+export const getUserId = (accessToken) => {
+    const decoded = jwt_decode(accessToken)
+    return decoded.userId;
 }
 
 export const getDecoded = (accessToken) => {

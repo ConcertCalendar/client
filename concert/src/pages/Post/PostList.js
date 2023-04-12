@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import LikeImage from '../../components/Like/LikeImage';
 import CommentImage from "../../components/CommentImage/CommentImage"
 import { changePostDateFormat } from 'utils/dataUtils';
+import Loading from 'components/loading';
 
 function PostList({data , loading}) {
     const location = useLocation();
@@ -28,13 +29,11 @@ function PostList({data , loading}) {
         </Link>
     )}  
 
-    useEffect (()=> {
-        console.log(data);
- 
-    } , [])
+
+
     return (
         <div className = {loading === true ? styled.postlistContainer : styled.loadingContainer }>
-           {loading ?  makeChild() : "loading"}
+           {loading ?  makeChild() : <Loading className={styled.loading}/>}
         </div>
     )
 }
