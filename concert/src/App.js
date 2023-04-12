@@ -14,6 +14,8 @@ import { axiosInstance } from "./utils/customAxios";
 import { useDispatch } from "react-redux";
 import { storeAccessToken } from "./store/authSlice";
 import Loading from "components/loading";
+import { setCurrentUid, setCurrentUserEmail } from "pages/Login/loginSlice";
+import { getUserEmail, getUserId } from "utils/JwtUtils";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +39,8 @@ function App() {
 
   const reNewSuccess = (accessToken) => {
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
-        console.log(accessToken);
+        dispatch(setCurrentUid(getUserId(accessToken))); 
+        dispatch(setCurrentUserEmail(getUserEmail(accessToken)));
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
   }
   useEffect(()=> {
@@ -61,7 +64,6 @@ function App() {
       <Route path="login" element = {<Login />} />
       <Route path = "join" element = {<Join />} />
       <Route path = "mypage" element = {<Mypage/>} />
-      <Route path = "test" element = {<Loading/>}/>
     </Routes>
   );
 }

@@ -5,10 +5,43 @@ import LikeImage from '../../components/Like/LikeImage';
 import CommentImage from "../../components/CommentImage/CommentImage"
 import { changePostDateFormat } from 'utils/dataUtils';
 import Loading from 'components/loading';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
-function PostList({data , loading}) {
+interface Data {
+    id: number;
+    boardId : number;
+    commentSize : number; 
+    createdDate : string;
+    modifiedDate: null | string;
+    postContent: string; 
+    postHeartSet : Array<string>;
+    postHeartSize : number;
+    postTitle : string; 
+    writerId : number; 
+    writerName  : string;
+}
+
+interface postListProps {
+    childern?: React.ReactNode;
+    data : Array<Data>;
+    loading : boolean;
+}
+
+const PostList : React.FC<postListProps> = (props) => {
+    const {data , loading} = props;
+    const currentUserEmail = useSelector((state:RootState) => state.login.currentUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
+    
+    const checkHeart = (item : Array<string> , userEmail : string) => {
+        console.log(userEmail)
+        const checkArr = item.filter((el)=> el === userEmail)
+        if(checkArr.length){ //빈 배열이 아니면
+            return true;
+        }
+        return false;
+    }
 
     const makeChild = () => { /* props로 만든 data로 postList를 랜더링 하는 코드*/
        return data.length === 0 ?  //Connect는 성공했으나 아직 게시글이 없을 때 
@@ -22,14 +55,12 @@ function PostList({data , loading}) {
                 <p className = {styled.postlistContent}>{item.postContent}</p>
                 <div className = {styled.postFooter}>
                     <CommentImage number = {item.commentSize} size = {"small"} className={styled.commentImg}/>
-                    <LikeImage number = {item.postHeart} size = {'small'} className={styled.likeImg}/>
+                    <LikeImage  fill = {checkHeart(item.postHeartSet , currentUserEmail)} number = {item.postHeartSize} size = {'small'} className={styled.likeImg}/>
                     <div className = {styled.date}>{changePostDateFormat(item.createdDate)}</div>
                 </div>
             </div>
         </Link>
     )}  
-
-
 
     return (
         <div className = {loading === true ? styled.postlistContainer : styled.loadingContainer }>
