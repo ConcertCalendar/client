@@ -11,3 +11,14 @@
     width : 20px;
     margin: 0px 5px 0px 5px;
 }
+
+.beat {
+    animation-name: beat;
+    animation-duration: 1s;
+
+    @keyframes beat{
+    from {  transform : scale(2);}
+    to {transform: scale(1);}
+    }
+
+}

@@ -16,7 +16,19 @@ export const StyleWrapper = styled.div`
     border-right: none !important;
     border-bottom: none;
   }
-
+  .fc-toolbar-chunk {
+    display : flex !important;
+  }
+  .fc-prev-button {
+    color : gray;
+    background : white;
+    border-color : gray;
+  }
+  .fc-next-button {
+    color : gray;
+    border-color : gray;
+    background : white;
+  }
 `
 
 function MyCalendar() {
@@ -74,7 +86,7 @@ function MyCalendar() {
             <StyleWrapper>
                 <FullCalendar
                     //headerToolbar = { {start : 'title' , end : 'prev,next'} }
-                    headerToolbar = {{start:'' ,center:'title',end : 'prev,next'}}
+                    headerToolbar = {{start:'title prev,next',end : ''}}
                     initialView="dayGridMonth" 
                     plugins={[ dayGridPlugin , interactionPlugin ]}
                     timeZone = 'Asia/Seoul'

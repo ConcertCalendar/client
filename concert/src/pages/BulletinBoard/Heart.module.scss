@@ -29,5 +29,24 @@
     font-weight: 100;
     color :red;
     font-size: 12px;
+}
+
+.beat {
+    div {
+        img {
+            animation-name: beat;
+            animation-duration: 1s;
+        
+        }
+        
+        @keyframes beat{
+            from {
+                transform : scale(2);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+    }
 
 }

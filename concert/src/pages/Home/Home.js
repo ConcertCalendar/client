@@ -21,8 +21,8 @@ function Home() {
           <SearchBar placeholder = "아티스트,공연장,공연 찾기"/>
           <HotPost/>
           <Ticket/>
-          <MyCalendar/>
         </section>
+        <MyCalendar/>
         <Poster />
         <HomeFooter/>
       </>

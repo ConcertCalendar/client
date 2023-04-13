@@ -6,31 +6,34 @@ import CommentList from './CommentList';
 import Heart from './Heart';
 import { axiosInstance } from '../../utils/customAxios';
 import { changePostDateFormat } from 'utils/dataUtils';
-/*type PostProps = {
-    loading?: Boolean; 
-};*/
+import { RootState } from 'store/store';
 
-function Post( {loading} ) {
-    const accessToken = useSelector((state)=> state.auth.accessToken);
+interface postProps {
+    childern : React.ReactNode;
+}
 
-    const [boardId, setBoardId] = useState();  // board 고유 번호
-    const [createdDate,setCreatedDate] = useState(); // 포스트 생성 날짜
-    const [modifiedDate,setModifiedDate] = useState(null); //포스트 수정 날짜
-    const [id,setId] = useState(); //게시글 고유 번호
-    const [postContent,setPostContent] = useState(); //포스트 내용
-    const [postTitle, setPostTitle] = useState(); //포스트 제목
-    const [writerId,setWriterId] = useState(); //글쓴이 고유 아이디
-    const [writerName , setWriterName] = useState(); //글쓴이 이름
-    const [heart , setHeart] = useState([]); //좋아요
-    const [commentList , setCommentList] = useState([]); //댓글 모음
+const Post : React.FC<postProps> = (props) =>  {
+    const accessToken = useSelector((state:RootState)=> state.auth.accessToken);
+    const currentUserEmail = useSelector((state:RootState)=>state.login.currentUserEmail);
+    const boardArr = useSelector((state:RootState)=>state.board.boardArr);
+
+    const [boardId, setBoardId] = useState<number>(-1);  // board 고유 번호
+    const [createdDate,setCreatedDate] = useState<string>(""); // 포스트 생성 날짜
+    const [modifiedDate,setModifiedDate] = useState<string>(""); //포스트 수정 날짜
+    const [id,setId] = useState<number>(-1); //게시글 고유 번호
+    const [postContent,setPostContent] = useState<string>(""); //포스트 내용
+    const [postTitle, setPostTitle] = useState<string>(""); //포스트 제목
+    const [writerId,setWriterId] = useState<number>(-1); //글쓴이 고유 아이디
+    const [writerName , setWriterName] = useState<string>(""); //글쓴이 이름
+    const [heart , setHeart] = useState<Array<string>>([]); //좋아요
+    const [commentList , setCommentList] = useState<Array<string>>([]); //댓글 모음
     const location = useLocation();
-    const postScrollRef = useRef();
-    const boardArr = useSelector((state)=>state.board.boardArr);
+    const postScrollRef = useRef<HTMLDivElement>(null);
+  
+    const scrollToElement = () => {
+        postScrollRef.current?.scrollIntoView({behavior: 'smooth'  ,block : 'end'});
+    }
 
-
-
-    const scrollToElement = () => postScrollRef.current.scrollIntoView({behavior: 'smooth'  ,block : 'end' });
-    
     useEffect(()=> {
         console.log("loading" , accessToken)
         async function getPost(){
@@ -57,7 +60,7 @@ function Post( {loading} ) {
         <div className = "postContainer" ref={postScrollRef}>
             <div className = "postHead" >
                 <div className = "category">
-                    {boardArr[boardId - 1]}
+                    {boardArr[ boardId - 1 ]}
                 </div>
                 <div className = "profile">
                     <img className = "profileImg" src = "/images/AnyConv.com__poster6.WEBP" alt = ""/>
@@ -73,7 +76,7 @@ function Post( {loading} ) {
             <div className = "postContent">
                 {postContent}
             </div>
-            <Heart boardId={boardId} postId={id} heartSet = {heart} setHeartSet = {setHeart} />
+            <Heart boardId={boardId} postId={id} heartSet = {heart} />
             <CommentList commentList={commentList} changeCommentList = {setCommentList}/>
         </div>
     )

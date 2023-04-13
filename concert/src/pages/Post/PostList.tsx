@@ -35,7 +35,6 @@ const PostList : React.FC<postListProps> = (props) => {
     const navigate = useNavigate();
     
     const checkHeart = (item : Array<string> , userEmail : string) => {
-        console.log(userEmail)
         const checkArr = item.filter((el)=> el === userEmail)
         if(checkArr.length){ //빈 배열이 아니면
             return true;

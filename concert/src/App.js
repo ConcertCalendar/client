@@ -7,7 +7,7 @@ import Mypage  from "./pages/Mypage/Mypage";
 import Board from "./pages/Post/Board"
 import MyCalendar from './pages/Calendar/MyCalendar'
 import Layout from "./layout";
-import Post from "./pages/BulletinBoard/Post.js";
+import Post from "./pages/BulletinBoard/Post";
 import Write from "./pages/BulletinBoard/Write";
 import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
@@ -16,6 +16,7 @@ import { storeAccessToken } from "./store/authSlice";
 import Loading from "components/loading";
 import { setCurrentUid, setCurrentUserEmail } from "pages/Login/loginSlice";
 import { getUserEmail, getUserId } from "utils/JwtUtils";
+import Test from "Test";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function App() {
       <Route path="login" element = {<Login />} />
       <Route path = "join" element = {<Join />} />
       <Route path = "mypage" element = {<Mypage/>} />
+      <Route path = "test" element = {<Test/>}/>
     </Routes>
   );
 }
