@@ -16,6 +16,7 @@ function Board(){
     const [post,setPost] = useState([]);
     const location = useLocation();
     const [totalPost , setTotalPost] = useState(0);
+    const page = useParams('page');
     const params = useParams();
 
 
@@ -24,7 +25,7 @@ function Board(){
         async function getData(){  //커뮤니티 페이지 정보를 받아오는 코드
             const response = await axios.get(`https://concal.p-e.kr/boards/${params.boardId}${location.search}`)
             if(response.status === 200){
-                console.log("board.js")
+                console.log("board.js" , response)
                 setLoading(true);
                 setPost(response.data.data.boardDtoList);
                 setTotalPost(Number(response.data.data.postEntireSize) );
@@ -35,12 +36,12 @@ function Board(){
 
         getData();
 
-    }, [params.boardId , totalPost  ]);
+    }, [params.boardId , totalPost , page ]);
    
 
     return (
         <>
-        <Outlet loading = {loading} />
+        <Outlet/>
         <div className = "boardContainer">
             <div className = "boardName">
                 {boardName}

@@ -2,10 +2,34 @@ import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from "@fullcalendar/interaction"
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useEffect, useState } from "react";
-import styled from './Calendar.module.scss'
+
 import CalendarModal from "./CalendarModal";
-import mocksdata from '../../assets/MOCK_DATA.json';
 import { axiosInstance } from "../../utils/customAxios";
+import style from './Calendar.module.scss'
+import styled from "@emotion/styled";
+
+export const StyleWrapper = styled.div`
+  .fc-scrollgrid{
+    border : none !important;
+  }
+  .fc-scrollgrid td:last-of-type {
+    border-right: none !important;
+    border-bottom: none;
+  }
+  .fc-toolbar-chunk {
+    display : flex !important;
+  }
+  .fc-prev-button {
+    color : gray;
+    background : white;
+    border-color : gray;
+  }
+  .fc-next-button {
+    color : gray;
+    border-color : gray;
+    background : white;
+  }
+`
 
 function MyCalendar() {
     const [event , setEvents] = useState([]);
@@ -58,21 +82,22 @@ function MyCalendar() {
         .catch((err)=> console.log(err));
     }, [] );
     return (
-        <div className = {styled.calendarContainer}>
-            <FullCalendar
-                headerToolbar = { {start : 'title' , end : 'prev,next'} }
-                initialView="dayGridMonth" 
-                plugins={[ dayGridPlugin , interactionPlugin ]}
-                timeZone = 'Asia/Seoul'
-                events = {event}
-                dayMaxEvents = {3}
-                eventClick = {handleEventClick}
-                eventMouseEnter = {handleEventEnter}
-                locale={'ko'}
-                height= {800}
-            
-            />
-            
+        <div className = {style.calendarContainer}>
+            <StyleWrapper>
+                <FullCalendar
+                    //headerToolbar = { {start : 'title' , end : 'prev,next'} }
+                    headerToolbar = {{start:'title prev,next',end : ''}}
+                    initialView="dayGridMonth" 
+                    plugins={[ dayGridPlugin , interactionPlugin ]}
+                    timeZone = 'Asia/Seoul'
+                    events = {event}
+                    dayMaxEvents = {3}
+                    eventClick = {handleEventClick}
+                    eventMouseEnter = {handleEventEnter}
+                    locale={'ko'}
+                    height= {700}
+                />
+            </StyleWrapper>
             {openModal && <CalendarModal closeModal={setOpenModal} title = {content.title} content = {content} pageXY = {pageXY}/>}
         </div>
     )

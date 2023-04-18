@@ -1,5 +1,6 @@
 .realTimeContainer {
     width: 80%;
     height: 400px;
+    margin-left: 20%;
     background-color: rgba(128, 128, 128, 0.158);
 }

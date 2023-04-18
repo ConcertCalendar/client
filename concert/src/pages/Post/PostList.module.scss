@@ -66,17 +66,24 @@
     
 }
 
+.postFooter {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left : 20px;
+    align-items: center;
+}
+.date {
+    margin-right: auto;
+    color: gray;
+    font-size: 14px;
+}
 .likeImg {
-    float : right;
     margin-right: 20px;
 }
 .commentImg {
-    float : right;
     margin-right: 20px;
 }
 .loading {
-    color : rgba(128, 128, 128, 0.3);
-    font-size: 50px;
     justify-self: center;
     align-self: center;
 }

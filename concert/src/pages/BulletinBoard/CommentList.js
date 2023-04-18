@@ -44,7 +44,7 @@ function CommentList ({commentList , changeCommentList}) {
    
 
     useEffect( ()=> {
-        
+        console.log(commentList)
     } , [commentList]);
 
     return (

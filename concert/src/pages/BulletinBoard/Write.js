@@ -5,7 +5,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { axiosInstance  } from '../../utils/customAxios';
 import { isAuth } from '../../utils/JwtUtils';
 import './Write.css'
-function Write ({setTotalPost}) {
+/*type WriteProps = {
+    setTotalPost? : Number; 
+};*/
+
+function Write ({setTotalPost} ) {
     const {state} = useLocation();
     const contentRef = useRef(null);
     const [postTitle , setPostTitle] = useState("");

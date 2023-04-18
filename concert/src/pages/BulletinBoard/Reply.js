@@ -5,15 +5,17 @@ import { axiosInstance } from '../../utils/customAxios';
 import CommentModify from './CommentModify';
 import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
+import { changePostDateFormat } from 'utils/dataUtils';
 
-function Reply({commentId , createdDate , id ,modifiedDate , replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
+function Reply({commentId , createdDate , id  ,modifiedDate , replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
     const [display , setDisplay] = useState(false);
     const [displayId , setDisplayId] = useState(null);
     const [replyModifyDisplay , setReplyModifyDisplay]  = useState(false);
-    const currentUid = useSelector((state)=> state.login.currentUid);
     const location = useLocation();
+    const currentUid = useSelector((state)=> state.login.currentUid);
     
     const handleToReply = (id) => {
+        console.log(currentUid , replyWriterId)
         setDisplayId(id);
         if(replyModifyDisplay === true){
             setReplyModifyDisplay(!replyModifyDisplay);
@@ -52,13 +54,13 @@ function Reply({commentId , createdDate , id ,modifiedDate , replyContent , repl
                     <div className='replyProfile'>
                         <img className = "replyProfileImg" src = "/images/AnyConv.com__poster6.WEBP" alt = ""/>
                         <p className = "replyName">{replyWriterName}</p>
-                        {replyWriterId === currentUid  && <div className='replyDel' onClick={handleToDel}>삭제</div>}
+                        {replyWriterId === currentUid && <div className='replyDel' onClick={handleToDel}>삭제</div>}
                     </div>
                     <p className = "replyContent">{replyContent}</p> 
                     <div className = "replyBottom">
-                        <p className = "replyCreatedDate">{createdDate}</p>
+                        <p className = "replyCreatedDate">{changePostDateFormat(createdDate)}</p>
                         <p className = "replyBtn"  onClick={handleToReply.bind(this,commentId)}>댓글</p> 
-                        <p className = "modifyBtn" onClick={handleToModify.bind(this,replyContent, commentId)}>수정</p>
+                        {replyWriterId === currentUid && <p className = "modifyBtn" onClick={handleToModify.bind(this,replyContent, commentId)}>수정</p>}
                     </div>
                 </div>
             </div>

@@ -13,10 +13,13 @@ import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
 import { useDispatch } from "react-redux";
 import { storeAccessToken } from "./store/authSlice";
+import Loading from "components/loading";
+import { setCurrentUid, setCurrentUserEmail } from "pages/Login/loginSlice";
+import { getUserEmail, getUserId } from "utils/JwtUtils";
+import Test from "Test";
 
 function App() {
   const dispatch = useDispatch();
-  
   async function reNew(url = 'https://concal.p-e.kr/users/reIssue'){
     await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE 등
@@ -36,13 +39,17 @@ function App() {
     )}
 
   const reNewSuccess = (accessToken) => {
-
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
-        console.log(accessToken);
+        dispatch(setCurrentUid(getUserId(accessToken))); 
+        dispatch(setCurrentUserEmail(getUserEmail(accessToken)));
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
   }
   useEffect(()=> {
     reNew();
+    return ()=> {
+        axiosInstance.post('/users/logout');
+    }
+
   }, [])
 
   return (
@@ -58,6 +65,7 @@ function App() {
       <Route path="login" element = {<Login />} />
       <Route path = "join" element = {<Join />} />
       <Route path = "mypage" element = {<Mypage/>} />
+      <Route path = "test" element = {<Test/>}/>
     </Routes>
   );
 }
