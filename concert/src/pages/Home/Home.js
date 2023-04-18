@@ -1,5 +1,5 @@
 import './Home.css';
-import Poster from './poster/Poster.js';
+import Poster from './poster/Poster';
 import SearchBar from './searchBar/SearchBar.js';
 import HotPost from  './hotPost/HotPost.js'
 import Ticket from './ticketOpen/Ticket';

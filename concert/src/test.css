@@ -1,8 +1,12 @@
 
+.beat {
+    width : 200px;
+    height : 200px;
+}
 .beat > img {
     animation-name: beat;
     animation-duration: 1s;
-
+    margin-right: 40px;
 }
 
 @keyframes beat{

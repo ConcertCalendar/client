@@ -1,0 +1,39 @@
+$box-color : rgba(0,0,0,0.03);
+@mixin boxStyle ($width , $height) {
+    border-radius: 15px;
+    background-color: $box-color;
+    width : $width;
+    height: $height;
+    box-shadow: inset 0px 1px 5px 0px rgba(0,0,0,0.2);
+
+}
+
+.title {
+    height :30px;
+    line-height: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    .subtitle {
+        font-size : 17px;
+    }
+}
+.contentBox {
+    @include boxStyle(700px , 420px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .userImage {
+        border-radius: 100%;
+        width: 150px;
+        height : 150px;
+        border : 1px solid black;
+    }
+    .userNickname{
+        font-weight: bold;
+    }
+    .info {
+        font-weight: bold;
+        height : 120px;
+    }
+}

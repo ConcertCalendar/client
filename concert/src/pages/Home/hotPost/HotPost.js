@@ -24,7 +24,7 @@ function HotPost() {
     }
     useEffect( ()=>{
         getHotPost();
-        }, [])
+    }, [])
 
     const makeHotPostContent = () => {
         return hotPostList.map((item) => 
