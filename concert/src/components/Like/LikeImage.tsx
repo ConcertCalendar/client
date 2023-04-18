@@ -17,7 +17,7 @@ interface LikeImageProps {
 const LikeImage : React.FC<LikeImageProps> = (props) => {
     const {number, className = '' , size ,  fill , beat } = props;
     const beatRef = useRef<HTMLImageElement>(null); 
-   
+    
     return (
         <div className = {className} >
             <img 

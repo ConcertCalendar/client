@@ -5,6 +5,7 @@ import './CommentItem.css'
 import ReplyInput from "./Input/ReplyInput";
 import Reply from "./Reply";
 import CommentModify from "./CommentModify";
+import { changePostDateFormat } from "utils/dataUtils";
 
 function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
     const [replyInputDisplay , setReplyInputDisplay] = useState(false); //리플라이 창 보이기
@@ -55,9 +56,9 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
             </div>
             <div className = "commentContent">{comment.commentContent}</div>
             <div className = "commentBottom">
-                <p className = "commentCreatedDate">{comment.createdDate}</p>
+                <p className = "commentCreatedDate">{changePostDateFormat(comment.createdDate)}</p>
                 <p className = "replyBtn"  onClick={handleToReply.bind(this,comment.id)}>댓글</p> 
-                <p className = "modifyBtn" onClick={handleToModify.bind(this, comment.commentContent , comment.id)}>수정</p>
+                {comment.commentWriterId === currentUid  && <p className = "modifyBtn" onClick={handleToModify.bind(this, comment.commentContent , comment.id)}>수정</p>}
             </div>
             {replyInputDisplay && (displayId === comment.id) && 
             <ReplyInput  toReply = {comment.commentWriterName} commentId = {comment.id} commentList = {commentList} 

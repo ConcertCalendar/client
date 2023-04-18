@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react';
 import HotPostContent from './HotPostContent';
 import { axiosInstance } from '../../../utils/customAxios';
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 /** 메인에 핫게시판을 띄워준다**/
 
 function HotPost() {
     const [hotPostList, setHotPostList] = useState([]);
+    const currentUserEmail = useSelector((state) => state.login.currentUserEmail);
+    
     
     const getHotPost= ()=> {
         axiosInstance.get('/posts/ranking')
@@ -21,11 +24,11 @@ function HotPost() {
     }
     useEffect( ()=>{
         getHotPost();
-    }, [])
+        }, [])
 
     const makeHotPostContent = () => {
         return hotPostList.map((item) => 
-            <HotPostContent key = {item.id} boardId = {item.boardId} postTitle = {item.postTitle} like = {item.postHeartSet.length} comment = {item.commentDtoList.length} id = {item.id}/>
+            <HotPostContent key = {item.id} userEmail = {currentUserEmail} boardId = {item.boardId} postTitle = {item.postTitle} like = {item.postHeartSet} comment = {item.commentDtoList.length} id = {item.id}/>
         )
     }
 
