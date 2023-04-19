@@ -49,7 +49,7 @@ const  Mypage : React.FC<myPageProps> = (props) => {
                 </ul>
                 <h4>공연 관리</h4>
                 <ul>
-                    <li>즐겨찾기 한 공연</li>
+                    <li><Link to ='./bookmark' className ={styled.link}>즐겨찾기 한 공연</Link></li>
                     <li>좋아요 한 아티스트</li>
                     <li>공연 일정 알림 신청</li>
                 </ul>

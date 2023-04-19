@@ -19,6 +19,7 @@ import { getUserEmail, getUserId } from "utils/JwtUtils";
 import Test from "Test";
 import UserInfo from "pages/Mypage/UserInfo";
 import UserPosts from "pages/Mypage/UserPosts";
+import Bookmark from "pages/Mypage/Bookmark";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function App() {
       <Route element = {<Layout/>}>
         <Route path = "mypage" element = {<Mypage/>}>
           <Route path = "userInfo" element = {<UserInfo/>}/>
+          <Route path = "bookMark" element = {<Bookmark/>}/>
           <Route path = "myWrite" element = {<UserPosts/>}/>
         </Route>
         <Route path="/" element = {<Home />}/>
@@ -70,8 +72,6 @@ function App() {
       </Route>
       <Route path="login" element = {<Login />} />
       <Route path = "join" element = {<Join />} />
-  
-      <Route path = "test" element = {<Test/>}/>
     </Routes>
   );
 }

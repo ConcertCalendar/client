@@ -21,7 +21,6 @@ interface userPostItemProps {
 const UserPostItem:React.FC<userPostItemProps> = (props) => {
     const {boardId , commentDtoList , createdDate, id , modifiedDate , postContent, postHeartSize ,postHeartState, postTitle, writerId , writerName} = props;
     
-
     return (
         <div className = {styled.postContainer}>
             <div className= {styled.postHead}>

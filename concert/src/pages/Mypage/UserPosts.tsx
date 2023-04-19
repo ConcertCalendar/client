@@ -71,7 +71,6 @@ const UserPosts:React.FC<userPosts> = (props) => {
                     <Loading className= {styled.loading}/>
                 </div>
             }
-
         </div>     
     )
 }
