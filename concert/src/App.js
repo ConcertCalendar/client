@@ -18,6 +18,7 @@ import { setCurrentUid, setCurrentUserEmail } from "pages/Login/loginSlice";
 import { getUserEmail, getUserId } from "utils/JwtUtils";
 import Test from "Test";
 import UserInfo from "pages/Mypage/UserInfo";
+import UserPosts from "pages/Mypage/UserPosts";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ function App() {
       <Route element = {<Layout/>}>
         <Route path = "mypage" element = {<Mypage/>}>
           <Route path = "userInfo" element = {<UserInfo/>}/>
-          <Route path = "myWrite" element = {<Test/>}/>
+          <Route path = "myWrite" element = {<UserPosts/>}/>
         </Route>
         <Route path="/" element = {<Home />}/>
         <Route path = "/boards/:boardId"  element = {<Board />}>

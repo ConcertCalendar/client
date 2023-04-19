@@ -5,7 +5,7 @@ import { axiosInstance } from '../../utils/customAxios';
 import CommentModify from './CommentModify';
 import ReplyInput from './Input/ReplyInput';
 import './Reply.css'
-import { changePostDateFormat } from 'utils/dataUtils';
+import { changePostDateFormat } from 'utils/dateUtils';
 
 function Reply({commentId , createdDate , id  ,modifiedDate , replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
     const [display , setDisplay] = useState(false);

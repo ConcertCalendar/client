@@ -7,6 +7,7 @@ import { useState , useEffect } from "react";
 import { isAuth } from "utils/JwtUtils";
 import { axiosInstance } from "utils/customAxios";
 import MypageImg from "assets/AnyConv.com__poster6.webp"
+import Loading from "components/loading";
 
 interface UserInfoProps{
     childern ?: React.ReactNode;
@@ -22,7 +23,8 @@ const UserInfo:React.FC<UserInfoProps>= (props) => {
     const [userBirth , setUserBirth] = useState<string|Date>("");
     const [userEmail , setUserEmail] = useState<string>("");
     const [userNickName , setUserNickName] = useState<string>("");
-   
+    const [loading , setLoading] = useState<boolean>(false);
+
     const changeUserNameHandler = (name:string) => {
         setUserName(name);
     }
@@ -43,11 +45,6 @@ const UserInfo:React.FC<UserInfoProps>= (props) => {
         setUserNickName(nickName);
     }
 
-
-    const clickMenu = () => {
-        
-    }
-
     useEffect(() =>{
         if(!isAuth(accessToken)){
             alert("로그인이 필요합니다.")
@@ -55,37 +52,40 @@ const UserInfo:React.FC<UserInfoProps>= (props) => {
             return;
         }
         
-        axiosInstance.get('/users/info')
-        .then(
-            (res)=> {
-                console.log(res);
-                if(res.status === 200){
-                    changeUserNameHandler(res.data.data.name);
-                    changeUserBrithHandler(res.data.data.userBirth);
-                    changeUserEmailHandler(res.data.data.userEmail);
-                    changeUserNickNameHandler(res.data.data.userNickname);
-                    changeRolesHandler(res.data.data.roles);
-                }
-        })
-        .catch((err)=> console.log(err))
-        console.log(userNickName)
-    }, []);
+        async function getUserInfo () {
+            const res = await axiosInstance.get('/users/info');
+            if(res.status === 200){
+                changeUserNameHandler(res.data.data.name);
+                changeUserBrithHandler(res.data.data.userBirth);
+                changeUserEmailHandler(res.data.data.userEmail);
+                changeUserNickNameHandler(res.data.data.userNickname);
+                changeRolesHandler(res.data.data.roles);
+                setLoading(true);
+            }
+        }
+        getUserInfo();
+    }, [loading]);
 
     return (
-        <div>
-            <MypageContents className={styled.contentContainer}>
-                <div className = {styled.title}>
-                    MY PAGE <span className = {styled.subtitle}>마이 페이지</span>
+        <div className={styled.contentContainer}>
+            <div className = {styled.title}>
+                MY PAGE <span className = {styled.subtitle}>마이 페이지</span>
+            </div>
+            {
+            loading ? 
+            <div className = {styled.contentBox}>
+                <img className = {styled.userImage} src = {MypageImg} alt = "회원 이미지"/>
+                <p className = {styled.userNickname}>@{userNickName}</p>
+                <div className = {styled.info}>
+                    유저 소개글
                 </div>
-                <div className = {styled.contentBox}>
-                    <img className = {styled.userImage} src = {MypageImg} alt = "회원 이미지"/>
-                    <p className = {styled.userNickname}>@{userNickName}</p>
-                    <div className = {styled.info}>
-                        유저 소개글
-                    </div>
-                </div>
-            </MypageContents>     
-        </div>
+            </div>             
+            :
+            <div className = {styled.contentBox}>
+                <Loading className = {styled.loading}/>
+            </div>
+            }
+        </div>     
     )
 }
 

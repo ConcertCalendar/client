@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import CommentList from './CommentList';
 import Heart from './Heart';
 import { axiosInstance } from '../../utils/customAxios';
-import { changePostDateFormat } from 'utils/dataUtils';
+import { changePostDateFormat } from 'utils/dateUtils';
 import { RootState } from 'store/store';
 
 interface postProps {

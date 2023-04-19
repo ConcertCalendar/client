@@ -5,7 +5,7 @@ import './CommentItem.css'
 import ReplyInput from "./Input/ReplyInput";
 import Reply from "./Reply";
 import CommentModify from "./CommentModify";
-import { changePostDateFormat } from "utils/dataUtils";
+import { changePostDateFormat } from "utils/dateUtils";
 
 function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
     const [replyInputDisplay , setReplyInputDisplay] = useState(false); //리플라이 창 보이기
