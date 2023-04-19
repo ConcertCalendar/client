@@ -5,7 +5,7 @@ import './CommentItem.css'
 import ReplyInput from "./Input/ReplyInput";
 import Reply from "./Reply";
 import CommentModify from "./CommentModify";
-import { changePostDateFormat } from "utils/dataUtils";
+import { changePostDateFormat } from "utils/dateUtils";
 
 function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
     const [replyInputDisplay , setReplyInputDisplay] = useState(false); //리플라이 창 보이기
@@ -70,7 +70,7 @@ function CommentItem ({comment , currentUid, commentList , changeCommentList}) {
             {comment.replyDtoList.length !== 0 && comment.replyDtoList.map((reply)=> (
                 <li key = {reply.id}>
                     <Reply 
-                     commentId = {reply.commentId} createdDate = {reply.createdDate} id = {reply.id}
+                     commentId = {reply.commentId} createdDate = {reply.createdDate} currentUid = {currentUid} id = {reply.id}
                      modifiedDate = {reply.modifiedDate} replyContent= {reply.replyContent}  replyWriterId = {reply.replyWriterId}
                      replyWriterName = {reply.replyWriterName} 
                      commentList = {commentList} changeCommentList = {changeCommentList}/>

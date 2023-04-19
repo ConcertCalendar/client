@@ -3,7 +3,7 @@ import styled from './PostList.module.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import LikeImage from '../../components/Like/LikeImage';
 import CommentImage from "../../components/CommentImage/CommentImage"
-import { changePostDateFormat } from 'utils/dataUtils';
+import { changePostDateFormat } from 'utils/dateUtils';
 import Loading from 'components/loading';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';

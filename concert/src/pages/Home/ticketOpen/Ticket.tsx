@@ -3,7 +3,7 @@ import PostModalHeader from '../PostModalHeader.js';
 import './Ticket.css';
 import { axiosInstance } from 'utils/customAxios.js';
 import TicketOpenContainer from './TicketOpenContent';
-import { changeCalendarDateFormat } from 'utils/dataUtils';
+import { changeCalendarDateFormat } from 'utils/dateUtils';
 
 
 const Ticket:React.FC = () =>  {
@@ -17,8 +17,8 @@ const Ticket:React.FC = () =>  {
     const [poster, setPoster] = useState<string>("");
  
     useEffect(() => {
-        axiosInstance.get("/calendar/nextEvent")
-        .then((res)=>{
+        async function getTicketOpen () {
+        const res = await axiosInstance.get("/calendar/nextEvent");
         if(res.status === 200){
             console.log(res);
             setId(res.data.data.conNo);
@@ -29,14 +29,13 @@ const Ticket:React.FC = () =>  {
             setYes24(res.data.data.bookingLink.yes24Link);
             setPoster(res.data.data.posterUrl);
             setContent(res.data.data.conPlace);
+            }
+            return;
         }
-    })
-    .catch((err)=>console.log(err))
-    }, []);
+        getTicketOpen();
+    }, [id]);
 
 
-    
-    
     return (
         <article className = "TicketOpenContainer">
             <PostModalHeader imgsrc = {"images/ticket.png"} title = {"임박한 공연"}/>

@@ -1,4 +1,4 @@
-export const changePostDateFormat = (date : string) => {
+export const changePostDateFormat = (date : string | Date) => {
     const postDate = new Date(date);
     const now = new Date();
     const minuteGap = (now.getTime() - postDate.getTime())/1000/60; //분 차이

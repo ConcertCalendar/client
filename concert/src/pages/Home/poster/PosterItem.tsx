@@ -1,7 +1,13 @@
 import './PosterItem.css'
 
-function PosterItem ({src , link , ranked}) {
-   // style= {{width: width , height : height}}
+interface posterItemProps {
+    childern ?: React.ReactNode;
+    src ?: string;
+    link ?: string;
+    ranked ?: number;
+}
+const PosterItem : React.FC <posterItemProps> =  (props) => {
+    const {src , link , ranked} = props;
     return (
         <div className='posterItemContainer'>
             <a href = {link} target = "blank"><img src = {src} className = "posterItemImage" alt = ""/></a>
