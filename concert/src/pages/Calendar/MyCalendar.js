@@ -78,6 +78,7 @@ function MyCalendar() {
         })
         .catch((err)=> console.log(err));
     }, [] );
+    
     return (
         <div className = {style.calendarContainer}>
             <StyleWrapper>

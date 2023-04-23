@@ -38,9 +38,10 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
         const response = await axiosInstance.get('/users/concerts')
         if(response.status === 200){
             console.log('조회 성공', response)
+             
         }
     }
-    
+
     const clickBookmarkHandler = async() => {
 
         if(!isAuth(accessToken)){ //로그인이 안 되어 있으면

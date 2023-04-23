@@ -5,11 +5,11 @@ import PostList from './PostList';
 import { useLocation, useParams, Outlet, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import BoardCategory from './BoardCatergory';
 
 
 
 function Board(){
-    const boardArr = useSelector((state)=>state.board.boardArr);
     const [boardName, setBoardName] = useState("");
     const {boardId} = useParams();
     const [loading ,setLoading] = useState(false);
@@ -21,7 +21,6 @@ function Board(){
 
 
     useEffect( ()=> {
-        setBoardName(boardArr[boardId - 1]);
         async function getData(){  //커뮤니티 페이지 정보를 받아오는 코드
             const response = await axios.get(`https://concal.p-e.kr/boards/${params.boardId}${location.search}`)
             if(response.status === 200){
@@ -36,16 +35,14 @@ function Board(){
 
         getData();
 
-    }, [params.boardId , totalPost , page ]);
+    }, [params.boardId  , page ,loading ]);
    
 
     return (
         <>
         <Outlet/>
         <div className = "boardContainer">
-            <div className = "boardName">
-                {boardName}
-            </div>
+            <BoardCategory boardId={boardId}/>
             <PostList data = {post} loading = {loading}/>
             <Pagenation totalPost={Math.ceil(totalPost / 20) } offset = {0} />
         </div>
