@@ -7,6 +7,7 @@ import CalendarModal from "./CalendarModal";
 import { axiosInstance } from "../../utils/customAxios";
 import style from './Calendar.module.scss'
 import styled from "@emotion/styled";
+import { preventDefault } from "@fullcalendar/core/internal";
 
 export const StyleWrapper = styled.div`
   .fc-scrollgrid{
@@ -36,20 +37,16 @@ function MyCalendar() {
     const [openModal, setOpenModal] = useState(false);
     const [content , setContent] = useState({});
     const [pageXY , setPageXY] = useState([]);
-    const handleEventEnter = (e) => {
-    }
-
+    
     const handleEventClick = (e) => {
         setOpenModal(true)
         setPageXY([e.jsEvent.pageX, e.jsEvent.pageY])
         const id =  parseInt(e.event._def.publicId) //string을 number로 바꿔줌 
         const result = event.filter((el) => el.id === id) //클릭한 e와 event를 비교하여 같은 id 값을 가진 정보를  result에 저장 
         setContent(result[0]) //result[0] 즉 id가 일치하는 events를 props의 content로 넘겨주기 위해 저장
-        //alert(e.event._def.publicId + e.event._def.title)
     }
  /* 
     */
-
  
     const changeProperty = (data) => {
         let chagne_data = data.map((item)=> {
@@ -63,6 +60,7 @@ function MyCalendar() {
                 singer : item.singer,
                 place : item.conPlace,
                 img : item.posterUrl,
+                userIdList : item.userIdList,
             }
             return obj;
 
@@ -73,7 +71,6 @@ function MyCalendar() {
     useEffect( () => {
         axiosInstance.get('/calendar/event')
         .then((res)=> {
-            console.log(res);
             if(res.status === 200){
                 const events = changeProperty(res.data.data);
                 setEvents(events);
@@ -85,7 +82,6 @@ function MyCalendar() {
         <div className = {style.calendarContainer}>
             <StyleWrapper>
                 <FullCalendar
-                    //headerToolbar = { {start : 'title' , end : 'prev,next'} }
                     headerToolbar = {{start:'title prev,next',end : ''}}
                     initialView="dayGridMonth" 
                     plugins={[ dayGridPlugin , interactionPlugin ]}
@@ -93,7 +89,6 @@ function MyCalendar() {
                     events = {event}
                     dayMaxEvents = {3}
                     eventClick = {handleEventClick}
-                    eventMouseEnter = {handleEventEnter}
                     locale={'ko'}
                     height= {700}
                 />
