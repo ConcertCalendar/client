@@ -20,6 +20,7 @@ import Test from "Test";
 import UserInfo from "pages/Mypage/UserInfo";
 import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
+import SearchPage from "pages/Home/Search/SearchPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
           <Route path = "bookMark" element = {<Bookmark/>}/>
           <Route path = "myWrite" element = {<UserPosts/>}/>
         </Route>
+        <Route path = '/search' element = {<SearchPage/>}/>
         <Route path="/" element = {<Home />}/>
         <Route path = "/boards/:boardId"  element = {<Board />}>
           <Route path = "posts/:postId" element = {<Post/>}/>

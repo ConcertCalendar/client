@@ -27,9 +27,7 @@ const  Mypage : React.FC<myPageProps> = (props) => {
     const accessToken = useSelector((state:RootState) => state.auth.accessToken);
     const navigate = useNavigate();
    
-    const clickMenu = () => {
-        
-    }
+
 
     useEffect(() =>{
         if(!isAuth(accessToken)){

@@ -4,14 +4,13 @@
     font-weight: 700;
     font-style: normal;
 }
-
 //310px + 100px top
 //300px
 .modalForm { //Top . Right 
     position: absolute;
     background: transparent;
     width : 400px;
-    height : 200px;
+    height : 400px;
     z-index: 2;
 }
 .modalContainer {
@@ -21,7 +20,7 @@
     width : 400px;
     height : 400px;
     z-index: 2;
-    background: #f0ebeb;
+    background: #f7f6f6;
     &::-webkit-scrollbar{
         border-radius: 10px;
         width: 4px;
@@ -31,7 +30,7 @@
     &::after {
         top : 400px;
         right: 170px;
-        border-top: 15px solid  #f0ebeb;
+        border-top: 15px solid  #f7f6f6;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
         border-bottom: 15px solid transparent;
@@ -39,9 +38,34 @@
         width: 0;
         content : ""; 
     } 
-
 }
 
+.modalTopContainer {
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-radius: 10px;
+    width : 400px;
+    height : 400px;
+    z-index: 2;
+    background: #f7f6f6;
+    &::-webkit-scrollbar{
+        border-radius: 10px;
+        width: 4px;
+        background-color: gray;
+    }
+
+    &::after {
+        top : -29px;
+        right: 170px;
+        border-top: 15px solid  transparent;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid #f7f6f6;
+        position:absolute;
+        width: 0;
+        content : ""; 
+    } 
+}
 
 .modalTitle {
     overflow: hidden;
