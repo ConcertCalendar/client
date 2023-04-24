@@ -1,7 +1,7 @@
 .boardCategoryContainer {
     width:  1000px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     padding : 10px 10px 10px 10px;
     border-bottom: 2px solid rgba(128, 128, 128, 0.3);
 }
@@ -23,7 +23,7 @@
 }
 .categoryLink{
     text-decoration: none;
-    color:gray;
+    color:rgba(128, 128, 128, 0.7);
 }
 .selectedCategoryLink{
     text-decoration: none;

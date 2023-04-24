@@ -18,7 +18,6 @@ function Home() {
             <Advertisement/>
             <RealTime/>
           </aside>
-          <SearchBar placeholder = "아티스트,공연장,공연 찾기"/>
           <HotPost/>
           <Ticket/>
         </section>

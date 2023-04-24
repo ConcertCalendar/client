@@ -15,14 +15,17 @@ interface BookmarkItemProps {
     posterUrl : string;
     singer : string;
     updatedDate : null | Date | string;
+    No: number;
 }
 
 const BookmarkItem:React.FC<BookmarkItemProps> = (props) => {
     const {yes24Link , interparkLink, conContent, conNo , conPlace
-    ,conTitle, conTime, conStart, conEnd, createdDate, posterUrl, singer, updatedDate} = props;
+    ,conTitle, conTime, conStart, conEnd, createdDate, posterUrl, singer, updatedDate , No} = props;
     return (
-        <div >
-        
+        <div className = {styled.bookMarkItemContainer}>
+            <div className = {styled.title}>
+                {No}. {conTitle}
+            </div>
         
         </div>
     )
