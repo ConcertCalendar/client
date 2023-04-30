@@ -2,7 +2,7 @@ import styled from './loading.module.scss';
 
 interface loadingProps {
     childern?: React.ReactNode;
-    className : string;
+    className ?: string;
 }
 const Loading : React.FC<loadingProps>  = (props) => {
    const {className} = props;

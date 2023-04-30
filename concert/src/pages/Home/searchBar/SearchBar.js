@@ -1,7 +1,7 @@
 import { axiosInstance } from 'utils/customAxios';
 import './SearchBar.css'
 import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 
 function SearchBar({placeholder}) {
@@ -17,7 +17,7 @@ function SearchBar({placeholder}) {
         setSearch(e.target.value);
     }
 
-    const getPostSearch = async() => {
+    /*const getPostSearch = async() => {
         const response = await axiosInstance.get(`/posts/search?searchKeyword=${search}`);
         if(response.status === 200){
             console.log('postres', response)
@@ -29,12 +29,10 @@ function SearchBar({placeholder}) {
         if(response.status === 200){
             console.log('calendarres', response)
         }
-    }
+    }*/
 
     const clickSearch = () => {
-        getPostSearch();
-        getCalendarSearch();
-        navigate('search')
+        navigate(`search?searchKeyword=${search}`);
         
     }
     return (
