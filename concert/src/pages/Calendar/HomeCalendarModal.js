@@ -4,7 +4,7 @@ import { axiosInstance } from 'utils/customAxios';
 import { isAuth } from 'utils/JwtUtils';
 import { useSelector } from 'react-redux';
 
-function CalendarModal ({closeModal, title , content , pageXY}) {
+function HomeCalendarModal ({closeModal, title , content , pageXY}) {
     const modalRef = useRef();
     const [position, setPosition] = useState("")
     const [bookmarkState , setBookmarkState] = useState(false);
@@ -12,12 +12,12 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
     const currentUid = useSelector((state)=> state.login.currentUid);
 
     const popUpModalPosition = () => {
-        console.log(pageXY)
-        if(200 < pageXY[1] && pageXY[1] < 500){
-            modalRef.current.style = `top : ${pageXY[1] - 100 }px; left: ${pageXY[0] - 475}px;`;
+        console.log('HomeCalendarModal' ,pageXY)
+        if(700 < pageXY[1] && pageXY[1] < 1000){
+            modalRef.current.style = `top : ${pageXY[1] - 585 }px; left: ${pageXY[0] - 475}px;`;
             setPosition("top");
-        }else  if(500 <= pageXY[1]){
-            modalRef.current.style = `top : ${pageXY[1] - 555 }px; left: ${pageXY[0] - 475}px;`;
+        }else  if(1000 <= pageXY[1]){
+            modalRef.current.style = `top : ${pageXY[1] - 1035 }px; left: ${pageXY[0] - 475}px;`;
         }
     }
 
@@ -103,4 +103,4 @@ function CalendarModal ({closeModal, title , content , pageXY}) {
     )
 }
 
-export default CalendarModal;
+export default HomeCalendarModal;

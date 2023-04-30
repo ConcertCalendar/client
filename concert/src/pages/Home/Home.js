@@ -7,7 +7,7 @@ import RealTime from './realTime/RealTime';
 import Advertisement from './advertisement/Advertisement';
 import HomeFooter from './Footer/HomeFooter';
 import { Calendar } from '@fullcalendar/core';
-import MyCalendar from 'pages/Calendar/MyCalendar';
+import HomeCalendar from 'pages/Calendar/HomeCalendar';
 
 
 function Home() {
@@ -21,7 +21,7 @@ function Home() {
           <HotPost/>
           <Ticket/>
         </section>
-        <MyCalendar/>
+        <HomeCalendar/>
         <Poster />
         <HomeFooter/>
       </>
