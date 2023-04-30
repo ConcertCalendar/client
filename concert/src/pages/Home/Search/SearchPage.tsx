@@ -58,7 +58,7 @@ const SearchPage:React.FC<SearchPageProps> = (props) => {
 
     useEffect(()=> {
         async function getPostSearch() {
-            const response = await axiosInstance.get(`/posts/search${searchKeyword}`);
+            const response = await axiosInstance.get(`/posts/search/${searchKeyword}`);
             if(response.status === 200){
                 setPostData(response.data.data.boardDtoList); 
                 console.log(response)
@@ -71,7 +71,7 @@ const SearchPage:React.FC<SearchPageProps> = (props) => {
 
     useEffect(()=> {
         async function getConcertSearch() {
-            const res = await axiosInstance.get(`/calendar/searchEvent${searchKeyword}`);
+            const res = await axiosInstance.get(`/calendar/searchEvent/${searchKeyword}`);
             if(res.status === 200){
                 console.log(res)
                 setConcertData(res.data.data);

@@ -11,7 +11,6 @@ import { useState } from "react";
 
 function Login() {
     const {state} = useLocation();
-    const accessToken = useSelector((state)=> state.auth.accessToken);
     const email = useSelector((state) => state.login.email);
     const password = useSelector((state) => state.login.password);
     const [loginErrMsg,setLoginErrmsg] = useState(false);
@@ -32,8 +31,10 @@ function Login() {
             body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
           }).then((res)=> res.json())
             .then((data) => {
-                if(data.status === 200){
+                if(data.status === 'OK'){
                     loginSuccess(data.data.accessToken)
+                }else{
+                    setLoginErrmsg(true);
                 }
             })}
     
@@ -43,17 +44,13 @@ function Login() {
         dispatch(setCurrentUserEmail(getUserEmail(accessToken)));
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
+        navigate(state.from);
     }
 
 
     const loginSubmit = async (event) => {
         event.preventDefault();
-        if(accessToken){
-            navigate(state.from)
-        }
-        else{
-            setLoginErrmsg(true);
-        }
+        postLogin();
     }
 
 

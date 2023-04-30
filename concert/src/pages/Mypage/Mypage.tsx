@@ -30,11 +30,11 @@ const  Mypage : React.FC<myPageProps> = (props) => {
 
 
     useEffect(() =>{
-        if(!isAuth(accessToken)){
+      /*  if(!isAuth(accessToken)){
             alert("로그인이 필요합니다.")
             navigate('/');
             return;
-        }
+        }*/
     }, [accessToken]);
 
     return (

@@ -41,7 +41,7 @@ function HomeCalendar() {
     
     const handleEventClick = (e) => {
         setOpenModal(true)
-        setPageXY([e.jsEvent.pageX, e.jsEvent.pageY])
+        setPageXY([e.jsEvent.offsetX, e.jsEvent.offsetY])
         const id =  parseInt(e.event._def.publicId) //string을 number로 바꿔줌 
         const result = event.filter((el) => el.id === id) //클릭한 e와 event를 비교하여 같은 id 값을 가진 정보를  result에 저장 
         setContent(result[0]) //result[0] 즉 id가 일치하는 events를 props의 content로 넘겨주기 위해 저장
