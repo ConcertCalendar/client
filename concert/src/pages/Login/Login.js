@@ -6,13 +6,15 @@ import './Login.css'
 import { storeAccessToken } from "../../store/authSlice";
 import { axiosInstance } from "../../utils/customAxios";
 import { getUserEmail, getUserId } from "utils/JwtUtils";
+import { useState } from "react";
 
 
 function Login() {
     const {state} = useLocation();
+    const accessToken = useSelector((state)=> state.auth.accessToken);
     const email = useSelector((state) => state.login.email);
     const password = useSelector((state) => state.login.password);
-    const loginErrMsg = useSelector((state) => state.login.loginErrMsg);
+    const [loginErrMsg,setLoginErrmsg] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -29,9 +31,11 @@ function Login() {
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
           }).then((res)=> res.json())
-          .then((data) => 
-                loginSuccess(data.data.accessToken)
-            )}
+            .then((data) => {
+                if(data.status === 200){
+                    loginSuccess(data.data.accessToken)
+                }
+            })}
     
     const loginSuccess = (accessToken) => {
         console.log(accessToken);
@@ -44,8 +48,12 @@ function Login() {
 
     const loginSubmit = async (event) => {
         event.preventDefault();
-        postLogin();      
-        navigate(state.from); 
+        if(accessToken){
+            navigate(state.from)
+        }
+        else{
+            setLoginErrmsg(true);
+        }
     }
 
 

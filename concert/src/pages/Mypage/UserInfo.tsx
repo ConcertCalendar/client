@@ -46,12 +46,6 @@ const UserInfo:React.FC<UserInfoProps>= (props) => {
     }
 
     useEffect(() =>{
-        if(!isAuth(accessToken)){
-            alert("로그인이 필요합니다.")
-            navigate('/');
-            return;
-        }
-        
         async function getUserInfo () {
             const res = await axiosInstance.get('/users/info');
             if(res.status === 200){

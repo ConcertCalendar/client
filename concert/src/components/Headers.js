@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from './Header.module.scss';
 
-function Header({children}) {  
-  
+function Headers({children}) {  
   
   useEffect(() => {
   
@@ -22,4 +21,4 @@ function Header({children}) {
     );
   }
     
-  export default Header;
+  export default Headers;

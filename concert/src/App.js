@@ -21,6 +21,7 @@ import UserInfo from "pages/Mypage/UserInfo";
 import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
 import SearchPage from "pages/Home/Search/SearchPage";
+import NotFound from "pages/BulletinBoard/NotFound/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ function App() {
       </Route>
       <Route path="login" element = {<Login />} />
       <Route path = "join" element = {<Join />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 }
