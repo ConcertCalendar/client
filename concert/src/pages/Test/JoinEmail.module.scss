@@ -1,0 +1,75 @@
+.progressbar { 
+    appearance: none;
+    -webkit-appearance: none;
+    height: 5px;
+    width: 100%;
+
+    &::-webkit-progress-bar {
+        background-color: gray;
+    }
+    &::-webkit-progress-value {
+        background: black;
+    }
+}
+
+.joinInput{
+    box-sizing: border-box;
+    width : 100%;
+    font-size: 15px;
+    padding : 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    &::placeholder {
+        font-weight: lighter;
+    }
+}
+
+.joinEmailInput{
+    box-sizing: border-box;
+    width : 100%;
+    font-size: 15px;
+    padding : 15px;
+    font-weight: bold;
+    &::placeholder {
+        font-weight: lighter;
+    }
+}
+
+.joinBtn {
+    width: 100%;
+    height: 52px;
+    background-color: black;
+    color : white;
+    font-weight: bold;
+    &:hover {
+        background-color: rgb(149, 147, 147);
+        border : none;
+    }
+    &:active {
+        background-color: red;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+    margin : 0px;
+    padding: 8px;
+    font-size :small;
+    color : red;
+}
+.visible {
+    visibility: visible;
+    margin : 0px;
+    padding: 8px;
+    font-size :small;
+    color : red;
+}
+
+.joinBtnDisabled {
+    width: 100%;
+    height: 52px;
+    background-color: #c4c4c4;
+    color : white;
+    font-weight: bold;
+    border : none;
+}

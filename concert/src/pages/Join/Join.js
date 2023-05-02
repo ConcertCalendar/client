@@ -10,8 +10,6 @@ function Join() {
     const [checkPassword, setCheckPassword] = useState(""); //비밀번호 확인 input value 값을 저장할 state
     const [nickname , setNickname] = useState(""); //닉네임 input value 값을 저장할 state
     const [name , setName] = useState(""); //이름 input value 값을 저장할 state
-    const [phoneNumber , setPhoneNumber] = useState(""); //핸드폰번호 input value 값을 저장할 state
-    const [checkPhoneNumber , setCheckPhoneNumber] = useState(""); //핸드폰 인증번호 input value 값을 저장할 state
     const [birth , setBirth] = useState(""); //생년월일 input value 값을 저장할 state
     const [gender , setGender] = useState(""); //성별 input value 값을 저장할 state
     const [matchEmail, setMatchEmail] = useState(true); //이메일 input이 이메일 형식에 맞는지
@@ -26,7 +24,6 @@ function Join() {
         "password": password,
         "userNickname": nickname,
         "name": name,
-        "userPhone": phoneNumber,
         "userBirth": `${birth.slice(0,4)}-${birth.slice(4,6)}-${birth.slice(6,8)}`
     })
 
@@ -59,17 +56,7 @@ function Join() {
     }
 
 
-    const onChangePhoneNumber = (event) => {
-        if(numberKeyPress === true && event.target.value.length <= 11)
-            setPhoneNumber(event.target.value);
-    }
-
-
-    const onChangeCheckPhoneNumber = (event) => {
-        if(numberKeyPress === true && event.target.value.length <= 6)
-            setCheckPhoneNumber(event.target.value);
-    }
-    
+   
     const onChangeBirth = (event) => {
         if(numberKeyPress === true && event.target.value.length <= 8)
             setBirth(event.target.value);
@@ -141,12 +128,7 @@ function Join() {
         else if(name === ""){
             alert("이름을 입력해주세요.")
         }
-        else if(phoneNumber === "" || phoneNumber.length !== 11){
-            alert("휴대번호를 입력해주세요")
-        }
-        else if(checkPhoneNumber === "" || checkPhoneNumber.length !== 6){
-            alert("인증번호를 입력해주세요")
-        }
+
         else if(birth === "" || birth.length !== 8){
             alert("생년월일 입력해주세요")
         }
@@ -174,17 +156,8 @@ function Join() {
     }
    
 
-    const phoneAuth = (e) => {  
-        e.preventDefault();
-        console.log(phoneNumber)
-
-    }
-
     return (
         <div className="joinWrap">
-          <Link to = "/">
-            <img className="loginLogo" src = "Images/AnyConv.com__logo.WEBP" alt = ""/>
-          </Link>
           <form id  = "joinForm">
             <div className = "joinInput">
                 <em>* </em>
@@ -244,29 +217,6 @@ function Join() {
                  id = "nameInput"
                  onChange={onChangeName}
                  placeholder={"실명을 입력하세요."}></input>
-            </div>
-            <div className = "joinInput">
-                <em>* </em>
-                <label htmlFor = "phoneInput">휴대번호</label>
-                <br/>
-                <input
-                 type = "text"
-                 id = "phoneInput"
-                 onKeyDown={onNumberKeyDown}
-                 onChange = {onChangePhoneNumber}
-                 value = {phoneNumber}
-                 placeholder = {"- 없이 입력하세요."}></input>
-                 <button className = {"checkBtn"} onClick = {phoneAuth}>인증번호 전송</button>
-            </div>
-            <div className = "joinInput">
-                <em>* </em>
-                <label htmlFor = "phoneCheckInput">인증번호</label>
-                <input type = "text"
-                 id = "phoneCheckInput"
-                 onKeyDown={onNumberKeyDown}
-                 onChange = {onChangeCheckPhoneNumber}
-                 value = {checkPhoneNumber} 
-                 placeholder ={"인증번호를 입력하세요."}></input>
             </div>
             <div className = "joinInput">
                 <em>* </em>

@@ -22,6 +22,7 @@ import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
 import SearchPage from "pages/Home/Search/SearchPage";
 import NotFound from "pages/BulletinBoard/NotFound/NotFound";
+import JoinTest from "pages/Test/JoinTest";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,9 +73,10 @@ function App() {
         </Route> 
         <Route path = "write" element = {<Write/>}/>
         <Route path = "Calendar" element ={ <MyCalendar/>}/>
+        <Route path = "join" element = {<Join />} />
+        <Route path = "jointest" element = {<JoinTest />} />
       </Route>
       <Route path="login" element = {<Login />} />
-      <Route path = "join" element = {<Join />} />
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );

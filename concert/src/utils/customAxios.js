@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const axiosInstance = axios.create({
     withCredentials:true,
     baseURL: 'https://concal.p-e.kr',
