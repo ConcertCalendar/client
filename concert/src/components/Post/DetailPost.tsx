@@ -11,6 +11,7 @@ import PostMenu from './PostMenu';
 import Mark from 'components/Mark/Mark';
 import Notification from 'components/notification/Notification';
 import Link from 'components/Link/Link';
+import { useLocation } from 'react-router-dom';
 
 interface DetailPostProps{
     childern : React.ReactNode;
@@ -27,9 +28,10 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     const [heart , setHeart] = useState<Array<string>>([]); //좋아요
     const [commentList , setCommentList] = useState<Array<string>>([]); //댓글 모음 
     const [loading , setLoading ] = useState<boolean>(false);
+    const location = useLocation();
 
     const getPost = async() => {
-       axiosInstance.get('/boards/1/posts/1')
+       axiosInstance.get(`${location.pathname}`)
        .then((res)=> {
             setBoardId(res.data.data.boardId);
             setCreatedDate(changePostDateFormat(res.data.data.createdDate));
@@ -49,6 +51,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     }
     useEffect(() => {
         getPost();
+        console.log(location);
     } , [])
 
     return (

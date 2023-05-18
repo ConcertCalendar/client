@@ -13,10 +13,8 @@ import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
 import { useDispatch } from "react-redux";
 import { storeAccessToken } from "./store/authSlice";
-import Loading from "components/loading";
 import { setCurrentUid, setCurrentUserEmail } from "pages/Login/loginSlice";
 import { getUserEmail, getUserId } from "utils/JwtUtils";
-import Test from "Test";
 import UserInfo from "pages/Mypage/UserInfo";
 import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
@@ -25,6 +23,8 @@ import NotFound from "pages/BulletinBoard/NotFound/NotFound";
 import JoinTest from "pages/Test/JoinTest";
 import WriteTest from "pages/BulletinBoard/write/WriteTest";
 import DetailPost from "components/Post/DetailPost";
+import BoardTest from "pages/Board/BoardTest";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -70,14 +70,12 @@ function App() {
         </Route>
         <Route path = '/search' element = {<SearchPage/>}/>
         <Route path="/" element = {<Home />}/>
-        <Route path = "/boards/:boardId"  element = {<Board />}>
-          <Route path = "posts/:postId" element = {<Post/>}/>
-        </Route> 
+        <Route path = "/boards/:boardId"  element = {<BoardTest />}/>
+        <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
         <Route path = "write" element = {<Write/>}/>
         <Route path = "Calendar" element ={ <MyCalendar/>}/>
         <Route path = "join" element = {<Join />} />
         <Route path = "jointest" element = {<JoinTest />} />
-        <Route path = "test" element = {<Test/>}/>
         <Route path = 'testwrite'element = {<WriteTest/>}/>
         <Route path = 'testPost'element = {<DetailPost/>}/>
       </Route>

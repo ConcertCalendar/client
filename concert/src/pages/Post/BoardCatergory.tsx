@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 interface BoardCategoryProps {
-    childern : React.ReactNode;
+    childern ?: React.ReactNode;
     boardId : number;
 }
 
