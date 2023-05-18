@@ -1,0 +1,29 @@
+@import './JoinSlideAni.module.scss';
+.JoinComplete {
+    animation: slideIn 500ms ease-in-out forwards;
+}
+.joinBtnDisabled {
+    width: 400px;
+    margin-top : 20px;
+    height: 52px;
+    background-color: #c4c4c4;
+    color : white;
+    font-weight: bold;
+    border : none;
+}
+
+.joinBtn {
+    width: 400px;
+    height: 52px;
+    margin-top : 20px;
+    background-color: black;
+    color : white;
+    font-weight: bold;
+    &:hover {
+        background-color: rgb(149, 147, 147);
+        border : none;
+    }
+    &:active {
+        background-color: red;
+    }
+}

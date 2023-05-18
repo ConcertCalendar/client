@@ -92,7 +92,7 @@ function HomeCalendar() {
                     dayMaxEvents = {3}
                     eventClick = {handleEventClick}
                     locale={'ko'}
-                    height= {700}
+                    height= {550}
                 />
             </StyleWrapper>
             {openModal && <HomeCalendarModal closeModal={setOpenModal} title = {content.title} content = {content} pageXY = {pageXY}/>}

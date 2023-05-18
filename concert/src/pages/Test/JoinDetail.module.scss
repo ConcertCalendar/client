@@ -1,13 +1,16 @@
 @import './JoinSlideAni.module.scss';
 
-
-.joinEmail {
+.JoinDetail {
     animation: slideIn 500ms ease-in-out forwards;
 }
-.joinEmailSlide{
+.JoinDetailSlide{
     animation: slideOut 500ms ease-in-out forwards;
 }
 
+.joinLabel {
+    font-size: 14px;
+    padding: 2px;
+}
 
 .joinInput{
     box-sizing: border-box;
@@ -15,26 +18,25 @@
     font-size: 15px;
     padding : 15px;
     font-weight: bold;
-    margin: 20px 0px 20px 0px;
+    margin: 0px;
     &::placeholder {
         font-weight: lighter;
     }
 }
-
-.joinEmailInput{
-    box-sizing: border-box;
-    width : 400px;
-    font-size: 15px;
-    padding : 15px;
+.joinBtnDisabled {
+    width: 400px;
+    margin-top : 20px;
+    height: 52px;
+    background-color: #c4c4c4;
+    color : white;
     font-weight: bold;
-    &::placeholder {
-        font-weight: lighter;
-    }
+    border : none;
 }
 
 .joinBtn {
     width: 400px;
     height: 52px;
+    margin-top : 20px;
     background-color: black;
     color : white;
     font-weight: bold;
@@ -46,33 +48,3 @@
         background-color: red;
     }
 }
-
-.hidden {
-    visibility: hidden;
-    margin : 0px;
-    padding: 8px;
-    font-size :small;
-    color : red;
-}
-.visible {
-    visibility: visible;
-    margin : 0px;
-    padding: 8px;
-    font-size :small;
-    color : red;
-}
-
-.joinBtnDisabled {
-    width: 400px;
-    height: 52px;
-    background-color: #c4c4c4;
-    color : white;
-    font-weight: bold;
-    border : none;
-}
-
-
-
-
-
-

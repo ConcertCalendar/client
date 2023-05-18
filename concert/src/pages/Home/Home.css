@@ -14,3 +14,9 @@
     float: right;
 }
 
+.calendarContainer{
+    display: flex;
+    height: 550px;
+    margin-bottom : 20px;
+}
+

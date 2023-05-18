@@ -1,0 +1,47 @@
+.detailPostContainer {
+    width: 1000px;
+    margin : 120px auto;
+}
+
+.loadingContainer {
+    width: 1000px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.postHead {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid rgb(163, 163, 163);
+    .userProfile {
+        width: 90%;
+    }
+    .boardCategory {
+        width: 92%;
+    }
+    .createdDate {
+        text-align: right;
+        width: 8%;
+    }
+    .notiMenu {
+        width: 10%;
+        justify-content: space-between;
+        display: flex;
+    }
+    .postTitle {
+        width: 92%;
+        font-size: large;
+    }
+    .modiMenu {
+        width: 8%;
+        font-size: 14px;
+    }
+}
+

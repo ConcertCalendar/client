@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from './JoinTest.module.scss';
 import { axiosInstance } from 'utils/customAxios';
 import JoinEmail from './JoinEmail';
 import JoinTerms from './JoinTerms';
+import JoinPassword from './JoinPassword';
+import JoinDetail from './JoinDetail';
+import JoinComplete from './JoinComplete';
 
 interface JoinTestProps {
     childern ?: React.ReactNode;
@@ -10,13 +13,56 @@ interface JoinTestProps {
 
 const JoinTest:React.FC<JoinTestProps> = (props) => {
     const [phase , setPhase] = useState<string>('0');
+    const progressRef = useRef<HTMLDivElement>(null);
+    useEffect(()=> {
+        switch(phase){
+            case '1' : {
+                progressRef.current?.classList.add(`${styled.phase1}`)
+                return
+            }
+            case '2' :{
+                progressRef.current?.classList.remove(`${styled.phase1}`);
+                progressRef.current?.classList.add(`${styled.phase2}`);
+                return
+            }case '3':{
+                progressRef.current?.classList.remove(`${styled.phase2}`);
+                progressRef.current?.classList.add(`${styled.phase3}`);
+                return
+            }case '4':{
+                progressRef.current?.classList.remove(`${styled.phase3}`);
+                progressRef.current?.classList.add(`${styled.phase4}`);
+                return
+            }
+            default: {
+                return
+            }
+        }
+       /* if( phase === '1') {
+            progressRef.current?.classList.add(`${styled.phase1}`);
+        }else if( phase === '2'){
+            progressRef.current?.classList.remove(`${styled.phase1}`);
+            progressRef.current?.classList.add(`${styled.phase2}`);
+        }else if(phase === '3'){
+            progressRef.current?.classList.remove(`${styled.phase2}`);
+            progressRef.current?.classList.add(`${styled.phase3}`);
+        }else if(phase==='4'){
+            progressRef.current?.classList.remove(`${styled.phase3}`);
+            progressRef.current?.classList.add(`${styled.phase4}`);
+        }*/
+    }, [phase])
     return ( 
         <article className = {styled.joinContainer}>
-            <section className = {styled.joinForm}>
+            <form className = {styled.joinForm}>
                 <h2 className = {styled.joinMsg}>회원 가입 메세지</h2>
-                {(phase==='0')&&<JoinTerms phase={phase} setPhase={setPhase}/>}
-                {(phase==='1')&&<JoinEmail/>}
-            </section>
+                <div className = {styled.progressBar}>
+                    <div className = { `${styled.progressBarInner}`} ref = {progressRef}></div>
+                </div>
+                {(phase==='0')&&<JoinTerms  phase={phase} setPhase={setPhase} />}
+                {(phase==='1')&&<JoinEmail  phase={phase} setPhase={setPhase}/>}
+                {(phase==='2')&&<JoinPassword phase = {phase} setPhase={setPhase}/>} 
+                {(phase==='3')&&<JoinDetail phase = {phase} setPhase={setPhase}/>}
+                {(phase==='4')&&<JoinComplete/>}
+            </form>
         </article>
     )
 }

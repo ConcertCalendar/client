@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { axiosInstance  } from '../../utils/customAxios';
 import { isAuth } from '../../utils/JwtUtils';
 import './Write.css'
+import { paste } from '@testing-library/user-event/dist/paste';
 /*type WriteProps = {
     setTotalPost? : Number; 
 };*/
@@ -24,7 +25,11 @@ function Write ({setTotalPost} ) {
     
     const handleChangeTitle = (e) => {
         setPostTitle(e.target.value);
+        
     }
+
+
+  
 
     const makeCategory = () => {
         if(state.boardName === "공연 후기 게시판")

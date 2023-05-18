@@ -4,20 +4,22 @@ import { axiosInstance } from 'utils/customAxios';
 
 interface JoinEmailProps {
     childern ?: React.ReactNode;
+    phase : string;
+    setPhase : React.Dispatch<React.SetStateAction<string>>;
 }
 
 const JoinEmail:React.FC<JoinEmailProps> = (props) => {
-    const [email , setEmail] = useState<string>("");
-    const [checkAuthBtn, setCheckAuthBtn] = useState<boolean>(false);
-    const [emailErrmsg , setEmailErrmsg] = useState<string>("");
-    const [certValue , setCertValue] = useState<string>("");
-    const [authValue , setAuthValue] = useState<string>("");
-    const [checkNextBtn ,setCheckNextBtn] = useState<boolean>(false);
+    const  {phase ,setPhase}  = props;
 
-    const [displayNextBtn , setDisplayNextBtn] = useState<boolean>(false);
-    const [displayCert , setDisplayCert] = useState<boolean>(false);
-    const [displayErrmsg ,setDisplayErrmsg] = useState<boolean>(false);
-
+    const [email , setEmail] = useState<string>(""); //이메일 인풋
+    const [checkAuthBtn, setCheckAuthBtn] = useState<boolean>(false); //인증 버튼 활성화 비활성화
+    const [emailErrmsg , setEmailErrmsg] = useState<string>(""); //이메일 에러 메세지 내용
+    const [certValue , setCertValue] = useState<string>(""); //내가 입력한 인증 번호
+    const [authValue , setAuthValue] = useState<string>(""); //서버에서 보낸 인증 번호
+    const [checkNextBtn ,setCheckNextBtn] = useState<boolean>(true); //다음 버튼 활성화 여부
+    const [checkAuthInput ,setCheckAuthInput] = useState<boolean>(false); //인증번호 인풋 활성화 여부
+    const [displayErrmsg ,setDisplayErrmsg] = useState<boolean>(false); //에러메시지 보낼 건지
+    const [slide , setSlide] = useState<boolean>(false); //애니메이션 여부
 
     const onChangeEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -34,16 +36,12 @@ const JoinEmail:React.FC<JoinEmailProps> = (props) => {
         }
         setCheckNextBtn(false);
     }
-    const ClickNextBtn = () => {
-
-    }
 
     const checkDuplEmail = async() => { //이메일 중복 체크
         await axiosInstance.get(`/users/join/emailCheck?email=${email}`)
         .then((res)=>{
             if(!res.data.data){ //이미 존재하는 이메일이면
-                setEmailErrmsg(res.data.message)
-                setDisplayNextBtn(false);
+                setEmailErrmsg(res.data.message) //이메일 에러 메시지 저장
                 setCheckAuthBtn(false);
                 setDisplayErrmsg(true);
                 return
@@ -61,8 +59,7 @@ const JoinEmail:React.FC<JoinEmailProps> = (props) => {
         axiosInstance.get(`/users/join/confirm-mail?email=${email}`)
         .then((res)=> {
             setAuthValue(res.data.data);
-            setDisplayCert(true);
-            setDisplayNextBtn(true);
+            setCheckAuthInput(true);
         }).catch((err)=> {
             console.log('인증버튼err' , err)
         })
@@ -77,39 +74,68 @@ const JoinEmail:React.FC<JoinEmailProps> = (props) => {
         setEmailErrmsg("이메일을 확인해주세요.")//형식도 틀림
         setCheckNextBtn(false);
         setDisplayErrmsg(true);
-        setDisplayNextBtn(false);
+    }
+
+    const handleNext = () => {
+        setSlide(true);
+        setTimeout(()=> setPhase('2'), 300);
     }
 
     return ( 
-        <section>
-            <progress value = '25' max = '100' className = {styled.progressbar}></progress>
-            <h4 className = {styled.guideMsg}>로그인에 사용할 이메일을 입력해주세요</h4>
+        <section className = {slide ? styled.joinEmailSlide: styled.joinEmail}>
+            <h4 >로그인에 사용할 이메일을 입력해주세요</h4>
+            
             <input
                 type = "email" 
                 className = {styled.joinEmailInput}
                 onChange = {onChangeEmail}
                 onBlur = {onBlurEmail}
                 placeholder ='이메일 입력'
+                autoComplete = "off"
             />
             <h5 className = { displayErrmsg ? styled.visible: styled.hidden }>{emailErrmsg}</h5>
-            {displayCert&&
+            
+            <button className = {checkAuthBtn ? styled.joinBtn : styled.joinBtnDisabled}
+            type='button' disabled = {!checkAuthBtn} onClick={handleCertificate}>
+            인증
+            </button>
+            
+            <input
+              type = "password"
+              className = {styled.joinInput} 
+              onChange = {onChangeCert} 
+              onBlur = {checkCertValue}
+              placeholder = '인증번호 입력'
+              autoComplete = 'new-password'
+              disabled = {!checkAuthInput}/>
+
+            <button className = {checkNextBtn ? styled.joinBtn : styled.joinBtnDisabled}
+            type='button' disabled = {!checkNextBtn} onClick = {handleNext}>
+            다음
+            </button>  
+        </section>
+    )
+}
+
+export default JoinEmail;
+
+
+/* 
+     {displayCert&&
             <input
               type = "password"
               className = {styled.joinInput} 
               onChange = {onChangeCert} 
               onBlur = {checkCertValue}
               placeholder = '인증번호 입력'/>}
-            {!displayNextBtn &&<button className = {checkAuthBtn ? styled.joinBtn : styled.joinBtnDisabled}
+
+    {!displayNextBtn &&<button className = {checkAuthBtn ? styled.joinBtn : styled.joinBtnDisabled}
             type='button' disabled = {!checkAuthBtn} onClick={handleCertificate}>
             인증
             </button>}
-
-            {displayNextBtn &&<button className = {checkNextBtn ? styled.joinBtn : styled.joinBtnDisabled}
-            type='button' disabled = {!checkNextBtn}>
-            다음
-            </button>}
-        </section>
-    )
-}
-
-export default JoinEmail;
+            
+    {displayNextBtn &&<button className = {checkNextBtn ? styled.joinBtn : styled.joinBtnDisabled}
+    type='button' disabled = {!checkNextBtn}>
+    다음
+    </button>}        
+*/
