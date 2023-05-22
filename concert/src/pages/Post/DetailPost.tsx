@@ -7,16 +7,22 @@ import { changePostDateFormat } from 'utils/dateUtils';
 import Loading from 'components/loading';
 import { changeBoardId } from 'utils/boardId';
 import UserProfile from 'components/User/UserProfile';
-import PostMenu from './PostMenu';
+import PostMenu from '../../components/Post/PostMenu';
 import Mark from 'components/Mark/Mark';
 import Notification from 'components/notification/Notification';
 import Link from 'components/Link/Link';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import {getUserId} from 'utils/JwtUtils';
 
 interface DetailPostProps{
     childern : React.ReactNode;
 }
 const DetailPost:React.FC<DetailPostProps> = () => {
+    const accessToken = useSelector((state:RootState) => state.auth.accessToken);
+    
+    const [same, setSame] = useState<boolean>(false); 
     const [boardId, setBoardId] = useState<number>(-1);  // board 고유 번호
     const [createdDate,setCreatedDate] = useState<string>(""); // 포스트 생성 날짜
     const [modifiedDate,setModifiedDate] = useState<string>(""); //포스트 수정 날짜
@@ -29,6 +35,14 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     const [commentList , setCommentList] = useState<Array<string>>([]); //댓글 모음 
     const [loading , setLoading ] = useState<boolean>(false);
     const location = useLocation();
+
+    const checkWriter = (writerId:number) => {
+        if(accessToken&&getUserId(accessToken) === writerId){
+            setSame(true)
+            return;
+        }
+        setSame(false);
+    }
 
     const getPost = async() => {
        axiosInstance.get(`${location.pathname}`)
@@ -43,6 +57,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
             setWriterId(res.data.data.writerId);
             setWriterName(res.data.data.writerName);
             setCommentList(res.data.data.commentDtoList);
+            checkWriter(res.data.data.writerId)
             setLoading(true);
        })
        .catch((err)=>{
@@ -51,7 +66,6 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     }
     useEffect(() => {
         getPost();
-        console.log(location);
     } , [])
 
     return (
@@ -72,7 +86,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
                             {postTitle}
                         </div>
                         <div className = {styled.modiMenu}>
-                            <PostMenu visible = {true}/>      
+                            <PostMenu visible = {same}/>      
                         </div>      
                     </div>
                     <div className = "postContent">

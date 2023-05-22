@@ -5,3 +5,4 @@ declare module "*.scss" {
 declare module 'react-js-pagination';
 declare module "*.webp";
 declare module "*.jpg";
+declare module "*.png";

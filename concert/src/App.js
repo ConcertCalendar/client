@@ -4,10 +4,8 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Join  from "./pages/Join/Join";
 import Mypage  from "./pages/Mypage/Mypage";
-import Board from "./pages/Post/Board"
 import MyCalendar from './pages/Calendar/MyCalendar'
 import Layout from "./layout";
-import Post from "./pages/BulletinBoard/Post";
 import Write from "./pages/BulletinBoard/Write";
 import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
@@ -22,8 +20,8 @@ import SearchPage from "pages/Home/Search/SearchPage";
 import NotFound from "pages/BulletinBoard/NotFound/NotFound";
 import JoinTest from "pages/Test/JoinTest";
 import WriteTest from "pages/BulletinBoard/write/WriteTest";
-import DetailPost from "components/Post/DetailPost";
-import BoardTest from "pages/Board/BoardTest";
+import DetailPost from "pages/Post/DetailPost";
+import Board from "pages/Board/Board";
 
 
 function App() {
@@ -70,9 +68,9 @@ function App() {
         </Route>
         <Route path = '/search' element = {<SearchPage/>}/>
         <Route path="/" element = {<Home />}/>
-        <Route path = "/boards/:boardId"  element = {<BoardTest />}/>
+        <Route path = "/boards/:boardId"  element = {<Board />}/>
         <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
-        <Route path = "write" element = {<Write/>}/>
+        <Route path = "write" element = {<WriteTest/>}/>
         <Route path = "Calendar" element ={ <MyCalendar/>}/>
         <Route path = "join" element = {<Join />} />
         <Route path = "jointest" element = {<JoinTest />} />

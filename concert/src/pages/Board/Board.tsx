@@ -1,12 +1,15 @@
 import { ReactNode, useEffect, useState } from "react";
 import { axiosInstance } from "utils/customAxios";
-import styled from './BoardTest.module.scss';
+import styled from './Board.module.scss';
 import PostListTest from "components/PostList/PostListTest";
 import PostListHeader from "components/PostList/PostListHeader";
 import Pagination from 'react-js-pagination'
 import Loading from "components/loading";
-import BoardCategory from "pages/Post/BoardCatergory";
+import writeImg from 'assets/pencil.png'
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import BoardNav from "components/BoardNav/BoardNav";
+import BoardExp from "components/BoardExp/BoardExp";
+import "../../components/Pagination/Paging.css";
 
 
 interface BoardProps {
@@ -25,7 +28,7 @@ interface boardDataItem {
     writerId : number;
     writerName : string;
 }
-const BoardTest:React.FC<BoardProps> = (props) => {
+const Board:React.FC<BoardProps> = (props) => {
     const [boardData, setBoardData] = useState<Array<boardDataItem>>([]);
     const [totalPost, setTotalPost] = useState<number>(0);
     const [loading , setLoading] = useState<boolean>(false);
@@ -53,6 +56,10 @@ const BoardTest:React.FC<BoardProps> = (props) => {
         navigate(`posts/${id}`)
     }
 
+    const clickWriteBtnhandler = () => {
+        navigate('/write')
+    }
+
     const makePostList = () => {
         return boardData.map((item) => (
                 <PostListTest key = {item.id} onClick = {clickList.bind(this,item.id)} boardId={item.boardId} commentSize={item.commentSize} createdDate={item.createdDate}
@@ -62,13 +69,15 @@ const BoardTest:React.FC<BoardProps> = (props) => {
 
     useEffect(() => {
         getBoard();
+
     }, [location , param])
 
     return (
         <section className={styled.boardContainer}>
         {loading ? 
             <>
-                <BoardCategory boardId={0}/>
+                <BoardNav boardId={boardData[0].boardId}/>
+                <BoardExp explanation="게시판 설명"/>
                 <PostListHeader/>
                 {makePostList()}    
                 <Pagination
@@ -78,6 +87,10 @@ const BoardTest:React.FC<BoardProps> = (props) => {
                 pageRangeDisplayed={10}
                 onChange = {handleTopage}
                 />
+                <div className = {styled.write}  onClick={clickWriteBtnhandler}>
+                    +
+                </div>
+               
             </>
         :
             <Loading className={styled.loading}/>
@@ -86,4 +99,4 @@ const BoardTest:React.FC<BoardProps> = (props) => {
     )
 }
 
-export default BoardTest;
+export default Board;

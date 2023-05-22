@@ -1,0 +1,25 @@
+@mixin boardNavbox ($color,$borderTopColor , $borderBottomColor) {
+    width : 250px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 14px;
+    border-top: 2px solid $borderTopColor;
+    border-left : 1px  solid rgba(128,128,128,0.6);
+    border-right: 1px  solid rgba(128,128,128,0.6);
+    border-bottom: 1px solid  $borderBottomColor;
+    color: $color;
+    cursor: pointer;
+ }
+
+.boardNavContainer {
+    display: flex;
+}
+
+.boardNavItem {
+    @include boardNavbox(rgba(128,128,128,0.6),rgba(128,128,128,0.6), rgba(128,128,128,0.6));
+}
+
+.selectdBoardNavItem {
+    @include boardNavbox(black,black, transparent);
+}
