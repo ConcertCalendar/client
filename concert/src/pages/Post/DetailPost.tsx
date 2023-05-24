@@ -21,7 +21,7 @@ interface DetailPostProps{
 }
 const DetailPost:React.FC<DetailPostProps> = () => {
     const accessToken = useSelector((state:RootState) => state.auth.accessToken);
-    
+    const baseAddress = 'https://localhost:3000';
     const [same, setSame] = useState<boolean>(false); 
     const [boardId, setBoardId] = useState<number>(-1);  // board 고유 번호
     const [createdDate,setCreatedDate] = useState<string>(""); // 포스트 생성 날짜
@@ -59,6 +59,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
             setCommentList(res.data.data.commentDtoList);
             checkWriter(res.data.data.writerId)
             setLoading(true);
+            console.log('detailPost',res);
        })
        .catch((err)=>{
         console.log(err);
@@ -66,6 +67,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     }
     useEffect(() => {
         getPost();
+        console.log(location);
     } , [])
 
     return (
@@ -78,9 +80,9 @@ const DetailPost:React.FC<DetailPostProps> = () => {
                         <p className = {styled.createdDate}>{changePostDateFormat(createdDate)}</p>
                         <UserProfile className = {styled.userProfile} nickName = {writerName} />
                         <div className={styled.notiMenu}>
+                                <Notification visible = {same}/>
                             <Mark/>
-                            <Notification/>
-                            <Link/>
+                            <Link address = {`${baseAddress}${location.pathname}`}/>
                         </div>
                         <div className = {styled.postTitle}>
                             {postTitle}

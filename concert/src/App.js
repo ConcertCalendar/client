@@ -22,6 +22,7 @@ import JoinTest from "pages/Test/JoinTest";
 import WriteTest from "pages/BulletinBoard/write/WriteTest";
 import DetailPost from "pages/Post/DetailPost";
 import Board from "pages/Board/Board";
+import Report from "components/Report/Report";
 
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
         <Route path = 'testPost'element = {<DetailPost/>}/>
       </Route>
       <Route path="login" element = {<Login />} />
+      <Route path="test" element = {<Report/>} />
             <Route path="/*" element={<NotFound />} />
     </Routes>
   );

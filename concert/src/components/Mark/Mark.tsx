@@ -5,9 +5,13 @@ interface Mark {
 }
 
 const Mark:React.FC<Mark> = (props) => {
+    const markClickHandelr = () => {
 
+
+    }
+    
     return (
-        <div>
+        <div onClick = {markClickHandelr}>
             <img className = {styled.markImg} src = {MarkImg} alt = "북마크"/>
         </div>
     )
