@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     width: 400px;
     border: 1px solid rgba(128,128,128,0.2);
+    z-index: 2;
 }
 
 .reportTitle{
@@ -37,6 +38,7 @@
 
 .label {
     font-size: 13px;
+    padding-bottom: 5px;
     font-weight: bold;
 }
 

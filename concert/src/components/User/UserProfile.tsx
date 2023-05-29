@@ -10,10 +10,10 @@ interface UserProfileProps{
 const UserProfile:React.FC<UserProfileProps> = (props) => {
     const {nickName , className} = props;
     return (
-        <section className = {`${className} ${styled.UserProfileWrap}`}>
+        <div className = {`${className} ${styled.UserProfileWrap}`}>
             <img className= {styled.profileImg} src = {userImg} alt = "유저 프로필"/>
             <p className = {styled.nickname}> {nickName}</p>
-        </section>
+        </div>
     ) 
 }
 

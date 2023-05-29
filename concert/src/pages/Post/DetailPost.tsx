@@ -1,4 +1,4 @@
-import CommentList from 'pages/BulletinBoard/CommentList';
+import CommentList from 'components/Comment/CommentList'
 import styled from './DetailPost.module.scss';
 import Heart from 'pages/BulletinBoard/Heart';
 import { useState , useEffect} from 'react';
@@ -15,10 +15,14 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import {getUserId} from 'utils/JwtUtils';
+import CommentInputTest from 'components/Comment/Input/CommentInputtest';
+import Comment, { CommentDtoList } from 'components/Comment/Comment';
 
 interface DetailPostProps{
     childern : React.ReactNode;
 }
+
+
 const DetailPost:React.FC<DetailPostProps> = () => {
     const accessToken = useSelector((state:RootState) => state.auth.accessToken);
     const baseAddress = 'https://localhost:3000';
@@ -32,7 +36,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     const [writerId,setWriterId] = useState<number>(-1); //글쓴이 고유 아이디
     const [writerName , setWriterName] = useState<string>(""); //글쓴이 이름
     const [heart , setHeart] = useState<Array<string>>([]); //좋아요
-    const [commentList , setCommentList] = useState<Array<string>>([]); //댓글 모음 
+    const [commentList , setCommentList] = useState<Array<CommentDtoList>>([]); //댓글 모음 
     const [loading , setLoading ] = useState<boolean>(false);
     const location = useLocation();
 
@@ -91,11 +95,11 @@ const DetailPost:React.FC<DetailPostProps> = () => {
                             <PostMenu visible = {same}/>      
                         </div>      
                     </div>
-                    <div className = "postContent">
+                    <div className = {styled.postContent}>
                         {postContent}
                     </div>
                     <Heart boardId={boardId} postId={id} heartSet = {heart} />
-                    <CommentList commentList={commentList} changeCommentList = {setCommentList}/>
+                    <Comment token={accessToken} postId = {id} commentList={commentList} boardId={boardId}/>
                 </section>
                 :
                 <section className = {styled.loadingContainer}>
@@ -105,5 +109,5 @@ const DetailPost:React.FC<DetailPostProps> = () => {
         </div>
     )
 }
-
+//     <CommentList commentList={commentList} changeCommentList = {setCommentList}/>
 export default DetailPost; 

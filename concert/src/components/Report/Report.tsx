@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReportModal from "./ReportModal";
+
 interface ReportProps { 
     childern ?: React.ReactNode;
     className : string;
