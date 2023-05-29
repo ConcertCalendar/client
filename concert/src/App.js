@@ -23,6 +23,7 @@ import WriteTest from "pages/BulletinBoard/write/WriteTest";
 import DetailPost from "pages/Post/DetailPost";
 import Board from "pages/Board/Board";
 import Report from "components/Report/Report";
+import CalendarTest from "pages/Calendar/Test/CalendarTest";
 
 
 function App() {
@@ -72,7 +73,7 @@ function App() {
         <Route path = "/boards/:boardId"  element = {<Board />}/>
         <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
         <Route path = "write" element = {<WriteTest/>}/>
-        <Route path = "Calendar" element ={ <MyCalendar/>}/>
+        <Route path = "Calendar" element ={ <CalendarTest/>}/>
         <Route path = "join" element = {<Join />} />
         <Route path = "jointest" element = {<JoinTest />} />
         <Route path = 'testwrite'element = {<WriteTest/>}/>
