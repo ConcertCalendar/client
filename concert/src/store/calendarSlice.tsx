@@ -11,8 +11,8 @@ export interface calendarEvent {
   img : string;
   type : string;
   genreList : Array<string>,
-  maxPrice : string,
-  minPrice : string,
+  maxPrice : number,
+  minPrice : number,
   location : string,
 }
 
@@ -23,6 +23,10 @@ interface calendarState {
     filter : boolean;
     typeFilterList : Array<string>;
     genreFilterList : Array<string>;
+    maxPrice : number,
+    minPrice : number,
+    location : string,
+    detail : boolean,
   }
   
   const initialState : calendarState = {
@@ -31,6 +35,10 @@ interface calendarState {
     filter: false,
     typeFilterList : new Array<string>(),
     genreFilterList : new Array<string>(),
+    detail : false,
+    maxPrice : 0,
+    minPrice : 0,
+    location : "",
   }
   
   export const calendarSlice = createSlice({
@@ -68,12 +76,22 @@ interface calendarState {
           state.genreFilterList = newList;
         }
         },
+        setMinPrice:(state , action:PayloadAction<number>) => {
+          state.minPrice = action.payload;
+        },
+        setMaxPrice:(state , action:PayloadAction<number>) => {
+          state.maxPrice = action.payload;
+        },
+        setLocation:(state , action:PayloadAction<string>) => {
+          state.location = action.payload;
+        },
+        setDetail:(state , action:PayloadAction<boolean>) => {
+          state.detail = action.payload;
+        },
       },
-      
-
     })
   
   // Action creators are generated for each case reducer function
-  export const { setEvent , setFilterEvent, setFilter , addFilterList , deleteFilterList} = calendarSlice.actions; //reducer의 actions을 export
+  export const { setEvent , setFilterEvent, setFilter , addFilterList , deleteFilterList, setMinPrice, setMaxPrice, setLocation,setDetail} = calendarSlice.actions; //reducer의 actions을 export
   
   export default calendarSlice.reducer

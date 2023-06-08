@@ -14,13 +14,23 @@ const CalendarTag:React.FC<calendarTagProps> = (props) => {
     const event = useSelector((state:RootState)=>state.calendar.event);
     const typeFilterList = useSelector((state:RootState)=> state.calendar.typeFilterList);
     const genreFilterList = useSelector((state:RootState)=> state.calendar.genreFilterList);
-    const filterEvent = useSelector((state:RootState)=> state.calendar.filterEvent);
-    const filter = useSelector((state:RootState)=> state.calendar.filter);
+    const minPrice = useSelector((state:RootState)=> state.calendar.minPrice);
+    const maxPrice = useSelector((state:RootState)=> state.calendar.maxPrice);
+    const cLocation = useSelector((state:RootState)=> state.calendar.location);
+    const detail = useSelector((state:RootState)=> state.calendar.detail);
     const dispatch = useDispatch();
 
     const checkFilterEvent = (item : calendarEvent) => {
-        if(typeFilterList.length !== 0 && !typeFilterList.includes(item.type)){ //분류 1의 값을 갖고 있지 않으면
+        if(typeFilterList.length !== 0 && !typeFilterList.includes(item.type)){ //분류 1의 값을 갖고 있지 
             return false; 
+        }
+
+        if(cLocation !== "" && item.location !== cLocation){ //장소가 설정되면
+            return false;
+        }
+        if(maxPrice!==0){
+            if(minPrice > item.maxPrice || maxPrice < item.minPrice  || (item.maxPrice > maxPrice&& item.minPrice < minPrice))
+                return false
         }
         for(let i = 0 ; i < genreFilterList.length ; i++){ //분류 1의 값을 갖고 있거나 분류 1의 length 가 0일 때
             if(!item.genreList.includes(genreFilterList[i])){ //분류 2의 값을 갖고 있지 않으면
@@ -37,14 +47,14 @@ const CalendarTag:React.FC<calendarTagProps> = (props) => {
     }
 
     useEffect(()=>{
-        if(typeFilterList.length !== 0 || genreFilterList.length !== 0){
+        if(typeFilterList.length !== 0 || genreFilterList.length !== 0 || detail){
             dispatch(setFilter(true))
             filtering()
-      
         }else{
             dispatch(setFilter(false))
         }   
-    },[typeFilterList, genreFilterList])
+        console.log(maxPrice, minPrice , cLocation)
+    },[typeFilterList, genreFilterList , detail])
 
     return (
         <section className = {styled.tagContainer}>
