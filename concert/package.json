@@ -8,6 +8,7 @@
     "@fullcalendar/core": "^6.0.3",
     "@fullcalendar/daygrid": "^6.0.3",
     "@fullcalendar/interaction": "^6.0.3",
+    "@fullcalendar/multimonth": "^6.1.8",
     "@fullcalendar/react": "^6.0.4",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/dom": "^9.2.0",

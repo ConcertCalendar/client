@@ -4,14 +4,14 @@ import { axiosInstance } from 'utils/customAxios';
 import { isAuth } from 'utils/JwtUtils';
 import { useSelector } from 'react-redux';
 
-function HomeCalendarModal ({closeModal, title , content , pageXY}) {
+function HomeCalendarModal ({closeModal, title , content }) {
     const modalRef = useRef();
-    const [position, setPosition] = useState("")
+  //  const [position, setPosition] = useState("")
     const [bookmarkState , setBookmarkState] = useState(false);
     const accessToken = useSelector((state)=> state.auth.accessToken);
     const currentUid = useSelector((state)=> state.login.currentUid);
 
-    const popUpModalPosition = () => {
+  /*  const popUpModalPosition = () => {
         console.log('HomeCalendarModal' ,pageXY)
         if(700 < pageXY[1] && pageXY[1] < 1000){
             modalRef.current.style = `top : ${pageXY[1] - 585 }px; left: ${pageXY[0] - 475}px;`;
@@ -19,7 +19,7 @@ function HomeCalendarModal ({closeModal, title , content , pageXY}) {
         }else  if(1000 <= pageXY[1]){
             modalRef.current.style = `top : ${pageXY[1] - 1035 }px; left: ${pageXY[0] - 475}px;`;
         }
-    }
+    }*/
 
     const createBookmark = async() => {
         const response = await axiosInstance.post(`/calendar/bookmark/${content.id}`)
@@ -59,8 +59,6 @@ function HomeCalendarModal ({closeModal, title , content , pageXY}) {
     }
 
     useEffect ( ()=> {
-        popUpModalPosition();
-        console.log(content , currentUid)
         document.addEventListener('mousedown' , handleMouseDown);
         return ()=> { 
             document.removeEventListener('mousedown' , handleMouseDown);
@@ -81,7 +79,7 @@ function HomeCalendarModal ({closeModal, title , content , pageXY}) {
 
     return (
         <div className = {styled.modalForm} ref = {modalRef}>
-            <div className= {position === 'top'? styled.modalTopContainer : styled.modalContainer}>
+            <div className= {/*position === 'top'? styled.modalTopContainer :*/ styled.modalContainer}>
                 <div className = {styled.modalTitle}> {title} </div>
                 <img src = "/images/star.png" className = {styled.markingImg} alt = "mark" onClick={clickBookmarkHandler}/>
                 <div className={styled.modalBody}>

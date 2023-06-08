@@ -28,7 +28,7 @@ import CalendarTest from "pages/Calendar/Test/CalendarTest";
 
 function App() {
   const dispatch = useDispatch();
-  async function reNew(url = 'https://concal.p-e.kr/users/reIssue'){
+  async function reNew(url = 'https://dev.pushpin.co.kr/users/reIssue'){
     await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE 등
         mode: 'cors', // no-cors, *cors, same-origin
