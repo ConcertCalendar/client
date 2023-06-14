@@ -28,6 +28,7 @@ interface boardDataItem {
     writerId : number;
     writerName : string;
 }
+
 const Board:React.FC<BoardProps> = (props) => {
     const [boardData, setBoardData] = useState<Array<boardDataItem>>([]);
     const [totalPost, setTotalPost] = useState<number>(0);
@@ -69,14 +70,13 @@ const Board:React.FC<BoardProps> = (props) => {
 
     useEffect(() => {
         getBoard();
-
     }, [location , param])
 
     return (
         <section className={styled.boardContainer}>
         {loading ? 
             <>
-                <BoardNav boardId={boardData[0].boardId}/>
+                <BoardNav boardId={Number(location.pathname.slice(8,))}/>
                 <BoardExp explanation="게시판 설명"/>
                 <PostListHeader/>
                 {makePostList()}    

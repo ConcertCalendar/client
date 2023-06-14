@@ -3,8 +3,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 export interface calendarEvent {
   id : string;
   title : string;
-  start : Date | string;
-  end : Date | string;
+  start :  string;
+  end :  string;
   conTime : string;
   singer : string;
   place : string;
@@ -27,6 +27,7 @@ interface calendarState {
     minPrice : number,
     location : string,
     detail : boolean,
+    viewList : boolean,
   }
   
   const initialState : calendarState = {
@@ -39,6 +40,7 @@ interface calendarState {
     maxPrice : 0,
     minPrice : 0,
     location : "",
+    viewList :false // false 이면 Calnedar 뷰
   }
   
   export const calendarSlice = createSlice({
@@ -88,10 +90,13 @@ interface calendarState {
         setDetail:(state , action:PayloadAction<boolean>) => {
           state.detail = action.payload;
         },
+        setList:(state , action:PayloadAction<boolean>)=> {
+          state.viewList = action.payload;
+        }
       },
     })
   
   // Action creators are generated for each case reducer function
-  export const { setEvent , setFilterEvent, setFilter , addFilterList , deleteFilterList, setMinPrice, setMaxPrice, setLocation,setDetail} = calendarSlice.actions; //reducer의 actions을 export
+  export const { setEvent , setFilterEvent, setFilter , addFilterList , deleteFilterList, setMinPrice, setMaxPrice, setLocation,setDetail, setList} = calendarSlice.actions; //reducer의 actions을 export
   
   export default calendarSlice.reducer

@@ -10,23 +10,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { calendarEvent, setEvent, setFilterEvent } from 'store/calendarSlice';
 import CalendarTag from './CalendarCategory/CalendarTag/CalendarTag';
+import ConcertList from 'components/concerList/ConcertList';
 
 
 const CalendarTest = () => {
     const event = useSelector((state:RootState)=> state.calendar.event);
     const filterEvent = useSelector((state:RootState)=> state.calendar.filterEvent);
     const filter = useSelector((state:RootState)=> state.calendar.filter);
-
+    const viewList = useSelector((state:RootState)=> state.calendar.viewList);
 
     const dispatch = useDispatch();
 
     const changeProperty = (data : any) => {
         let chagne_data = data.map((item : any)=> {
             let obj = {
-                id : item.conNo,
-                title : item.conTitle,
-                start : item.concertTime.conStart,
-                end : item.concertTime.conEnd,
+                id : item.id,
+                title : item.title,
+                start : item.concertTime.start,
+                end : item.concertTime.end, 
                 conTime : item.concertTime.conTime,
                 singer : item.singer,
                 place : item.conPlace,
@@ -49,6 +50,7 @@ const CalendarTest = () => {
     useEffect( () => {
         axiosInstance.get('/calendar/event')
         .then((res)=> {
+            console.log(res.data.data)
             const events = changeProperty(res.data.data);
             dispatch(setEvent(events));
             dispatch(setFilterEvent(filterEvent));
@@ -60,6 +62,7 @@ const CalendarTest = () => {
     return (
         <section className={styled.CalendarContainer}>
             <CalendarTag/>
+            {!viewList&&
             <StyleWrapper>
                 <FullCalendar
                     headerToolbar = {{start:'title prev,next',end : ''}}
@@ -70,8 +73,11 @@ const CalendarTest = () => {
                     dayMaxEvents = {3}
                     locale={'ko'}
                     height= {700}
+                    firstDay={1}
                 />
             </StyleWrapper>
+            }
+            {viewList && <ConcertList event={filter ? filterEvent : event}/>}
         </section>
     )
 }

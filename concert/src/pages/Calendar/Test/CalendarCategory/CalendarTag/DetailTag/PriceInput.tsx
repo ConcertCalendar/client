@@ -5,12 +5,13 @@ import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 interface PriceInputProps {
     placeholder : string;
     name : string;
+    id : string;
     value : number;
     setValue : ActionCreatorWithPayload<number>;
 }
 
 const PriceInput:React.FC<PriceInputProps> = (props) => {
-    const {placeholder, name , value, setValue} = props;
+    const {placeholder , id, name , value, setValue} = props;
     const dispatch = useDispatch();
 
     const changeHandler  = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +23,8 @@ const PriceInput:React.FC<PriceInputProps> = (props) => {
     return (
         <div className={styled.priceInputWrap}>
             <p className={styled.priceName}>{name}</p>
-            <input  onChange = {changeHandler.bind(this)} pattern = '[0-9]*' placeholder={placeholder} value = {value} name = {name} type = "text" className={styled.priceInput}/>
+            <input  onChange = {changeHandler.bind(this)} pattern = '[0-9]*' placeholder={placeholder} value = {value} id= {id}
+             aria-labelledby={id} name = {name} type = "text" className={styled.priceInput}/>
         </div>
     )
     

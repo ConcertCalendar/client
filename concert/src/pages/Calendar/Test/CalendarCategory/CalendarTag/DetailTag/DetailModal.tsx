@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect } from "react";
+import { SetStateAction, useState , useRef } from "react";
 import styled from './DetailModal.module.scss';
 import PriceInput from "./PriceInput";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,12 +32,48 @@ const DetailModal:React.FC<DetailModalProps> = (props) => {
         setVisible(!visible);
     }
 
+
+    /*
+    const [click , setClick] = useState<boolean>(false);
+    const [width , setWidth] = useState<string>("");
+    const minRef =  useRef<HTMLDivElement>(null);
+    
+    const slidePrice = (e:React.MouseEvent<HTMLDivElement>) => {
+        if(click){
+            console.log(e);
+            if(minRef.current !== null){
+                minRef.current.style.left = `${(e.pageX + e.movementX) / 1191 *100}%`;  
+                dispatch(setMinPrice( Math.floor(Number(`${(e.pageX + e.movementX) /1191 * 500000 }`))));
+            }
+        }   
+    }
+ 
+    const mouseDown = (e:React.MouseEvent<HTMLButtonElement>) => {
+        setClick(true)
+    }
+
+    const mouseUP  = (e:React.MouseEvent<HTMLButtonElement>) => {
+        setClick(false)
+    }
+    const mousedivUP  = (e:React.MouseEvent<HTMLDivElement>) => {
+        setClick(false)
+    }
+    <div className = {styled.priceBar} onMouseMove={slidePrice} onMouseLeave={mousedivUP}>
+                    <div className={styled.left} ref = {minRef}>
+                        <button  onMouseDown={mouseDown} onMouseUp={mouseUP}  className={styled.priceCircle} role="slider" aria-label="min" value = {minPrice}/>
+                    </div>
+                    <div className={styled.right}>
+                        <button className={styled.priceCircle}/> 
+                    </div>
+                </div>
+*/
+
     return (
         <section className = {styled.DetailModalContainer}>
             <button className={styled.xButton} onClick = {onClickCancle}>x</button>
             <h5>가격</h5>
             <div className={styled.priceWrap}>
-                <PriceInput name = "최저" placeholder="0" value = {minPrice} setValue={setMinPrice}/> <p>~</p> <PriceInput name = "최고" placeholder="0" value = {maxPrice} setValue={setMaxPrice}/>
+                    <PriceInput id = 'min' name = "최저" placeholder="0" value = {minPrice} setValue={setMinPrice}/> <p>~</p> <PriceInput id = "max" name = "최고" placeholder="0" value = {maxPrice} setValue={setMaxPrice}/>
             </div>               
             <h5>지역</h5>
             <div className = {styled.locationWrap}>
