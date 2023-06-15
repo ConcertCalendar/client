@@ -3,6 +3,7 @@ import NavLogo from './Nav/NavLogo';
 import NavItem from './Nav/NavItem';
 import navLogoImage from '../assets/AnyConv.com__logo.webp'
 import SearchBar from 'pages/Home/searchBar/SearchBar';
+import Search from './Search/Search';
 
 function Nav() {  
   return (
@@ -13,6 +14,7 @@ function Nav() {
           <NavItem itemName = {"CALENDAR"} navLink = {"Calendar"}/>
           <NavItem itemName = {"COMMUNITY"} navLink = {"/boards/1?page=0"} color = 'red'/>
           <SearchBar placeholder={""}/>
+        
         </div>
     </div>
   );

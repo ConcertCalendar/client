@@ -17,7 +17,7 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    async function postLogin(url = 'https://concal.p-e.kr/users/login' , data = { "userEmail" : email, "password" : password }){
+    async function postLogin(url = 'https://dev.pushpin.co.kr/users/login' , data = { "userEmail" : email, "password" : password }){
         await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE 등
             mode: 'cors', // no-cors, *cors, same-origin

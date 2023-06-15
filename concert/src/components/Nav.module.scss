@@ -19,3 +19,11 @@
     align-items: center;
 }
 
+.navSearchBar {
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    width : 200px;
+    height: 40px;
+}

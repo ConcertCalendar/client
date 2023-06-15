@@ -11,6 +11,7 @@ import { RootState } from 'store/store';
 import { calendarEvent, setEvent, setFilterEvent } from 'store/calendarSlice';
 import CalendarTag from './CalendarCategory/CalendarTag/CalendarTag';
 import ConcertList from 'components/concerList/ConcertList';
+import Search from 'components/Search/Search';
 
 
 const CalendarTest = () => {
@@ -61,7 +62,11 @@ const CalendarTest = () => {
 
     return (
         <section className={styled.CalendarContainer}>
+            <Search className = {styled.calendarSearch} 
+                    placeholder='찾으시는 공연명을 입력하세요'
+                    uri = '/calendar/searchEvent'/>
             <CalendarTag/>
+         
             {!viewList&&
             <StyleWrapper>
                 <FullCalendar

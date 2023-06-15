@@ -24,6 +24,8 @@ import DetailPost from "pages/Post/DetailPost";
 import Board from "pages/Board/Board";
 import Report from "components/Report/Report";
 import CalendarTest from "pages/Calendar/Test/CalendarTest";
+import ConcertList from "components/concerList/ConcertList";
+import Test from "Test";
 
 
 function App() {
@@ -74,6 +76,7 @@ function App() {
         <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
         <Route path = "write" element = {<WriteTest/>}/>
         <Route path = "Calendar" element ={ <CalendarTest/>}/>
+        <Route path = "Calendar/search" element = {<Test/>}/>
         <Route path = "join" element = {<Join />} />
         <Route path = "jointest" element = {<JoinTest />} />
         <Route path = 'testwrite'element = {<WriteTest/>}/>
