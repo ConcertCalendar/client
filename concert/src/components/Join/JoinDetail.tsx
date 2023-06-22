@@ -1,21 +1,19 @@
+import { useDispatch } from 'react-redux';
 import styled from './JoinDetail.module.scss';
 import {useState} from 'react';
+import { setPhase } from 'store/joinSlice';
 interface JoinDetailProps {
     childern ?: React.ReactNode;
-    phase : string;
-    setPhase : React.Dispatch<React.SetStateAction<string>>;
-
-
 }
 
 const JoinDetail:React.FC<JoinDetailProps> = (props) => {
-    const {phase , setPhase } = props;
+    const dispatch = useDispatch();
     const [checkNextBtn ,setCheckNextBtn] = useState<boolean>(true); //다음 버튼 활성화 여부
     const [slide , setSlide] = useState<boolean>(false);
 
     const handleNext = () => {
         setSlide(true);
-        setTimeout(()=>setPhase('4'), 500);
+        setTimeout(()=>dispatch(setPhase('4')), 500);
     }
 
     return (

@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import styled from './JoinTerms.module.scss'
+import { useDispatch } from 'react-redux';
+import { setPhase } from 'store/joinSlice';
 interface JoinTermsProps {
     childern ?: React.ReactNode;
     className ?: string;
-    phase : string;
-    setPhase : React.Dispatch<React.SetStateAction<string>>;
-
 }
 
 const JoinTerms:React.FC<JoinTermsProps> = (props) => {
-    const {phase , setPhase , className } = props;
+    const { className } = props;
+
+    const dispatch = useDispatch();
     const [slide , setSlide] = useState<boolean>(false);
     const handleNext = () => {
         setSlide(true);
-        setTimeout(()=>setPhase('1'), 100);
+        setTimeout(()=>dispatch(setPhase('1')), 100);
     }
 
     return ( 

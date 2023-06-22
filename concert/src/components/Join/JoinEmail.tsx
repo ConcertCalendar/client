@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import styled from './JoinEmail.module.scss';
 import { axiosInstance } from 'utils/customAxios';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { setEmail, setPhase } from 'store/joinSlice';
 
 interface JoinEmailProps {
     childern ?: React.ReactNode;
-    phase : string;
-    setPhase : React.Dispatch<React.SetStateAction<string>>;
+
 }
 
 const JoinEmail:React.FC<JoinEmailProps> = (props) => {
-    const  {phase ,setPhase}  = props;
-
-    const [email , setEmail] = useState<string>(""); //이메일 인풋
+    const phase = useSelector((state:RootState)=> state.join.phase);
+    const email = useSelector((state:RootState) => state.join.email);//이메일 인풋
     const [checkAuthBtn, setCheckAuthBtn] = useState<boolean>(false); //인증 버튼 활성화 비활성화
     const [emailErrmsg , setEmailErrmsg] = useState<string>(""); //이메일 에러 메세지 내용
     const [certValue , setCertValue] = useState<string>(""); //내가 입력한 인증 번호
@@ -20,9 +21,10 @@ const JoinEmail:React.FC<JoinEmailProps> = (props) => {
     const [checkAuthInput ,setCheckAuthInput] = useState<boolean>(false); //인증번호 인풋 활성화 여부
     const [displayErrmsg ,setDisplayErrmsg] = useState<boolean>(false); //에러메시지 보낼 건지
     const [slide , setSlide] = useState<boolean>(false); //애니메이션 여부
+    const dispatch = useDispatch();
 
     const onChangeEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
+        dispatch(setEmail(event.target.value));
     }
     
     const onChangeCert = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +80,7 @@ const JoinEmail:React.FC<JoinEmailProps> = (props) => {
 
     const handleNext = () => {
         setSlide(true);
-        setTimeout(()=> setPhase('2'), 300);
+        setTimeout(()=> dispatch(setPhase('2')), 300);
     }
 
     return ( 

@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import styled from './JoinTest.module.scss';
-import { axiosInstance } from 'utils/customAxios';
-import JoinEmail from './JoinEmail';
-import JoinTerms from './JoinTerms';
-import JoinPassword from './JoinPassword';
-import JoinDetail from './JoinDetail';
-import JoinComplete from './JoinComplete';
+import styled from './Join.module.scss';
+import JoinTerms from 'components/Join/JoinTerms';
+import JoinEmail from 'components/Join/JoinEmail';
+import JoinPassword from 'components/Join/JoinPassword';
+import JoinDetail from 'components/Join/JoinDetail';
+import JoinComplete from 'components/Join/JoinComplete';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
 
 interface JoinTestProps {
     childern ?: React.ReactNode;
 }
 
-const JoinTest:React.FC<JoinTestProps> = (props) => {
-    const [phase , setPhase] = useState<string>('0');
+const Join:React.FC<JoinTestProps> = (props) => {
+    const phase = useSelector((state:RootState)=>state.join.phase);
     const progressRef = useRef<HTMLDivElement>(null);
     useEffect(()=> {
         switch(phase){
@@ -37,7 +38,27 @@ const JoinTest:React.FC<JoinTestProps> = (props) => {
                 return
             }
         }
-       /* if( phase === '1') {
+     
+    }, [phase])
+    return ( 
+        <article className = {styled.joinContainer}>
+            <form className = {styled.joinForm}>
+                <h2 className = {styled.joinMsg}>회원 가입 메세지</h2>
+                <div className = {styled.progressBar}>
+                    <div className = { `${styled.progressBarInner}`} ref = {progressRef}></div>
+                </div>
+                {(phase==='0')&&<JoinTerms  />}
+                {(phase==='1')&&<JoinEmail  />}
+                {(phase==='2')&&<JoinPassword />} 
+                {(phase==='3')&&<JoinDetail/>}
+                {(phase==='4')&&<JoinComplete/>}
+            </form>
+        </article>
+    )
+}
+
+export default Join;
+  /* if( phase === '1') {
             progressRef.current?.classList.add(`${styled.phase1}`);
         }else if( phase === '2'){
             progressRef.current?.classList.remove(`${styled.phase1}`);
@@ -49,26 +70,6 @@ const JoinTest:React.FC<JoinTestProps> = (props) => {
             progressRef.current?.classList.remove(`${styled.phase3}`);
             progressRef.current?.classList.add(`${styled.phase4}`);
         }*/
-    }, [phase])
-    return ( 
-        <article className = {styled.joinContainer}>
-            <form className = {styled.joinForm}>
-                <h2 className = {styled.joinMsg}>회원 가입 메세지</h2>
-                <div className = {styled.progressBar}>
-                    <div className = { `${styled.progressBarInner}`} ref = {progressRef}></div>
-                </div>
-                {(phase==='0')&&<JoinTerms  phase={phase} setPhase={setPhase} />}
-                {(phase==='1')&&<JoinEmail  phase={phase} setPhase={setPhase}/>}
-                {(phase==='2')&&<JoinPassword phase = {phase} setPhase={setPhase}/>} 
-                {(phase==='3')&&<JoinDetail phase = {phase} setPhase={setPhase}/>}
-                {(phase==='4')&&<JoinComplete/>}
-            </form>
-        </article>
-    )
-}
-
-export default JoinTest;
-
     /*const [email , setEmail] = useState<string>("");
     const [checkNextBtn, setCheckNextBtn] = useState<boolean>(false);
     const [displayErrmsg ,setDisplayErrmsg] = useState<boolean>(false);

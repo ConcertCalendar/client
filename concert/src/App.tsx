@@ -2,7 +2,6 @@ import {  Routes, Route } from "react-router-dom";
 
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
-import Join  from "./pages/Join/Join";
 import Mypage  from "./pages/Mypage/Mypage";
 import Layout from "./pages/Layout/layout";
 import { useEffect } from "react";
@@ -14,7 +13,6 @@ import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
 import SearchPage from "pages/Home/Search/SearchPage";
 import NotFound from "pages/BulletinBoard/NotFound/NotFound";
-import JoinTest from "pages/Test/JoinTest";
 import WriteTest from "pages/BulletinBoard/write/WriteTest";
 import DetailPost from "pages/Post/DetailPost";
 import Board from "pages/Board/Board";
@@ -22,7 +20,8 @@ import Report from "components/Report/Report";
 import CalendarTest from "pages/Calendar/Test/CalendarTest";
 import { isAuth } from "utils/JwtUtils";
 import { RootState } from "store/store";
-import { getCookie } from "utils/cookie";
+import Join from "pages/Join/Join";
+
 
 
 function App() {
@@ -103,8 +102,7 @@ function App() {
         <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
         <Route path = "write" element = {<WriteTest/>}/>
         <Route path = "Calendar" element ={ <CalendarTest/>}/>
-        <Route path = "join" element = {<Join />} />
-        <Route path = "jointest" element = {<JoinTest />} />
+        <Route path = "join" element = {<Join/>} />
         <Route path = 'testwrite'element = {<WriteTest/>}/>
         <Route path = 'testPost'element = {<DetailPost/>}/>
       </Route>

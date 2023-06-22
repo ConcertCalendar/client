@@ -4,7 +4,7 @@ import './Join.css'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Join() {
+function V1Join() {
     const [email, setEmail] = useState(""); //이메일 input value 값을 저장할 state
     const [password , setPassword] = useState(""); //비밀번호 input value 값을 저장할 state
     const [checkPassword, setCheckPassword] = useState(""); //비밀번호 확인 input value 값을 저장할 state
@@ -244,4 +244,4 @@ function Join() {
     );
   }
   
-  export default Join;
+  export default V1Join;
