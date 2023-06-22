@@ -1,6 +1,8 @@
 import { axiosInstance } from 'utils/customAxios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { keyWordStorage } from 'utils/keyWordStorage';
+import styled from './Search.module.scss';
 
 interface SearchInput {
     childern ?: React.ReactNode;
@@ -12,6 +14,8 @@ interface SearchInput {
 const SearchInput:React.FC<SearchInput> = (props) => {
     const {placeholder , className , uri} = props;
     const [keyWord,setKeyWord] = useState<string>(""); //input value
+    const [focus, setFocus] = useState<boolean>(false);
+    const recentStorage = new keyWordStorage('recent', []);
 
     const navigate = useNavigate();
     //props로 받은 uri로 API를 호출하여 검색을 할 함수
@@ -24,12 +28,14 @@ const SearchInput:React.FC<SearchInput> = (props) => {
     }
 
     const saveLocalStorage = () => {
-
+        recentStorage.set(keyWord);
     }
     //엔터키 입력시 search를 호출할 함수
     const handleEnter = (e:React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter'){ //엔터 키 입력
-            search()
+            saveLocalStorage();
+            console.log(recentStorage.get())
+            search();
         }
     }
     
@@ -38,8 +44,24 @@ const SearchInput:React.FC<SearchInput> = (props) => {
         setKeyWord(e.target.value);
     }
 
+    const makeRecent = () => {
+        return  recentStorage.get().map((item)=> (
+            <li onClick = {()=> console.log('click', item)}>
+                {item}
+            </li>
+        ))
+    }
+
     return (
-        <input onChange={handleChagne} onKeyUp = {handleEnter} className={className} placeholder={placeholder} value = {keyWord}/>
+        <>
+            <input onChange={handleChagne} onKeyUp = {handleEnter} className={className} onFocus={()=>setFocus(true)}
+             onBlur={()=>setFocus(false)} placeholder={placeholder} value = {keyWord} >
+            </input>
+            {focus && 
+                <ul className = {styled.searchList} >최근 검색어
+                    {makeRecent()}
+                </ul>}
+        </>
     )
 }
 

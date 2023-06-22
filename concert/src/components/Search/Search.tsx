@@ -14,7 +14,7 @@ const Search:React.FC<Search>= (props) => {
     const {placeholder, className, uri} = props;
     
     return (
-        <div className={className}>
+        <div className={className}> 
             <SearchIcon className = {styled.icon}/>
             <SearchInput className={styled.input} placeholder={placeholder} uri = {uri}/>
         </div>

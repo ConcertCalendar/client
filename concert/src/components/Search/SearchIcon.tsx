@@ -8,6 +8,7 @@ interface SearchIcon {
 
 const SearchIcon:React.FC<SearchIcon> = (props) => {
     const {className} = props;
+    
     return (
         <div className={className}>
             <img src = {icon} className={styled.searchIcon}/>

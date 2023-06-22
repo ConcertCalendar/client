@@ -4,15 +4,11 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Join  from "./pages/Join/Join";
 import Mypage  from "./pages/Mypage/Mypage";
-import MyCalendar from './pages/Calendar/MyCalendar'
-import Layout from "./layout";
-import Write from "./pages/BulletinBoard/Write";
+import Layout from "./pages/Layout/layout";
 import { useEffect } from "react";
 import { axiosInstance } from "./utils/customAxios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeAccessToken } from "./store/authSlice";
-import { setCurrentUid, setCurrentUserEmail } from "pages/Login/loginSlice";
-import { getUserEmail, getUserId } from "utils/JwtUtils";
 import UserInfo from "pages/Mypage/UserInfo";
 import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
@@ -24,13 +20,24 @@ import DetailPost from "pages/Post/DetailPost";
 import Board from "pages/Board/Board";
 import Report from "components/Report/Report";
 import CalendarTest from "pages/Calendar/Test/CalendarTest";
-import ConcertList from "components/concerList/ConcertList";
-import Test from "Test";
+import { isAuth } from "utils/JwtUtils";
+import { RootState } from "store/store";
+import { getCookie } from "utils/cookie";
 
 
 function App() {
   const dispatch = useDispatch();
-  async function reNew(url = 'https://dev.pushpin.co.kr/users/reIssue'){
+  const accessToken = useSelector((state:RootState)=> state.auth.accessToken);
+
+  const reIssue = () => {
+    axiosInstance.post('users/reIssue').then((res)=> {
+      console.log(res)
+      axiosInstance.defaults.headers.common["Authorization"] = `${res.data.data}`;
+      dispatch(storeAccessToken(res.data.data));
+    })
+  }
+
+  /*async function reNew(url = 'https://dev.pushpin.co.kr/users/reIssue'){
     await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE 등
         mode: 'cors', // no-cors, *cors, same-origin
@@ -47,20 +54,40 @@ function App() {
           reNewSuccess(data.data)
       }
     )}
-
   const reNewSuccess = (accessToken) => {
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
         dispatch(setCurrentUid(getUserId(accessToken))); 
         dispatch(setCurrentUserEmail(getUserEmail(accessToken)));
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
   }
+  */
+
+
   useEffect(()=> {
-    reNew();
+    window.addEventListener('load' , ()=> {
+      const reloading = sessionStorage.getItem("reloading");
+      const login = sessionStorage.getItem('login');
+      if(reloading && login){
+        sessionStorage.removeItem('reloading');
+        reIssue();
+      }})
+    window.addEventListener('keydown' , (e) => {
+     if(e.key === 'F5' ){
+        sessionStorage.setItem('reloading', 'true');
+        document.location.reload();
+      }
+    })
+
+    const checkAuth = setInterval(()=> { //1초마다 탐색
+        if(accessToken !== "" && !isAuth(accessToken)){//accesstoken이 존재하고 만료기한이 끝나면
+          reIssue();
+        }    
+      }, 1000)
     return ()=> {
-        axiosInstance.post('/users/logout');
+      clearInterval(checkAuth);
     }
 
-  }, [])
+  }, [accessToken])
 
   return (
     <Routes>
@@ -76,7 +103,6 @@ function App() {
         <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
         <Route path = "write" element = {<WriteTest/>}/>
         <Route path = "Calendar" element ={ <CalendarTest/>}/>
-        <Route path = "Calendar/search" element = {<Test/>}/>
         <Route path = "join" element = {<Join />} />
         <Route path = "jointest" element = {<JoinTest />} />
         <Route path = 'testwrite'element = {<WriteTest/>}/>

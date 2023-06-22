@@ -19,7 +19,7 @@ import CommentInputTest from 'components/Comment/Input/CommentInputtest';
 import Comment, { CommentDtoList } from 'components/Comment/Comment';
 
 interface DetailPostProps{
-    childern : React.ReactNode;
+    childern ?: React.ReactNode;
 }
 
 

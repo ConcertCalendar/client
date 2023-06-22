@@ -1,4 +1,5 @@
-import React from 'react';
+import {useEffect} from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import styled from './Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,15 +16,18 @@ const Header : React.FC<HeaderProps> = (props) => {
     const accessToken = useSelector((state : RootState) => state.auth.accessToken);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+
+    useEffect(()=> {
+      console.log(accessToken)
+    }, [accessToken])
+   
     const handlelogout = () => {
       axiosInstance.post('/users/logout')
       .then((res)=>{
-        if(res.status === 200)
+          sessionStorage.removeItem('login');
           dispatch(storeAccessToken(""));
           navigate('/')
       })
-      .catch(err=>console.log(err));
     }
 
     return (
@@ -42,7 +46,7 @@ const Header : React.FC<HeaderProps> = (props) => {
               </Link>
             </li>
             }
-            {accessToken ?
+            {accessToken?
             <li className = {styled.headerItem} onClick={handlelogout}>
               로그아웃          
             </li>

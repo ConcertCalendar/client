@@ -2,18 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { inputEmail, inputPassword, setCurrentUid, setCurrentUserEmail } from "./loginSlice"
 import { Link } from "react-router-dom";
-import './Login.css'
 import { storeAccessToken } from "../../store/authSlice";
 import { axiosInstance } from "../../utils/customAxios";
 import { getUserEmail, getUserId } from "utils/JwtUtils";
 import { useState } from "react";
+import styled from './Login.moudle.scss';
+import { RootState } from "store/store";
 
-
-function Login() {
+const Login = () =>  {
     const {state} = useLocation();
-    const email = useSelector((state) => state.login.email);
-    const password = useSelector((state) => state.login.password);
-    const [loginErrMsg,setLoginErrmsg] = useState(false);
+    const email = useSelector((state:RootState) => state.login.email);
+    const password = useSelector((state:RootState) => state.login.password);
+    const [loginErrMsg,setLoginErrmsg] = useState<boolean>(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -38,35 +38,33 @@ function Login() {
                 }
             })}
     
-    const loginSuccess = (accessToken) => {
-        console.log(accessToken);
-        dispatch(setCurrentUid(getUserId(accessToken))); //나중에 수정
-        dispatch(setCurrentUserEmail(getUserEmail(accessToken)));
+    const loginSuccess = (accessToken : string) => {
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
+        sessionStorage.setItem('login', 'true');
         axiosInstance.defaults.headers.common["Authorization"] = `${accessToken}`; //axios 헤더에 accesstoken 값을 넣어줌
         navigate(state.from);
     }
 
 
-    const loginSubmit = async (event) => {
+    const loginSubmit = async (event : React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         postLogin();
     }
 
 
-    const handleEmail = (event) => {    
+    const handleEmail = (event:React.ChangeEvent<HTMLInputElement>) => {    
         dispatch(inputEmail(event.target.value));
     }
     
-    const handlePassword = (event) =>{
+    const handlePassword = (event:React.ChangeEvent<HTMLInputElement>) =>{
         dispatch(inputPassword(event.target.value));
     }
 
 
     return (
         <div id = "loginWrap">
-            <Link to = "/">
-                <img className="loginLogo" src = "Images/AnyConv.com__logo.WEBP" alt = ""/>
+            <Link to = "/" className={styled.loginLogo}>
+                <h1 className={styled.logo}>로그인</h1>
             </Link>
             <form id = "loginForm">
                 <input type = "text" id = "idInput" placeholder="Email"  onChange = {handleEmail}/>

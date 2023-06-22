@@ -11,7 +11,7 @@ import { axiosInstance } from "utils/customAxios";
 import MypageImg from "assets/AnyConv.com__poster6.webp"
 
 interface myPageProps {
-    childern : React.ReactNode;
+    childern ?: React.ReactNode;
 }
 
 interface myPageDataType {

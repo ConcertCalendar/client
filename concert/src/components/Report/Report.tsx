@@ -3,7 +3,7 @@ import ReportModal from "./ReportModal";
 
 interface ReportProps { 
     childern ?: React.ReactNode;
-    className : string;
+    className ?: string;
 }
 const Report:React.FC<ReportProps> = (props) => {
     const {className}  = props;

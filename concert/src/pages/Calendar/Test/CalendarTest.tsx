@@ -66,7 +66,6 @@ const CalendarTest = () => {
                     placeholder='찾으시는 공연명을 입력하세요'
                     uri = '/calendar/searchEvent'/>
             <CalendarTag/>
-         
             {!viewList&&
             <StyleWrapper>
                 <FullCalendar
