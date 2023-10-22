@@ -1,9 +1,49 @@
-<mxfile host="app.diagrams.net" modified="2023-10-22T06:34:13.858Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" version="22.0.6" etag="5MNsUt-zA6LMQYi0KL5k" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-22T06:44:00.622Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="lNKGGU4ehjQuUawDJlxn" version="22.0.6" type="github">
   <diagram name="페이지-1" id="VY-LH6dqioYT1nkXCw5k">
-    <mxGraphModel>
+    <mxGraphModel dx="1050" dy="557" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="nvE_Knk43XWfdN27oKsa-2" value="App" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-3" value="&lt;p style=&quot;margin:0px;margin-top:6px;text-align:center;&quot;&gt;&lt;b&gt;Login&lt;/b&gt;&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ Email : String&lt;br&gt;+ Password : String&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="200" y="130" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-4" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" vertex="1" parent="nvE_Knk43XWfdN27oKsa-3">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-24" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-5" value="&lt;p style=&quot;margin:0px;margin-top:6px;text-align:center;&quot;&gt;&lt;b&gt;Join&lt;/b&gt;&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;margin:0px;margin-left:8px;&quot;&gt;+ Attribu: Type&lt;br&gt;+ Attribute2: Type&lt;/p&gt;" style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="414" y="130" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-6" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" vertex="1" parent="nvE_Knk43XWfdN27oKsa-5">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-24" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-10" value="Login" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="250" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-11" value="join" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="310" y="250" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-12" value="myPage" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="520" y="250" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-13" value="community" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="70" y="390" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-14" value="&lt;br&gt;Calendar" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="300" y="400" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-15" value="search" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="530" y="400" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nvE_Knk43XWfdN27oKsa-16" value="join" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="70" y="550" width="180" height="130" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
