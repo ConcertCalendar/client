@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inputEmail, inputPassword, setCurrentUid, setCurrentUserEmail } from "./loginSlice"
+import { inputEmail, inputPassword, setCurrentUid, setCurrentUserEmail } from "../../store/loginSlice"
 import { Link } from "react-router-dom";
 import { storeAccessToken } from "../../store/authSlice";
 import { axiosInstance } from "../../utils/customAxios";
 import { getUserEmail, getUserId } from "utils/JwtUtils";
 import { useState } from "react";
-import styled from './Login.moudle.scss';
 import { RootState } from "store/store";
+import loginLogo  from "../../assets/pushpinLogo.svg";
+import styled from './Login.module.scss';
 
 const Login = () =>  {
     const {state} = useLocation();
@@ -20,14 +21,10 @@ const Login = () =>  {
     async function postLogin(url = 'https://dev.pushpin.co.kr/users/login' , data = { "userEmail" : email, "password" : password }){
         await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE 등
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'include', // include, *same-origin, omit
             headers: {
               'Content-Type': 'application/json',
             },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(data), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
           }).then((res)=> res.json())
             .then((data) => {
@@ -36,7 +33,8 @@ const Login = () =>  {
                 }else{
                     setLoginErrmsg(true);
                 }
-            })}
+            })
+        }
     
     const loginSuccess = (accessToken : string) => {
         dispatch(storeAccessToken(accessToken)); //accessToken을 저장
@@ -62,43 +60,20 @@ const Login = () =>  {
 
 
     return (
-        <div id = "loginWrap">
-            <Link to = "/" className={styled.loginLogo}>
-                <h1 className={styled.logo}>로그인</h1>
+        <div className = {styled.loginContainer}>
+            <Link to = "/" className={styled.logoContainer}>
+                <img className = {styled.logo} src = {loginLogo} alt ="logo"/>
             </Link>
-            <form id = "loginForm">
-                <input type = "text" id = "idInput" placeholder="Email"  onChange = {handleEmail}/>
+            <form className = {styled.loginForm}>
+                <input className = {styled.email} type = "text" placeholder="Email"  onChange = {handleEmail}/>
                 <br/>
-                <input type = "password" id = "passwordInput"placeholder="password" onChange = {handlePassword} value = {password}/>
-                <div className= {loginErrMsg ? "errmsg" : "nonemsg"}>아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.</div>
-                <button type = "submit" id = "loginBtn" onClick={loginSubmit}>로그인</button>
+                <input className = {styled.password} type = "password" placeholder="password" onChange = {handlePassword} value = {password}/>
+                <div className= {loginErrMsg ?`${styled.errmsg}` : `${styled.nonemsg}`}>아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.</div>
+                <button className = {styled.loginBtn} type = "submit" onClick={loginSubmit}>로그인</button>
             </form>
-            <hr/>
-            <div id = "socialLogin">
-                <h3>SNS로 로그인하기</h3>
-                <button type = "button" id ="naver">N</button>
-                <button type = "button" id ="kakao">K</button>
-                <button type = "button" id ="facebook">F</button>
-                <button type = "button" id ="apple">A</button>
-            </div>
-            <div id = "signUp">
-                <a id="join" href = "/join">회원가입 하기</a>
-            </div>
-            <div id = "find">
-                <ul>
-                    <li id = "findId">
-                        <a href = "/">아이디 찾기</a>
-                    </li>
-                    <li id = "findPassword">
-                        <a href = "/">패스워드 찾기</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     );
   }
   
-  export default Login;
+export default Login;
 
-
-  

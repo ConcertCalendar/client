@@ -1,4 +1,7 @@
 @import './JoinSlideAni.module.scss';
+$bg-disabled-btn : #F9EFF9;
+$bg-abled-btn : #AE3BB6;
+$bg-hover-btn : #EBCEED;
 
 .JoinDetail {
     animation: slideIn 500ms ease-in-out forwards;
@@ -28,7 +31,7 @@
     margin-top : 20px;
     height: 52px;
     background-color: #c4c4c4;
-    color : white;
+    color : $bg-disabled-btn;
     font-weight: bold;
     border : none;
 }
@@ -37,14 +40,15 @@
     width: 400px;
     height: 52px;
     margin-top : 20px;
-    background-color: black;
+    background-color: $bg-abled-btn;
     color : white;
+    border : none;
     font-weight: bold;
     &:hover {
-        background-color: rgb(149, 147, 147);
+        background-color: $bg-hover-btn;
         border : none;
     }
     &:active {
-        background-color: red;
+        background-color: $bg-abled-btn;
     }
 }

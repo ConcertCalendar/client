@@ -13,7 +13,7 @@ const JoinDetail:React.FC<JoinDetailProps> = (props) => {
 
     const handleNext = () => {
         setSlide(true);
-        setTimeout(()=>dispatch(setPhase('4')), 500);
+        setTimeout(()=>dispatch(setPhase('3')), 500);
     }
 
     return (

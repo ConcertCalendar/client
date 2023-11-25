@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from './BoardNav.module.scss';
 
+/* 게시판 네비게이션 컴포넌트*/
 
 interface BoardNavProps {
     childern ?: React.ReactNode;

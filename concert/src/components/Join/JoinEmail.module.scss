@@ -1,5 +1,8 @@
 @import './JoinSlideAni.module.scss';
-
+$bg-disabled-btn : #F9EFF9;
+$bg-abled-btn : #AE3BB6;
+$bg-hover-btn : #EBCEED;
+$bg-border-btn : #EBCEED;
 
 .joinEmail {
     animation: slideIn 500ms ease-in-out forwards;
@@ -35,15 +38,16 @@
 .joinBtn {
     width: 400px;
     height: 52px;
-    background-color: black;
+    background-color: $bg-abled-btn;
     color : white;
     font-weight: bold;
+    border: none;
     &:hover {
-        background-color: rgb(149, 147, 147);
+        background-color: $bg-hover-btn;
         border : none;
     }
     &:active {
-        background-color: red;
+        background-color: $bg-abled-btn;
     }
 }
 
@@ -65,7 +69,7 @@
 .joinBtnDisabled {
     width: 400px;
     height: 52px;
-    background-color: #c4c4c4;
+    background-color: $bg-disabled-btn;
     color : white;
     font-weight: bold;
     border : none;

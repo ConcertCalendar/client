@@ -9,7 +9,6 @@ import { changeBoardId } from 'utils/boardId';
 import UserProfile from 'components/User/UserProfile';
 import PostMenu from '../../components/Post/PostMenu';
 import Mark from 'components/Mark/Mark';
-import Notification from 'components/notification/Notification';
 import Link from 'components/Link/Link';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -84,7 +83,6 @@ const DetailPost:React.FC<DetailPostProps> = () => {
                         <p className = {styled.createdDate}>{changePostDateFormat(createdDate)}</p>
                         <UserProfile className = {styled.userProfile} nickName = {writerName} />
                         <div className={styled.notiMenu}>
-                                <Notification visible = {same}/>
                             <Mark/>
                             <Link address = {`${baseAddress}${location.pathname}`}/>
                         </div>

@@ -1,0 +1,19 @@
+@mixin tagItem($borderColor , $backgroundColor ,$hoverColor){
+    text-align: center;
+    border: 1px solid $borderColor;
+    border-radius: 32px;
+    padding : 10px 20px 10px 20px;
+    margin : 0px 20px 0px 0px;
+    background-color: $backgroundColor;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+        background-color: $hoverColor;
+    }
+}
+.tagItem {
+    @include tagItem(rgb(226, 226, 226), rgb(233, 233, 233) , rgb(210, 210, 210));
+}
+.selectedTagItem {
+    @include tagItem(rgb(226, 226, 226), rgb(248, 173, 234) , rgb(210, 210, 210));
+}

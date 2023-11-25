@@ -87,7 +87,7 @@ const JoinPassword:React.FC<JoinPasswordProps> = (props) => {
     }
     const handleNext = () => {
         setSlide(true);
-        setTimeout(()=>dispatch(setPhase('3')), 500);
+        setTimeout(()=>dispatch(setPhase('2')), 300);
     }
 
     return ( 

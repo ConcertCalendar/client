@@ -1,0 +1,54 @@
+.tagContainer {
+    width :1000px;
+    margin : 0 auto;
+    position: relative;
+    .typeTag {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0px 10px 0px;
+        
+    }
+    .genreTag {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0px 10px 0px;
+       
+    }
+    .viewTag {
+        display: flex;
+        position: absolute;
+        right: 0;
+        font-size: small;
+        border: 1px solid black;
+        border-radius: 10px;
+        cursor: pointer;
+        .list {
+            padding: 5px;   
+            border-left: 1px solid black;
+        }
+        .selList{
+            padding: 5px;
+            border-left: 1px solid black;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: beige;
+        
+        }
+        .calendar {
+            padding: 5px;
+        }
+        .selCalendar{
+            padding: 5px;
+            background-color: beige;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+    }
+}
+
+
+
+
+

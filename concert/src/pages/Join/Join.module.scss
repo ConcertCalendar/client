@@ -14,6 +14,13 @@
 .joinForm {
     width : 400px;
     margin : 0 auto;
+    .joinLogo{
+        width : 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
     .joinMsg {
         text-align: center;
     }
@@ -23,12 +30,12 @@
 .progressBar{
     height: 5px;
     width: 100%;
-    background-color: gray;
+    background-color: #EBCEED;
     margin-bottom: 10px;
     .progressBarInner{
         width : 0%;
         height: 5px;
-        background-color: black;
+        background-color: #AE3BB6;
         &.phase1{
             animation: phase0to1 500ms forwards;
         }

@@ -1,0 +1,39 @@
+.modalContainer {
+    box-sizing: border-box;
+    width : 20vw;
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+    background-color: #f5e6f6;  
+    .modalHeader {
+        display: flex;
+        align-items: center;
+        padding : 2%;
+        .modalTitle {
+            width: 92%; 
+            font-size: medium;
+        }
+        .markingImg { 
+            width : 8%;
+            height: 8%;
+        }
+    }
+    
+    .modalBody {
+        display: flex;
+        padding : 2%;
+        .modalContentPoster {
+            width : 40%;
+            height : 50%;
+            border-radius: 5px;
+        }
+        .modalContent {
+            width : 60%;
+            p {
+                font-size: small;
+            }
+            
+        }
+    }
+   
+}

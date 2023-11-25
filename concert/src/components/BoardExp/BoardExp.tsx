@@ -1,5 +1,6 @@
 import styled from './BoardExp.module.scss';
 
+/* 게시판에 대한 설명을 나타내는 컴포넌트*/
 interface boardExpProps {
     childern ?: React.ReactNode;
     explanation ?: string;

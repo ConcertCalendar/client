@@ -1,0 +1,69 @@
+.loginContainer {
+    max-width: 400px;
+    height: 100%;
+    background-color: white;
+    margin : 140px auto;
+    text-align: center;
+}
+
+.logoContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    .logo
+    { 
+        width: 70%;
+    }
+
+}
+.loginForm {
+    text-align: center;
+}
+.email {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom : 10px;
+    padding : 10px;
+    font-size: 18px;
+}
+
+.password {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom : 10px;
+    padding : 10px;
+    font-size: 18px;
+}
+
+.loginBtn {
+    width: 100%;
+    box-sizing: border-box;
+    color :white;
+    padding : 10px;
+    font-size: 18px;
+    background-color: #AE3BB6;
+    border : none;
+    cursor: pointer;
+    &:hover {
+        background-color: #EBCEED;
+    }
+    &:active {
+        background-color: #e14aec;
+    }
+}
+
+
+
+.errmsg {
+    color : red;
+    font-size: 12px;
+    text-align: start;
+    margin-bottom: 8px;
+}
+
+.nonemsg {
+    display : none 
+}
+

@@ -11,7 +11,6 @@ interface JoinEmailProps {
 }
 
 const JoinEmail:React.FC<JoinEmailProps> = (props) => {
-    const phase = useSelector((state:RootState)=> state.join.phase);
     const email = useSelector((state:RootState) => state.join.email);//이메일 인풋
     const [checkAuthBtn, setCheckAuthBtn] = useState<boolean>(false); //인증 버튼 활성화 비활성화
     const [emailErrmsg , setEmailErrmsg] = useState<string>(""); //이메일 에러 메세지 내용
@@ -80,7 +79,7 @@ const JoinEmail:React.FC<JoinEmailProps> = (props) => {
 
     const handleNext = () => {
         setSlide(true);
-        setTimeout(()=> dispatch(setPhase('2')), 300);
+        setTimeout(()=> dispatch(setPhase('1')), 100);
     }
 
     return ( 

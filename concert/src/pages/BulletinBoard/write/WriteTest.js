@@ -1,4 +1,4 @@
-import {useEffect, useState , useRef} from 'react';
+/*import {useEffect, useState , useRef} from 'react';
 import styled from './WrtieTest.module.scss';
 import SelectConcert from './SelectConcert';
 import { axiosInstance } from 'utils/customAxios';
@@ -115,3 +115,4 @@ const WriteTest = (props) => {
 }
 
 export default WriteTest;
+*/

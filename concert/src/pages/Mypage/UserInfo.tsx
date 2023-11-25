@@ -45,17 +45,17 @@ const UserInfo:React.FC<UserInfoProps>= (props) => {
         setUserNickName(nickName);
     }
 
+
     useEffect(() =>{
         async function getUserInfo () {
-            const res = await axiosInstance.get('/users/info');
-            if(res.status === 200){
+            await axiosInstance.get('/users/info').then((res)=>{
                 changeUserNameHandler(res.data.data.name);
                 changeUserBrithHandler(res.data.data.userBirth);
                 changeUserEmailHandler(res.data.data.userEmail);
                 changeUserNickNameHandler(res.data.data.userNickname);
                 changeRolesHandler(res.data.data.roles);
                 setLoading(true);
-            }
+            })
         }
         getUserInfo();
     }, [loading]);
@@ -68,7 +68,7 @@ const UserInfo:React.FC<UserInfoProps>= (props) => {
             {
             loading ? 
             <div className = {styled.contentBox}>
-                <img className = {styled.userImage} src = {MypageImg} alt = "회원 이미지"/>
+                <img className = {styled.userImage} src = {MypageImg} alt = "회원 이미지" />
                 <p className = {styled.userNickname}>@{userNickName}</p>
                 <div className = {styled.info}>
                     유저 소개글

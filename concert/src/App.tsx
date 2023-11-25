@@ -1,6 +1,6 @@
 import {  Routes, Route } from "react-router-dom";
 
-import Home from './pages/Home/Home'
+import Calendar from './pages/Calendar/Calendar'
 import Login from './pages/Login/Login'
 import Mypage  from "./pages/Mypage/Mypage";
 import Layout from "./pages/Layout/layout";
@@ -11,13 +11,12 @@ import { storeAccessToken } from "./store/authSlice";
 import UserInfo from "pages/Mypage/UserInfo";
 import UserPosts from "pages/Mypage/UserPosts";
 import Bookmark from "pages/Mypage/Bookmark";
-import SearchPage from "pages/Home/Search/SearchPage";
+import SearchPage from "pages/SearchPage/SearchPage";
 import NotFound from "pages/BulletinBoard/NotFound/NotFound";
-import WriteTest from "pages/BulletinBoard/write/WriteTest";
+//import WriteTest from "pages/BulletinBoard/write/WriteTest";
 import DetailPost from "pages/Post/DetailPost";
 import Board from "pages/Board/Board";
 import Report from "components/Report/Report";
-import CalendarTest from "pages/Calendar/Test/CalendarTest";
 import { isAuth } from "utils/JwtUtils";
 import { RootState } from "store/store";
 import Join from "pages/Join/Join";
@@ -96,17 +95,15 @@ function App() {
           <Route path = "bookMark" element = {<Bookmark/>}/>
           <Route path = "myWrite" element = {<UserPosts/>}/>
         </Route>
+        <Route path="/" element = {<Calendar />}/>
         <Route path = '/search' element = {<SearchPage/>}/>
-        <Route path="/" element = {<Home />}/>
+      
         <Route path = "/boards/:boardId"  element = {<Board />}/>
         <Route path = "/boards/:boardId/posts/:postId" element = {<DetailPost/>}/>
-        <Route path = "write" element = {<WriteTest/>}/>
-        <Route path = "Calendar" element ={ <CalendarTest/>}/>
-        <Route path = "join" element = {<Join/>} />
-        <Route path = 'testwrite'element = {<WriteTest/>}/>
         <Route path = 'testPost'element = {<DetailPost/>}/>
       </Route>
       <Route path="login" element = {<Login />} />
+      <Route path = "join" element = {<Join/>} />
       <Route path="test" element = {<Report/>} />
             <Route path="/*" element={<NotFound />} />
     </Routes>
@@ -114,3 +111,4 @@ function App() {
 }
 
 export default App;
+//<Route path = "write" element = {<WriteTest/>}/>
