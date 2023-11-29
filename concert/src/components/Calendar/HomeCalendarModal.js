@@ -27,7 +27,6 @@ const HomeCalendarModal = ({className , closeModal, title , content , position})
         const response = await axiosInstance.get('/users/concerts')
         if(response.status === 200){
             console.log('조회 성공', response)
-             
         }
     }
 
@@ -82,8 +81,11 @@ const HomeCalendarModal = ({className , closeModal, title , content , position})
                         <p>{`공연 날짜 : ${content.start} ~ ${content.end}`}</p>
                     }
                     <p> 공연 시작 시간 : {content.conTime}</p>
-                    <p> 장소 : {content.place}</p>          
+                    <p> 장소 : {content.place}</p>
+                    <p> 가격 : {content.minPrice === content.maxPrice ? `${content.minPrice}` : `${content.minPrice} ~ ${content.maxPrice}`} </p>          
                     <p> 예매 사이트 : </p>
+                    {content.bookingLink.yes24Link && <a href = {content.bookingLink.yes24Link} target = {'_blank'}>YES 24 바로가기</a>}
+                    {content.bookingLink.interparkLink && <a href = {content.bookingLink.interparkLink} target = {'_blank'}>인터파크 바로가기</a>}
                 </div> 
                 <img src={testImage} alt = "Content_poster" className = {styled.modalContentPoster}/>
             </div>

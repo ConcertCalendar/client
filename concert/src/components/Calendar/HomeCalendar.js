@@ -105,6 +105,7 @@ function HomeCalendar() {
               maxPrice : item.maxPrice,
               minPrice : item.minPrice,
               location : item.regionName,
+              bookingLink : item.bookingLink,
             //  userIdList : item.userIdList,
           }
           return obj;

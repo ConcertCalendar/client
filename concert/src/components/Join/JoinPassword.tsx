@@ -66,6 +66,7 @@ const JoinPassword:React.FC<JoinPasswordProps> = (props) => {
         containSpecial(value);
         checkdLength(value);
     }
+    
     const onChangePassword = (event : React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         checkStandard(value);
@@ -74,17 +75,15 @@ const JoinPassword:React.FC<JoinPasswordProps> = (props) => {
 
 
     const onChangeCheckPassword = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setCheckPassword(event.target.value);
-    }
- 
-
-    const checkSamePassword = (event : React.FocusEvent<HTMLInputElement>) => {
-        if(password === checkPassword && inlength && inSpecial &&inUpperAlpha && inUnderAlpha && inNumber){
+        const checkPassword = event.target.value;
+        setCheckPassword(checkPassword);
+        if(password === checkPassword && inlength && inSpecial &&inUpperAlpha && inUnderAlpha && inNumber){ //일치 여부
             setCheckNextBtn(true);
             return;
         }
         setCheckNextBtn(false);
     }
+ 
     const handleNext = () => {
         setSlide(true);
         setTimeout(()=>dispatch(setPhase('2')), 300);
@@ -109,7 +108,6 @@ const JoinPassword:React.FC<JoinPasswordProps> = (props) => {
             <input
               type = "password"
               onChange={onChangeCheckPassword}
-              onBlur={checkSamePassword}
               className = {styled.joinInput} 
               placeholder = '비밀번호확인'
               autoComplete = 'new-password'

@@ -1,19 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import styled from './JoinComplete.module.scss';
-import {useState} from 'react';
 interface JoinCompleteProps {
-
-
+    childern ?: React.ReactNode;
 }
 
 const JoinComplete:React.FC<JoinCompleteProps> = (props) => {
-    const [checkNextBtn ,setCheckNextBtn] = useState<boolean>(false); //다음 버튼 활성화 여부
+    const navigate = useNavigate();
+    
+    const onClickLogin = (event : React.MouseEvent<HTMLButtonElement>) => {
+        navigate('/login');
+    }
+
     return (
-        <section className = {styled.JoinComplete}>
+        <section className = {styled.section_join_complete_slide}>
             완료
             <button 
-            className = {styled.joinBtn} 
-            type='button'>
-            로그인
+             onClick={onClickLogin}
+             className = {styled.btn_join} 
+             type='button'>
+                로그인
             </button>  
         </section>
     )

@@ -3,6 +3,7 @@ $bg-disabled-btn : #F9EFF9;
 $bg-abled-btn : #AE3BB6;
 $bg-hover-btn : #EBCEED;
 $bg-border-btn : #EBCEED;
+$border-highlightColor : #AE3BB6;
 
 .joinEmail {
     animation: slideIn 500ms ease-in-out forwards;
@@ -22,6 +23,10 @@ $bg-border-btn : #EBCEED;
     &::placeholder {
         font-weight: lighter;
     }
+    &:focus {
+        border-color :transparent;
+        outline : 1px solid $border-highlightColor;
+    }
 }
 
 .joinEmailInput{
@@ -32,6 +37,10 @@ $bg-border-btn : #EBCEED;
     font-weight: bold;
     &::placeholder {
         font-weight: lighter;
+    }
+    &:focus {
+        border-color :transparent;
+        outline : 1px solid $border-highlightColor;
     }
 }
 

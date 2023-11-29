@@ -43,6 +43,7 @@ const Join:React.FC<JoinTestProps> = (props) => {
         }
      
     }, [phase])
+    
     return ( 
         <article className = {styled.joinContainer}>
             <form className = {styled.joinForm}>

@@ -2,31 +2,124 @@
 $bg-disabled-btn : #F9EFF9;
 $bg-abled-btn : #AE3BB6;
 $bg-hover-btn : #EBCEED;
-
-.JoinDetail {
+$border-highlightColor : #AE3BB6;
+.section_join_detail {
     animation: slideIn 500ms ease-in-out forwards;
 }
-.JoinDetailSlide{
+.section_join_deatil_slide{
     animation: slideOut 500ms ease-in-out forwards;
 }
 
-.joinLabel {
-    font-size: 14px;
-    padding: 2px;
-}
 
-.joinInput{
-    box-sizing: border-box;
-    width : 400px;
-    font-size: 15px;
-    padding : 15px;
-    font-weight: bold;
-    margin: 0px;
-    &::placeholder {
-        font-weight: lighter;
+
+.div_join {
+    margin-top : 8px;
+    width: 100%;
+    .join_label {
+        width: 100%;
+        font-size: 14px;
+        padding-left: 4px;
+        .input_join{
+            box-sizing: border-box;
+            width : 100%;
+            font-size: 15px;
+            padding : 15px;
+            font-weight: bold;
+            margin: 0;
+            &::placeholder {
+                font-weight: lighter;
+            }
+            &:focus {
+                border-color :transparent;
+                outline : 1px solid $border-highlightColor;
+            }
+        }
     }
 }
-.joinBtnDisabled {
+
+
+
+
+.flex_row {
+    display: flex;
+    flex-wrap : wrap;
+    justify-content: space-between;
+
+    .year {
+        box-sizing: border-box;
+        width : 36%;
+        font-size: 15px;
+        padding : 15px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        &::placeholder {
+            font-weight: lighter;
+        }
+        &:focus {
+            border-color :transparent;
+            outline : 1px solid $border-highlightColor;
+        }
+    }
+
+    .month {
+        box-sizing: border-box;
+        width : 28%;
+        font-size: 15px;
+        padding : 15px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        &::placeholder {
+            font-weight: lighter;
+        }
+        &:focus {
+            border-color :transparent;
+            outline : 1px solid $border-highlightColor;
+        }
+    }
+    .day {
+        box-sizing: border-box;
+        width : 28%;
+        font-size: 15px;
+        padding : 15px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        &::placeholder {
+            font-weight: lighter;
+        }
+        &:focus {
+            border-color :transparent;
+            outline : 1px solid $border-highlightColor;
+        }
+    }
+
+
+    .div_join_gender {
+        width : 48%;
+        height : 50px;
+        border : 1px solid black
+    }
+
+    .input_gender {
+        display: none;
+        &[type=radio]:checked+label{
+            background-color: $bg-abled-btn;
+        }
+    }
+
+    .label_gender {
+        display: block;
+        text-align: center;
+        line-height: 50px;
+        box-sizing: border-box;
+        width :100%;
+    }    
+}
+
+
+.btn_join_disabled {
     width: 400px;
     margin-top : 20px;
     height: 52px;
@@ -36,7 +129,7 @@ $bg-hover-btn : #EBCEED;
     border : none;
 }
 
-.joinBtn {
+.btn_join {
     width: 400px;
     height: 52px;
     margin-top : 20px;
