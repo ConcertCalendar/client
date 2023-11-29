@@ -1,0 +1,91 @@
+@import './JoinSlideAni.module.scss';
+$bg-disabled-btn : #F9EFF9;
+$bg-abled-btn : #AE3BB6;
+$bg-hover-btn : #EBCEED;
+$bg-border-btn : #EBCEED;
+$border-highlightColor : #AE3BB6;
+
+.joinEmail {
+    animation: slideIn 500ms ease-in-out forwards;
+}
+.joinEmailSlide{
+    animation: slideOut 500ms ease-in-out forwards;
+}
+
+
+.joinInput{
+    box-sizing: border-box;
+    width : 400px;
+    font-size: 15px;
+    padding : 15px;
+    font-weight: bold;
+    margin: 20px 0px 20px 0px;
+    &::placeholder {
+        font-weight: lighter;
+    }
+    &:focus {
+        border-color :transparent;
+        outline : 1px solid $border-highlightColor;
+    }
+}
+
+.joinEmailInput{
+    box-sizing: border-box;
+    width : 400px;
+    font-size: 15px;
+    padding : 15px;
+    font-weight: bold;
+    &::placeholder {
+        font-weight: lighter;
+    }
+    &:focus {
+        border-color :transparent;
+        outline : 1px solid $border-highlightColor;
+    }
+}
+
+.joinBtn {
+    width: 400px;
+    height: 52px;
+    background-color: $bg-abled-btn;
+    color : white;
+    font-weight: bold;
+    border: none;
+    &:hover {
+        background-color: $bg-hover-btn;
+        border : none;
+    }
+    &:active {
+        background-color: $bg-abled-btn;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+    margin : 0px;
+    padding: 8px;
+    font-size :small;
+    color : red;
+}
+.visible {
+    visibility: visible;
+    margin : 0px;
+    padding: 8px;
+    font-size :small;
+    color : red;
+}
+
+.joinBtnDisabled {
+    width: 400px;
+    height: 52px;
+    background-color: $bg-disabled-btn;
+    color : white;
+    font-weight: bold;
+    border : none;
+}
+
+
+
+
+
+

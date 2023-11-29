@@ -1,0 +1,47 @@
+.replyInpuContainer {
+    width: 100%;
+    border: 1px solid rgba(128,128,128,0.3);
+    margin-bottom: 20px;
+}
+
+.replyUserProfile {
+    padding: 10px 10px 0px 10px;
+    width: 100% ;
+    height : 30px;
+}
+
+.replyInput {
+    box-sizing: border-box;
+    padding: 10px;
+    margin : 5px;
+    resize: none;
+    width: 99%;
+    background: transparent;
+    height : 60px;
+    border : none;
+    &:focus {
+        outline: none;
+    }
+}
+
+.inputFooter{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: right;
+}
+.currentLength {
+    margin: 0;
+    color : rgba(128, 128, 128, 0.9);
+    width: 5%;
+    font-size: 12px;
+    text-align: center;
+}
+
+.replyBtn {
+    width: 8%;
+    padding : 10px 0px 10px 0px;
+    border : none;
+    background-color: transparent;
+    color : rgba(128, 128, 128, 0.9);
+}

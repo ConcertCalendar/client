@@ -1,0 +1,25 @@
+.boardContainer {
+    display: flex;
+    flex-flow: column;
+    width: 1000px;
+    margin : 120px auto;
+    min-height: 500px;
+}
+
+.loading {
+    margin:auto;
+}
+
+.write {
+    right: 8%;
+    bottom : 5%;
+    position: fixed;
+    text-align: center;
+    line-height: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    width : 30px;
+    height: 30px;
+    border: solid 1px black;
+    border-radius: 50%;
+}

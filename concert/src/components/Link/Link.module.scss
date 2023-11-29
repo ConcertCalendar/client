@@ -1,0 +1,47 @@
+.linkWrap {
+    position: relative;
+}
+
+.linkImg {
+    width : 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.linkmsg {
+    visibility: hidden;
+    margin : 0px;
+    padding: 8px;
+    font-size: 12px;
+    background: rgb(239, 238, 238);
+    width: 130px;
+    height: 15px;
+    border: transparent;
+    border-radius: 10px;
+    top : 35px;
+    left: -10px;
+    position: absolute;
+    &::after {
+        content: "";
+        position: absolute;
+        border-top: 0px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid rgb(239, 238, 238);
+        bottom: 30px;
+        left : 8px;
+    }
+}
+@keyframes popUp {
+    0% {
+        visibility:visible;
+    }
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility:hidden;
+    }
+}

@@ -1,0 +1,48 @@
+.commentItemContainer {
+    margin-top: 10px;
+    padding : 8px;
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(128,128,128,0.3);
+}
+
+.commentUserProfile{
+    padding-top: 10px;
+    width: 84%;
+    height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.commentContent {
+    padding :8px;
+    margin : 0px;
+    font-size: 14px;
+    min-height: 80px;
+}
+
+.commentReport {
+    width : 8%;
+    font-size: small;
+    text-align: right;
+    position: relative;
+    cursor: pointer;
+}
+.commentDate {
+    width: 8%;
+    text-align: right;
+    font-size: small;
+}
+
+.commentMenu {
+    display: flex;
+    width: 12%;
+    justify-content: space-between;
+    margin : 0;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: small;
+}
+.replyInput {
+    width: 100%;
+}

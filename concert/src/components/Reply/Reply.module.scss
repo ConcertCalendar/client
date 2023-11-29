@@ -1,0 +1,42 @@
+.replyContainer { 
+    border-top : 1px solid rgba(128,128,128,0.3);
+    width: 100%;
+    padding : 5px 0 0 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.replyUserProfile{
+    padding-top: 10px;
+    width: 84%;
+    height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.replyContent {
+    padding :8px;
+    margin : 0px;
+    font-size: 14px;
+    min-height: 80px;
+}
+
+.replyReport {
+    width : 8%;
+    font-size: small;
+    text-align: right;
+    position: relative;
+    cursor: pointer;
+}
+.replyDate {
+    width: 8%;
+    text-align: right;
+    font-size: small;
+}
+
+.replyMenu {
+    margin : 0;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: small;
+}

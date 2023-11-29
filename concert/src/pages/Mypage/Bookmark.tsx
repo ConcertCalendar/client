@@ -42,22 +42,23 @@ const Bookmark:React.FC<BookmarkProps> = (props) => {
                  conNo={item.conNo} conPlace={item.conPlace} conTitle={item.conTitle} conTime={item.concertTime.conTime}
                  conStart={item.concertTime.conStart} conEnd={item.concertTime.conEnd} createdDate={item.createdDate} posterUrl={item.posterUrl}
                  singer={item.singer} updatedDate={item.updatedDate}                
-                />
+            />
         ))
 
     }
 
     useEffect(()=> {
-        const getBookmark = async() => {
+        /*const getBookmark = async() => {
             const response = await axiosInstance.get('users/concerts')
-            if(response.status === 200) {
+            console.log(response);
+            if(response.status == 200) {
                 setBookmarkData(response.data.data);  
                 console.log(bookmarkData)
                 setLoading(true);            
             }
         }
 
-        getBookmark();
+        getBookmark();*/
     } , [loading])
 
 

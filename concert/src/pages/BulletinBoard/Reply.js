@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { axiosInstance } from '../../utils/customAxios';
-import CommentModify from './CommentModify';
-import ReplyInput from './Input/ReplyInput';
+
 import './Reply.css'
 import { changePostDateFormat } from 'utils/dateUtils';
+import CommentModify from 'components/Comment/CommentModify';
+import ReplyInput from 'components/Comment/Input/ReplyInput';
 
 function Reply({commentId , createdDate , id  ,modifiedDate , replyContent , replyWriterId , replyWriterName , commentList ,changeCommentList}) {
     const [display , setDisplay] = useState(false);

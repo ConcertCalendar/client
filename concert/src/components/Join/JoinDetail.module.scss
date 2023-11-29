@@ -1,0 +1,147 @@
+@import './JoinSlideAni.module.scss';
+$bg-disabled-btn : #F9EFF9;
+$bg-abled-btn : #AE3BB6;
+$bg-hover-btn : #EBCEED;
+$border-highlightColor : #AE3BB6;
+.section_join_detail {
+    animation: slideIn 500ms ease-in-out forwards;
+}
+.section_join_deatil_slide{
+    animation: slideOut 500ms ease-in-out forwards;
+}
+
+
+
+.div_join {
+    margin-top : 8px;
+    width: 100%;
+    .join_label {
+        width: 100%;
+        font-size: 14px;
+        padding-left: 4px;
+        .input_join{
+            box-sizing: border-box;
+            width : 100%;
+            font-size: 15px;
+            padding : 15px;
+            font-weight: bold;
+            margin: 0;
+            &::placeholder {
+                font-weight: lighter;
+            }
+            &:focus {
+                border-color :transparent;
+                outline : 1px solid $border-highlightColor;
+            }
+        }
+    }
+}
+
+
+
+
+.flex_row {
+    display: flex;
+    flex-wrap : wrap;
+    justify-content: space-between;
+
+    .year {
+        box-sizing: border-box;
+        width : 36%;
+        font-size: 15px;
+        padding : 15px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        &::placeholder {
+            font-weight: lighter;
+        }
+        &:focus {
+            border-color :transparent;
+            outline : 1px solid $border-highlightColor;
+        }
+    }
+
+    .month {
+        box-sizing: border-box;
+        width : 28%;
+        font-size: 15px;
+        padding : 15px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        &::placeholder {
+            font-weight: lighter;
+        }
+        &:focus {
+            border-color :transparent;
+            outline : 1px solid $border-highlightColor;
+        }
+    }
+    .day {
+        box-sizing: border-box;
+        width : 28%;
+        font-size: 15px;
+        padding : 15px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        &::placeholder {
+            font-weight: lighter;
+        }
+        &:focus {
+            border-color :transparent;
+            outline : 1px solid $border-highlightColor;
+        }
+    }
+
+
+    .div_join_gender {
+        width : 48%;
+        height : 50px;
+        border : 1px solid black
+    }
+
+    .input_gender {
+        display: none;
+        &[type=radio]:checked+label{
+            background-color: $bg-abled-btn;
+        }
+    }
+
+    .label_gender {
+        display: block;
+        text-align: center;
+        line-height: 50px;
+        box-sizing: border-box;
+        width :100%;
+    }    
+}
+
+
+.btn_join_disabled {
+    width: 400px;
+    margin-top : 20px;
+    height: 52px;
+    background-color: #c4c4c4;
+    color : $bg-disabled-btn;
+    font-weight: bold;
+    border : none;
+}
+
+.btn_join {
+    width: 400px;
+    height: 52px;
+    margin-top : 20px;
+    background-color: $bg-abled-btn;
+    color : white;
+    border : none;
+    font-weight: bold;
+    &:hover {
+        background-color: $bg-hover-btn;
+        border : none;
+    }
+    &:active {
+        background-color: $bg-abled-btn;
+    }
+}

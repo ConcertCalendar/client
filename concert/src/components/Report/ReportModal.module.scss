@@ -1,0 +1,61 @@
+.reportModalContainer {
+    display: flex;
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    background-color: white;
+    flex-wrap: wrap;
+    width: 400px;
+    border: 1px solid rgba(128,128,128,0.2);
+    z-index: 2;
+}
+
+.reportTitle{
+    padding: 10px 10px 0px 10px;
+    font-weight: bold;
+}
+
+.rePortCancle {
+    margin: 0;
+    margin-left : auto;
+    padding: 10px 10px 0px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.reportContent{
+    margin: 10px;
+    width : 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.reportDropDown{
+    padding : 10px;
+    border: 1px solid rgba(128,128,128,0.3);
+    width : 100%;
+}
+
+.label {
+    font-size: 13px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.reportButton {
+    margin : 10px 20px 10px auto;
+    padding: 8px;
+    width: 80px;
+    background: rgb(30,144,255);
+    border: 1px solid rgba(128,128,128,0.3);
+    cursor: pointer;
+}
+
+.cancleButton {
+    margin : 10px 0px 10px 0px;
+    padding: 8px;
+    width: 80px;
+    background-color: white;
+    border: 1px solid rgba(128,128,128,0.3);
+    cursor: pointer;
+}

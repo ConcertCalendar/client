@@ -6,10 +6,14 @@ export const isAuth = (accessToken)=>{
         return false;
     }
     const decoded = jwt_decode(accessToken);
-    if (decoded.exp  > new Date().getTime() / 1000){
-        return true
+    const now = new Date();
+    if (decoded.exp - 10 > now.getTime() / 1000){
+        return true;
     }
-    else { return false;}
+    else { 
+        return false;
+    }
+
 }
 
 export const getUserEmail = (accessToken) => {

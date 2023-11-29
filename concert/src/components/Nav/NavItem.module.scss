@@ -1,11 +1,17 @@
+@font-face {
+    font-family: NotoSanKR-Medium;
+    src: url(../../fonts/NotoSansKR-Medium.otf);
+}
+
+$navItemfont : NotoSanKr-Medium;
+
 .navItemLink {
     text-decoration: none;
-    font-weight: bold;
-    margin-left: 35px;
-    color : black;
-    &.red {
-        color : red;
-    }
+    padding : 0px 32px 0px 32px;
+    line-height: 18px;
+    font-size: 22px;
+    font-family: $navItemfont;
+    color : #323338;
     &:visited{text-decoration: none;}
     &:hover { text-decoration: none; }
     &:focus { text-decoration: none; }

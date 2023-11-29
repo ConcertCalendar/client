@@ -1,0 +1,86 @@
+
+.joinContainer {
+    max-width : 400px;
+    margin: 120px auto;
+}
+
+.guideMsg {
+    text-align: left;
+}
+
+
+
+.joinForm {
+    width : 400px;
+    margin : 0 auto;
+    .joinLogo{
+        width : 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .joinMsg {
+        text-align: center;
+    }
+} 
+
+
+.progressBar{
+    height: 5px;
+    width: 100%;
+    background-color: #EBCEED;
+    margin-bottom: 10px;
+    .progressBarInner{
+        width : 0%;
+        height: 5px;
+        background-color: #AE3BB6;
+        &.phase1{
+            animation: phase0to1 500ms forwards;
+        }
+        &.phase2{
+            animation: phase1to2 500ms forwards;
+        }
+        &.phase3{
+            animation: phase2to3 500ms forwards;
+        }
+        &.phase4{
+            animation: phase3to4 500ms forwards;
+        }
+    }
+}
+
+
+@keyframes phase0to1 {    
+    from {
+        width: 0%;
+    }
+    to {
+        width: 25%;
+    }
+}
+
+@keyframes phase1to2 {
+    from {
+        width: 25%;
+    }
+    to {
+        width: 50%;
+    }
+}
+@keyframes phase2to3 {
+    from {
+        width: 50%;
+    }
+    to {
+        width: 75%;
+    }
+}
+@keyframes phase3to4 {
+    from {
+        width: 75%;
+    }
+    to {
+        width: 100%;
+    }
+}

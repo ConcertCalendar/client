@@ -1,0 +1,33 @@
+@import './JoinSlideAni.module.scss';
+$bg-disabled-btn : #F9EFF9;
+$bg-abled-btn : #AE3BB6;
+$bg-hover-btn : #EBCEED;
+$border-highlightColor : #AE3BB6;
+
+.section_join_complete_slide {
+    animation: slideIn 500ms ease-in-out forwards;
+}
+.joinBtnDisabled {
+    width: 400px;
+    margin-top : 20px;
+    height: 52px;
+    background-color: #c4c4c4;
+    color : white;
+    font-weight: bold;
+    border : none;
+}
+
+.btn_join {
+    width: 400px;
+    height: 52px;
+    margin-top : 20px;
+    background-color: $bg-abled-btn;
+    border : none;
+    color : white;
+    font-weight: bold;
+    &:hover {
+        outline : $border-highlightColor;
+        background-color: $bg-hover-btn;
+        border : none;
+    }
+}

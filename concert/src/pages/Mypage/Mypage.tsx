@@ -11,7 +11,7 @@ import { axiosInstance } from "utils/customAxios";
 import MypageImg from "assets/AnyConv.com__poster6.webp"
 
 interface myPageProps {
-    childern : React.ReactNode;
+    childern ?: React.ReactNode;
 }
 
 interface myPageDataType {
@@ -30,11 +30,7 @@ const  Mypage : React.FC<myPageProps> = (props) => {
 
 
     useEffect(() =>{
-      /*  if(!isAuth(accessToken)){
-            alert("로그인이 필요합니다.")
-            navigate('/');
-            return;
-        }*/
+        console.log(accessToken)
     }, [accessToken]);
 
     return (
@@ -42,8 +38,7 @@ const  Mypage : React.FC<myPageProps> = (props) => {
             <MypageAside className = {styled.leftAsideContainer}>
                 <h4>내 정보 관리</h4>
                 <ul>
-                    <li><Link to = './userInfo' className = {styled.link}> 회원정보 수정 </Link> </li>
-                    <li> 본인 인증 </li>
+                    <li><Link to = './userInfo' className = {styled.link}> 회원정보</Link> </li>
                 </ul>
                 <h4>공연 관리</h4>
                 <ul>

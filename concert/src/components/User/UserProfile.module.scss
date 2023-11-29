@@ -1,0 +1,14 @@
+.UserProfileWrap {
+    display: flex;
+}
+
+.profileImg {
+    border : 1px solid black;
+    border-radius: 50%;
+    max-width: 45px;
+    max-height: 45px;
+}
+.nickname {
+    margin-left: 10px;
+    align-self: center;
+}

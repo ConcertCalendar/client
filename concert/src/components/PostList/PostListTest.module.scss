@@ -1,0 +1,28 @@
+.th {
+    cursor: pointer;
+    width: 100%;
+    padding: 12px 0px 12px 0px;
+    text-align: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.6);
+    .trId {
+        display: inline-block;
+        width: 10%;
+    }
+    .trPostTitle {
+        display: inline-block;
+        text-align: left;
+        width: 70%;
+        &::after {
+            content : '(' attr(data-comment) ')' ;
+            margin-left: 10px;
+        }
+    }
+    .trWriterName { 
+        display: inline-block;
+        width: 10%;
+    }
+    .trCreatedDate {
+        display: inline-block;
+        width: 10%;
+    }
+}

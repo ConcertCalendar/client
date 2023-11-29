@@ -1,0 +1,20 @@
+
+.footer {
+    margin-top: 52px;
+    width : 100vw;
+    min-height: 150px;
+    background-color: #F5F6F8;
+
+}
+
+.footerContent {
+    display: flex;
+    margin : 0 auto;
+    width: 1000px;
+    color: black;
+    min-height: 150px;
+    font-size: 12px;
+    align-items: center;
+}
+
+
