@@ -1,32 +1,27 @@
 import styled from './HomeCalendarModal.module.scss'
 import { useEffect , useRef , useState  } from 'react';
 import { axiosInstance } from 'utils/customAxios';
-import { isAuth } from 'utils/JwtUtils';
+import { getUserId, isAuth } from 'utils/JwtUtils';
 import { useSelector } from 'react-redux';
-import testImage from '../../assets/AnyConv.com__poster6.webp';
-const HomeCalendarModal = ({className , closeModal, title , content , position}) => {
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+
+const HomeCalendarModal = ({className , closeModal, title , content , position }) => {
     const modalRef = useRef();
-    const [bookmarkState , setBookmarkState] = useState(false);
+    const [bookmarkState, setBookmarkState] = useState(false);
     const accessToken = useSelector((state)=> state.auth.accessToken);
 
     const createBookmark = async() => {
         const response = await axiosInstance.post(`/calendar/bookmark/${content.id}`)
         if(response.status === 200){
-            console.log('등록 성공')
+            setBookmarkState(true);
         }
     }
 
     const deleteBookmark = async() => {
         const response = await axiosInstance.delete(`/calendar/bookmark/${content.id}`)
         if(response.status === 200){
-            console.log('삭제 성공')
-        }
-    }
-
-    const checkBookmark = async() => {
-        const response = await axiosInstance.get('/users/concerts')
-        if(response.status === 200){
-            console.log('조회 성공', response)
+            setBookmarkState(false);
         }
     }
 
@@ -35,12 +30,10 @@ const HomeCalendarModal = ({className , closeModal, title , content , position})
             alert("로그인이 필요합니다.")
             return;
         }
-
-        checkBookmark();
+   //     bookmarkState ? deleteBookmark() : createBookmark();
     }
 
     const handleMouseDown = (e) => {
-        console.log(e.target);
         if (e.target == 'html'|| modalRef && !modalRef.current.contains(e.target)) {
             closeModal(false);
           }
@@ -56,6 +49,7 @@ const HomeCalendarModal = ({className , closeModal, title , content , position})
 
     useEffect ( ()=> {
         setModalPosition();
+        accessToken && setBookmarkState(content.userIdList.includes(getUserId(accessToken)))
         document.addEventListener('mousedown' , handleMouseDown);
         return ()=> { 
             document.removeEventListener('mousedown' , handleMouseDown);
@@ -70,7 +64,10 @@ const HomeCalendarModal = ({className , closeModal, title , content , position})
         <div className = {styled.modalContainer} ref = {modalRef}>
             <header className = {styled.modalHeader}> 
                 <h1 className = {styled.modalTitle}> {title} </h1>
-                <img src = "/images/star.png" className = {styled.markingImg} alt = "mark" onClick={clickBookmarkHandler}/>
+                {
+                    bookmarkState ? <StarIcon className = {styled.markingImg} alt ="bookmark" onClick={clickBookmarkHandler}/> 
+                    : <StarBorderIcon className = {styled.markingImg} alt = "bookmark" onClick={clickBookmarkHandler}/>
+                }
             </header>
             <div className={styled.modalBody}>
                 <div className = {styled.modalContent}>
@@ -87,7 +84,7 @@ const HomeCalendarModal = ({className , closeModal, title , content , position})
                     {content.bookingLink.yes24Link && <a href = {content.bookingLink.yes24Link} target = {'_blank'}>YES 24 바로가기</a>}
                     {content.bookingLink.interparkLink && <a href = {content.bookingLink.interparkLink} target = {'_blank'}>인터파크 바로가기</a>}
                 </div> 
-                <img src={testImage} alt = "Content_poster" className = {styled.modalContentPoster}/>
+                <img src={content.img} alt = "Content_poster" className = {styled.modalContentPoster}/>
             </div>
         </div>
     )

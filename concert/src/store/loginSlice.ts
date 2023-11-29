@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface loginState {
   email : string;
   password : string;
-  currentUid : number;
+  currentUid : string;
   currentUserEmail : string;
 }
 const initialState = {
@@ -23,7 +23,7 @@ export const loginSlice = createSlice({
     inputPassword: (state ,action) => {
       state.password = action.payload;
     },
-    setCurrentUid: (state, action) => {
+    setCurrentUid: (state, action : PayloadAction<string>) => {
       state.currentUid = action.payload;
     },
     setCurrentUserEmail: (state, action) => {
@@ -33,6 +33,6 @@ export const loginSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { inputEmail, inputPassword  , setCurrentUid , setCurrentUserEmail} = loginSlice.actions //reducer의 actions을 export
+export const { inputEmail, inputPassword  , setCurrentUid , setCurrentUserEmail } = loginSlice.actions //reducer의 actions을 export
 
 export default loginSlice.reducer

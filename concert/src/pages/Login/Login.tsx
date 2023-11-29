@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inputEmail, inputPassword, setCurrentUid, setCurrentUserEmail } from "../../store/loginSlice"
+import { inputEmail, inputPassword, setCurrentUid } from "../../store/loginSlice"
 import { Link } from "react-router-dom";
 import { storeAccessToken } from "../../store/authSlice";
 import { axiosInstance } from "../../utils/customAxios";
-import { getUserEmail, getUserId } from "utils/JwtUtils";
+import { getUserId } from "utils/JwtUtils";
 import { useState } from "react";
 import { RootState } from "store/store";
 import loginLogo  from "../../assets/pushpinLogo.svg";
@@ -14,7 +14,7 @@ const Login = () =>  {
     const {state} = useLocation();
     const email = useSelector((state:RootState) => state.login.email);
     const password = useSelector((state:RootState) => state.login.password);
-    const [loginErrMsg,setLoginErrmsg] = useState<boolean>(false);
+    const [loginErrMsg, setLoginErrmsg] = useState<boolean>(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -30,6 +30,8 @@ const Login = () =>  {
             .then((data) => {
                 if(data.status === 'OK'){
                     loginSuccess(data.data.accessToken)
+                    console.log(getUserId(data.data.accessToken));
+                    dispatch(setCurrentUid(getUserId(data.data.accessToken).toString()));
                 }else{
                     setLoginErrmsg(true);
                 }

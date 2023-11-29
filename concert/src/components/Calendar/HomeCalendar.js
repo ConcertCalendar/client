@@ -7,6 +7,7 @@ import style from './HomeCalendar.module.scss'
 import styled from "@emotion/styled";
 import HomeCalendarModal from "./HomeCalendarModal.js";
 
+
 /* 캘린더를 띄우는 컴포넌트  */
 
 export const StyleWrapper = styled.div`
@@ -90,7 +91,7 @@ function HomeCalendar() {
     }
  
     const changeProperty = (data ) => {
-      let chagne_data = data.map((item )=> {
+      let chagne_data = data.map((item)=> {
           let obj = {
               id : item.id,
               title : item.title,
@@ -106,10 +107,9 @@ function HomeCalendar() {
               minPrice : item.minPrice,
               location : item.regionName,
               bookingLink : item.bookingLink,
-            //  userIdList : item.userIdList,
+              userIdList : item.userIdList
           }
           return obj;
-
       })
       return chagne_data;
     }
