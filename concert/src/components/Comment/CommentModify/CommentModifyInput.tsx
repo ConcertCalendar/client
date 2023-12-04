@@ -1,32 +1,35 @@
+import { useDispatch, useSelector } from "react-redux";
+import styled  from '../Input/CommentInput.module.scss';
+import { RootState } from "store/store";
+import {useState} from 'react';
+import { axiosInstance } from "utils/customAxios";
+import MyProfile from "components/User/myProfile/MyProfile";
+import { comment } from "../Comment";
+import { modifyComment } from "store/commentSlice";
 
-import styled  from './CommentInput.module.scss';
-import { useState } from 'react';
-
-import MyProfile from 'components/User/myProfile/MyProfile';
-import { axiosInstance } from 'utils/customAxios';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store/store';
-import { setCommentList } from 'store/commentSlice';
-
-interface CommentInputProps {
+interface CommentModifyInputProps {
     children ?: React.ReactNode;
     boardId : number;
-    postId : number;
+    comment : comment;
+    setModify : React.Dispatch<React.SetStateAction<boolean>>;
+    clicked : boolean;
 }
-
-const CommentInputTest:React.FC<CommentInputProps> = (props) => {
-    const {boardId , postId} = props;
+const CommentModifyInput:React.FC<CommentModifyInputProps> = (props) => {
+    const {boardId  , comment , setModify , clicked} = props;
     const accessToken = useSelector((state:RootState) => state.auth.accessToken);
-    const [content, setContent] = useState<string>("");
-    const [currentLength , setCurrentLength] = useState<number>(0);
-    const URL = `boards/${boardId}/posts/${postId}/comments`;
+    const [content, setContent] = useState<string>(comment.commentContent);
+    const [currentLength , setCurrentLength] = useState<number>(comment.commentContent.length);
+    const URL = `boards/${boardId}/posts/${comment.postId}/comments/${comment.id}`;
     const dispatch = useDispatch();
 
 
-    const postComment= () => {
-        axiosInstance.post(URL, {"commentContent" : content})
+    const updateComment= () => {
+        axiosInstance.put(URL, {"commentContent" : content})
         .then((res)=> {
-            console.log(res); /* 리랜더링필요 */
+            setModify(!clicked)
+            dispatch(modifyComment({
+                'id' : comment.id,
+                'content' : content}))
         })
         .catch((err)=> alert("댓글 입력에 실패했습니다. 다시 시도해주세요."));
     }
@@ -42,7 +45,7 @@ const CommentInputTest:React.FC<CommentInputProps> = (props) => {
             alert("댓글을 입력해주세요.") 
             return;
         }  
-        postComment();
+        updateComment();
     }
     
     return (
@@ -66,6 +69,6 @@ const CommentInputTest:React.FC<CommentInputProps> = (props) => {
             </div>
         </section>
     )
-} 
+}
 
-export default CommentInputTest;
+export default CommentModifyInput;

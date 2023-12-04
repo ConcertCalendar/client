@@ -3,55 +3,60 @@ import styled from './CommentItem.module.scss';
 import { changePostDateFormat } from 'utils/dateUtils';
 import Report from 'components/Report/Report';
 import CommentDelete from '../commentDelete/commentDelete';
-import ReplyTest, { replyDtoList } from 'components/Reply/ReplyTest';
+import ReplyTest, { reply } from 'components/Reply/ReplyTest';
 import CommentModify from '../CommentModify/CommentModify';
 import { useState } from 'react';
 import ReplyInputTest from '../Input/ReplyInputTest';
+import { comment } from '../Comment';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { getUserId } from 'utils/JwtUtils';
+import CommentInputTest from '../Input/CommentInputtest';
+import CommentModifyInput from '../CommentModify/CommentModifyInput';
 
-
-interface CommentItemTest {
-    childern ?: React.ReactNode;
-    commentContent : string;
-    commentWriterId : number;
-    commentWriterName : string;
-    createdDate : Date| string;
-    id : number;
-    modifiedDate : null | Date | string;
-    postId : number;    
+interface CommentItemProps {
+    children ?: React.ReactNode;
+    comment : comment;
     boardId : number;
-    reply : Array<replyDtoList>
 }
 
-const CommentItemTest:React.FC<CommentItemTest> = (props) => {
-    const {commentContent, commentWriterId , commentWriterName , createdDate, id , modifiedDate, postId, boardId , reply} = props;
-    const [displayReplyInput , setDisplayReplyInput ] = useState<boolean>(false); 
-    
+const CommentItem:React.FC<CommentItemProps> = (props) => {
+    const {comment , boardId} = props;
+    const [clickModifyBtn , setClickModifyBtn] = useState<boolean>(false);
+    const accessToken = useSelector((state:RootState)=>state.auth.accessToken);
+
+    const [displayReplyInput , setDisplayReplyInput] = useState<boolean>(false); 
+
     const handleReplyInput = () => {
         setDisplayReplyInput(!displayReplyInput);
-
     }
 
     const renderReply = () => {
-        return reply.map((item)=>(
+        return comment.replyDtoList.map((item)=>(
             <ReplyTest key = {item.id} commentId={item.commentId} createdDate={item.createdDate} id={item.id} modifiedDate={item.modifiedDate}
               replyContent={item.replyContent} replyWriterId={item.replyWriterId} replyWriterName={item.replyWriterName}/>
         ))
         
     }
 
+
+
     return (
         <li className = {styled.commentItemContainer}>
-            <UserProfile nickName={commentWriterName} className={styled.commentUserProfile}/>
+            <UserProfile nickName={comment.commentWriterName} className={styled.commentUserProfile}/>
             <Report className={styled.commentReport}/>
-            <p className = {styled.commentDate}>{modifiedDate ? changePostDateFormat(modifiedDate) : changePostDateFormat(createdDate)}</p>
-            <p className={styled.commentContent}>{commentContent}</p>
+            <p className = {styled.commentDate}>{comment.modifiedDate ? changePostDateFormat(comment.modifiedDate) : changePostDateFormat(comment.createdDate)}</p>
+            {clickModifyBtn ?
+            <CommentModifyInput boardId={boardId} comment={comment} setModify = {setClickModifyBtn} clicked = {clickModifyBtn}/>
+            : 
+            <p className={styled.commentContent}>{comment.commentContent}</p>} 
             <div className = {styled.commentMenu}> 
-                <CommentDelete url = {`boards/${boardId}/posts/${postId}/comments/${id}` }/>    
-                <CommentModify/>
                 <p onClick={handleReplyInput}>답글</p>
+                {getUserId(accessToken) === comment.commentWriterId &&<CommentDelete comment = {comment} boardId = {boardId}/>}
+                {getUserId(accessToken) === comment.commentWriterId&&<CommentModify setModify = {setClickModifyBtn} clicked = {clickModifyBtn} comment = {comment} boardId = {boardId}/>}
             </div>
             {displayReplyInput&&<div className = {styled.replyInput}>
-                <ReplyInputTest to ={commentWriterName}/>
+                <ReplyInputTest comment = {comment} to ={comment.commentWriterName}/>
             </div>}
             {renderReply()}
         </li>
@@ -59,4 +64,4 @@ const CommentItemTest:React.FC<CommentItemTest> = (props) => {
 
 }
 
-export default CommentItemTest;
+export default CommentItem;

@@ -22,8 +22,12 @@ export const getUserEmail = (accessToken) => {
 }
 
 export const getUserId = (accessToken) => {
+    if(!isAuth(accessToken)){
+        return false;
+    }
     const decoded = jwt_decode(accessToken)
     return decoded.userId;
+    
 }
 
 export const getDecoded = (accessToken) => {

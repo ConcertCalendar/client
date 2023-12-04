@@ -3,7 +3,7 @@ import styled from './Reply.module.scss';
 import Report from 'components/Report/Report';
 import { changePostDateFormat } from 'utils/dateUtils';
 
-export interface replyDtoList {
+export type reply = {
     commentId : number;
     createdDate : Date|string;
     id : number;
@@ -13,7 +13,7 @@ export interface replyDtoList {
     replyWriterName : string;
 }
 
-const ReplyTest:React.FC<replyDtoList> = (props) => {
+const ReplyTest:React.FC<reply> = (props) => {
     const {commentId , createdDate , id, modifiedDate, replyContent, replyWriterId, replyWriterName} = props;
     return (
         <div className = {styled.replyContainer}>

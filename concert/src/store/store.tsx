@@ -3,6 +3,7 @@ import  loginReducer  from "./loginSlice"
 import authReducer from "./authSlice";
 import calendarReducer from './calendarSlice';
 import joinReducer from './joinSlice';
+import commentReducer from './commentSlice'
 
 export const store = configureStore({
     reducer : {
@@ -10,6 +11,7 @@ export const store = configureStore({
         auth : authReducer,
         calendar : calendarReducer,
         join : joinReducer,
+        comment: commentReducer,
     },
 })
 
