@@ -30,7 +30,6 @@ const Login = () =>  {
             .then((data) => {
                 if(data.status === 'OK'){
                     loginSuccess(data.data.accessToken)
-                    console.log(getUserId(data.data.accessToken));
                     dispatch(setCurrentUid(getUserId(data.data.accessToken).toString()));
                 }else{
                     setLoginErrmsg(true);

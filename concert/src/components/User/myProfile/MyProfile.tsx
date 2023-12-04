@@ -8,7 +8,6 @@ import { RootState } from 'store/store';
 interface UserMyProfileProps{
     childern ?: React.ReactNode;
     className : string;
-    token ?: string;
 }
 
 const MyProfile:React.FC<UserMyProfileProps> = (props) => {

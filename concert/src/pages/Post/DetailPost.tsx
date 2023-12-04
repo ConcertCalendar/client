@@ -1,4 +1,3 @@
-import CommentList from 'components/Comment/CommentList'
 import styled from './DetailPost.module.scss';
 import Heart from 'pages/BulletinBoard/Heart';
 import { useState , useEffect} from 'react';
@@ -11,11 +10,12 @@ import PostMenu from '../../components/Post/PostMenu';
 import Mark from 'components/Mark/Mark';
 import Link from 'components/Link/Link';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import {getUserId} from 'utils/JwtUtils';
 import CommentInputTest from 'components/Comment/Input/CommentInputtest';
-import Comment, { CommentDtoList } from 'components/Comment/Comment';
+import Comments from 'components/Comment/Comment';
+import { setCommentList } from 'store/commentSlice';
 
 interface DetailPostProps{
     childern ?: React.ReactNode;
@@ -35,8 +35,9 @@ const DetailPost:React.FC<DetailPostProps> = () => {
     const [writerId,setWriterId] = useState<number>(-1); //글쓴이 고유 아이디
     const [writerName , setWriterName] = useState<string>(""); //글쓴이 이름
     const [heart , setHeart] = useState<Array<string>>([]); //좋아요
-    const [commentList , setCommentList] = useState<Array<CommentDtoList>>([]); //댓글 모음 
     const [loading , setLoading ] = useState<boolean>(false);
+    const commentList = useSelector((state:RootState) => state.comment.commentList); //댓글 모음 
+    const dispatch = useDispatch();
     const location = useLocation();
 
     const checkWriter = (writerId:number) => {
@@ -59,18 +60,17 @@ const DetailPost:React.FC<DetailPostProps> = () => {
             setHeart(res.data.data.postHeartSet);     
             setWriterId(res.data.data.writerId);
             setWriterName(res.data.data.writerName);
-            setCommentList(res.data.data.commentDtoList);
+            dispatch(setCommentList(res.data.data.commentDtoList))
             checkWriter(res.data.data.writerId)
             setLoading(true);
-            console.log('detailPost',res);
        })
        .catch((err)=>{
         console.log(err);
        })
     }
+    
     useEffect(() => {
         getPost();
-        console.log(location);
     } , [])
 
     return (
@@ -97,7 +97,7 @@ const DetailPost:React.FC<DetailPostProps> = () => {
                         {postContent}
                     </div>
                     <Heart boardId={boardId} postId={id} heartSet = {heart} />
-                    <Comment token={accessToken} postId = {id} commentList={commentList} boardId={boardId}/>
+                    <Comments postId = {id} boardId = {boardId}/>
                 </section>
                 :
                 <section className = {styled.loadingContainer}>

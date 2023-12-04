@@ -3,21 +3,38 @@ import styled from './ReplyInput.module.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import MyProfile from 'components/User/myProfile/MyProfile';
+import { comment } from '../Comment';
+import { axiosInstance } from 'utils/customAxios';
 
 
+/*
+commentId : number;
+createdDate : Date|string;
+id : number;
+modifiedDate : null | Date  | string;
+replyContent : string;
+replyWriterId : number;
+replyWriterName : string;
+*/
 interface ReplyInput {
     Childern ?: React.ReactNode;
+    comment : comment;
     to : string;
 }
 
 const ReplyInputTest:React.FC<ReplyInput> = (props) => {
-    const {to} = props;
+    const {comment,to} = props;
     const token = useSelector((state:RootState)=>state.auth.accessToken);
     const [content, setContent] = useState<string>();
     const [currentLength , setCurrentLength] = useState<number>(0);
-
+    const URL = `/comments/${comment.id}/replies`
+    
     const postComment= () => {
-
+        axiosInstance.post(URL, {"replyContent" : content})
+        .then((res)=> {
+            console.log(res); /* 리랜더링필요 */
+        })
+        .catch((err)=> alert("댓글 입력에 실패했습니다. 다시 시도해주세요."));
     }
 
     const handleLength = (event:React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,7 +53,7 @@ const ReplyInputTest:React.FC<ReplyInput> = (props) => {
     
     return (
         <div className = {styled.replyInpuContainer}>
-            <MyProfile token={token} className={styled.replyUserProfile}/>
+            <MyProfile  className={styled.replyUserProfile}/>
             <textarea
                 className = {styled.replyInput}
                 placeholder={token ? '답글을 입력하세요' : '답글을 작성하려면 로그인을 해주세요'}

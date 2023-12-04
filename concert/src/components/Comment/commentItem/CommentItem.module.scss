@@ -36,6 +36,7 @@
 
 .commentMenu {
     display: flex;
+    flex-direction: row-reverse;
     width: 12%;
     justify-content: space-between;
     margin : 0;
